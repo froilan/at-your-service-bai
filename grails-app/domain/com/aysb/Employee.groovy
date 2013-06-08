@@ -28,4 +28,8 @@ class Employee {
 		companyProfile nullable: true, blank:true
 		rating nullable:true, blank:true
     }
+
+	public String toString(){
+		return name
+	} 
 }

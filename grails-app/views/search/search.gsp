@@ -20,6 +20,7 @@
 		</div>
 		
 		<div role="result">
+			<h1> Results </h1>
 			<g:render template="result"/>
 		</div>
 		
