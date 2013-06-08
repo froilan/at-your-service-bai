@@ -33,7 +33,19 @@ class Employee {
     }
 	
 	BigDecimal getAverageRating() {
-		return BigDecimal.ZERO
+		BigDecimal total = BigDecimal.ZERO;
+		for (review in reviews) {
+			if (review.rating != null) {
+				total = total.plus(review.rating)
+			}
+		}
+		
+		BigDecimal average = null;
+		if (!BigDecimal.ZERO.equals(total)) {
+			average = total.divide(reviews.size())
+		}
+		
+		return average
 	}
 
 	public String toString(){

@@ -143,23 +143,38 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${employeeInstance?.averageRating}">
+				<li class="fieldcontain">
+					<span id="skills-label" class="property-label">Average Rating</span>
+					
+						<span class="property-value" aria-labelledby="rating-label">${employeeInstance.getAverageRating()}</span>
+					
+				</li>
+				</g:if>
 			
 			</ol>
 			
-			<g:if test="${loggedIn == true}">
-				<g:form>
-					<fieldset class="buttons">
-						<g:hiddenField name="id" value="${employeeInstance?.id}" />
-						<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-					</fieldset>
-				</g:form>
-			</g:if>
-			<g:else>
+			<sec:ifLoggedIn>
+				<g:if test="${loggedIn == true}">
+					<g:form>
+						<fieldset class="buttons">
+							<g:hiddenField name="id" value="${employeeInstance?.id}" />
+							<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						</fieldset>
+					</g:form>
+				</g:if>
+				<sec:ifAllGranted roles="ROLE_EMPLOYER">
+					<g:form>
+						<fieldset class="buttons">
+							<g:link action="postReview" id="${employeeInstance?.id}">Post Review</g:link>
+						</fieldset>
+					</g:form>
+				</sec:ifAllGranted>
+			</sec:ifLoggedIn>
 			<%--
 				TODO: add back to search results button here later	 			 
 			--%>
-			</g:else>
 		</div>
 	</body>
 </html>
