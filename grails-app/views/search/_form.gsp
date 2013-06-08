@@ -14,3 +14,9 @@
 	<g:select name="subCategory" from="${employee.constraints.subCategory.inList}" value="${employee?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': '']"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: employee, field: 'location', 'error')} ">
+	<label for="location">
+		<g:message code="employee.location.label" default="Location" />
+	</label>
+	<g:textField name="location" value="${employee?.location}"/>
+</div>

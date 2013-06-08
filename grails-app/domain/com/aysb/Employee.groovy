@@ -14,6 +14,7 @@ class Employee {
 	BigDecimal lowRate
 	BigDecimal rating
 	byte[] photo
+	String imageType
 	CompanyProfile companyProfile
 	
 	static hasMany = [clients : Client]

@@ -127,7 +127,7 @@
 				<g:if test="${employeeInstance?.photo}">
 				<li class="fieldcontain">
 					<span id="photo-label" class="property-label"><g:message code="employee.photo.label" default="Photo" /></span>
-					
+					<img class="photo" src="${createLink(controller:'employee', action:'avatar_image', id:employeeInstance?.id)}" />
 				</li>
 				</g:if>
 			
