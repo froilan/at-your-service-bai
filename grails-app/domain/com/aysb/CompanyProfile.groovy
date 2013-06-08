@@ -9,4 +9,8 @@ class CompanyProfile {
 	
     static constraints = {
     }
+	
+	public String toString(){
+		return name
+	}
 }

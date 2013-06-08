@@ -77,13 +77,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${employeeInstance?.clients}">
+				<g:if test="${employeeInstance?.subCategory}">
 				<li class="fieldcontain">
-					<span id="clients-label" class="property-label"><g:message code="employee.clients.label" default="Clients" /></span>
+					<span id="subCategory-label" class="property-label"><g:message code="employee.subCategory.label" default="Sub Category" /></span>
 					
-						<g:each in="${employeeInstance.clients}" var="c">
-						<span class="property-value" aria-labelledby="clients-label"><g:link controller="client" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
+						<span class="property-value" aria-labelledby="subCategory-label"><g:fieldValue bean="${employeeInstance}" field="subCategory"/></span>
 					
 				</li>
 				</g:if>
@@ -93,6 +91,17 @@
 					<span id="companyProfile-label" class="property-label"><g:message code="employee.companyProfile.label" default="Company Profile" /></span>
 					
 						<span class="property-value" aria-labelledby="companyProfile-label"><g:link controller="companyProfile" action="show" id="${employeeInstance?.companyProfile?.id}">${employeeInstance?.companyProfile?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.clients}">
+				<li class="fieldcontain">
+					<span id="clients-label" class="property-label"><g:message code="employee.clients.label" default="Clients" /></span>
+					
+						<g:each in="${employeeInstance.clients}" var="c">
+						<span class="property-value" aria-labelledby="clients-label"><g:link controller="client" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>
@@ -118,7 +127,7 @@
 				<g:if test="${employeeInstance?.photo}">
 				<li class="fieldcontain">
 					<span id="photo-label" class="property-label"><g:message code="employee.photo.label" default="Photo" /></span>
-					
+					<img class="photo" src="${createLink(controller:'employee', action:'avatar_image', id:employeeInstance?.id)}" />
 				</li>
 				</g:if>
 			
@@ -127,15 +136,6 @@
 					<span id="skills-label" class="property-label"><g:message code="employee.skills.label" default="Skills" /></span>
 					
 						<span class="property-value" aria-labelledby="skills-label"><g:fieldValue bean="${employeeInstance}" field="skills"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${employeeInstance?.subCategory}">
-				<li class="fieldcontain">
-					<span id="subCategory-label" class="property-label"><g:message code="employee.subCategory.label" default="Sub Category" /></span>
-					
-						<span class="property-value" aria-labelledby="subCategory-label"><g:fieldValue bean="${employeeInstance}" field="subCategory"/></span>
 					
 				</li>
 				</g:if>

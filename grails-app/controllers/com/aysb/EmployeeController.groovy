@@ -33,14 +33,15 @@ class EmployeeController {
 			return;
 		  }
 		
-		  // Save the image and mime type
-		  employeeInstance.photo = photo.getBytes()
+		// Save the image and mime type
+		employeeInstance.photo = photo.getBytes()
+		employeeInstance.imageType = photo.getContentType()
 		if (!employeeInstance.save(flush: true)) {
             render(view: "create", model: [employeeInstance: employeeInstance])
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance])
         redirect(action: "show", id: employeeInstance.id)
     }
 
@@ -85,13 +86,28 @@ class EmployeeController {
         }
 
         employeeInstance.properties = params
-
+		
+		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request
+		def photo = mRequest.getFile('avatar')
+		
+		  // List of OK mime-types
+		  def okcontents = ['image/png', 'image/jpeg', 'image/gif']
+		  if (! okcontents.contains(photo.getContentType())) {
+			flash.message = "unnacceptable image type"
+			render(view: "create", model: [employeeInstance: employeeInstance])
+			return;
+		  }
+		
+		// Save the image and mime type
+		employeeInstance.photo = photo.getBytes()
+		employeeInstance.imageType = photo.getContentType()
+		
         if (!employeeInstance.save(flush: true)) {
             render(view: "edit", model: [employeeInstance: employeeInstance])
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance.id])
+        flash.message = message(code: 'default.updated.message', args: [message(code: 'employee.label', default: 'Employee'), employeeInstance])
         redirect(action: "show", id: employeeInstance.id)
     }
 
@@ -113,4 +129,17 @@ class EmployeeController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def avatar_image = {
+		def employee = Employee.get(params.id)
+		if (!employee || !employee.photo ) {
+		  response.sendError(404)
+		  return;
+		}
+		response.setContentType(employee.imageType)
+		response.setContentLength(employee.photo.size())
+		OutputStream out = response.getOutputStream();
+		out.write(employee.photo);
+		out.close();
+	}
 }

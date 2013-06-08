@@ -12,7 +12,9 @@ class Employee {
 	Boolean negotiableRate
 	BigDecimal highRate
 	BigDecimal lowRate
+	BigDecimal rating
 	byte[] photo
+	String imageType
 	CompanyProfile companyProfile
 	
 	static hasMany = [clients : Client, reviews: Review]
@@ -25,10 +27,16 @@ class Employee {
 		category nullable:true, blank: true, inList:["CatA", "CatB", "CatC"]
 		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
 		companyProfile nullable: true, blank:true
-
+		rating nullable:true, blank:true
+		photo nullable:true, blank:true
+		imageType nullable:true, blank:true
     }
 	
 	BigDecimal getAverageRating() {
 		return BigDecimal.ZERO
 	}
+
+	public String toString(){
+		return name
+	} 
 }
