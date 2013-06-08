@@ -7,6 +7,7 @@
 	<title><g:message code="site.label" /></title>
 </head>
 <body>
+
 	<div class="nav" role="navigation">
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
@@ -27,7 +28,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.search.label', default: 'Search')}" />
+					<g:submitButton name="create" class="save" value="${message(code: 'search.label', default: 'Search')}" />
 				</fieldset>
 			</g:form>
 		</div>

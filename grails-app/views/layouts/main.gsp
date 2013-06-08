@@ -18,11 +18,32 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<div>
+			Awesome Logo Here
+		</div>
+	
+		<div class="nav" role="navigation">
+		<ul>
+			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+			<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
+			
+			<sec:ifLoggedIn>
+				<li><g:link class="create" controller="logout"><g:message code="logout.label" /></g:link></li>
+			</sec:ifLoggedIn>
+			
+			<sec:ifNotLoggedIn>
+				<li><g:link class="create" controller="login"><g:message code="login.label" /></g:link></li>
+			</sec:ifNotLoggedIn>
+			
+		</ul>
+		</div>
+		
+		
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />
+		
 	</body>
 </html>
