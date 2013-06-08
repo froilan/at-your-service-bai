@@ -156,7 +156,7 @@
 			</ol>
 			
 			<sec:ifLoggedIn>
-				<g:if test="${loggedIn == true}">
+				<g:if test="${sameEmployee}">
 					<g:form>
 						<fieldset class="buttons">
 							<g:hiddenField name="id" value="${employeeInstance?.id}" />

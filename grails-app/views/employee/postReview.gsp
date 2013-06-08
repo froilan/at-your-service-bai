@@ -28,7 +28,8 @@
 			</g:hasErrors>
 			<g:form action="submitReview" >
 				<fieldset class="form">
-					<input type="hidden" name="empId" value"${employeeId}" />
+					<%-- input type="hidden" name="employeeId" value"${employeeId}" /--%>
+					<g:hiddenField name="id" value="${employeeId}" />
 					<div class="fieldcontain ${hasErrors(bean: reviewInstance, field: 'rating', 'error')} required">
 						<label for="rating">
 							<g:message code="review.rating.label" default="Rating" />

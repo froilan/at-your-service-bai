@@ -23,6 +23,8 @@ class SiteUser {
 	static mapping = {
 		password column: '`password`'
 	}
+	
+	static transients = [ 'anEmployee' ]
 
 	Set<SiteRole> getAuthorities() {
 		SiteUserSiteRole.findAllBySiteUser(this).collect { it.siteRole } as Set
@@ -41,4 +43,9 @@ class SiteUser {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
+	
+	boolean isAnEmployee() {
+		return employee != null
+	}
+
 }

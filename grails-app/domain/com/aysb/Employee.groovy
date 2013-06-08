@@ -34,7 +34,7 @@ class Employee {
 	
 	BigDecimal getAverageRating() {
 		BigDecimal total = BigDecimal.ZERO;
-		for (review in reviews) {
+		reviews.each { review ->
 			if (review.rating != null) {
 				total = total.plus(review.rating)
 			}
@@ -47,7 +47,7 @@ class Employee {
 		
 		return average
 	}
-
+	
 	public String toString(){
 		return name
 	} 
