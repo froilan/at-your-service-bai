@@ -15,7 +15,7 @@ class Employee {
 	byte[] photo
 	CompanyProfile companyProfile
 	
-	static hasMany = [clients : Client]
+	static hasMany = [clients : Client, reviews: Review]
     static constraints = {
 		name nullable: false, blank: false
 		contactNumber nullable: false, blank:false
@@ -27,4 +27,8 @@ class Employee {
 		companyProfile nullable: true, blank:true
 
     }
+	
+	BigDecimal getAverageRating() {
+		return BigDecimal.ZERO
+	}
 }
