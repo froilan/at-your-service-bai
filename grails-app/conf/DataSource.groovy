@@ -1,7 +1,7 @@
 dataSource {
     pooled=true
 	driverClassName="org.postgresql.Driver"
-	url="jdbc:postgresql://localhost/aysb"
+	url="jdbc:postgresql://localhost/ays"
 	username="postgres"
 	password="password"
 }
