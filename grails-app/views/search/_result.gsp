@@ -41,7 +41,9 @@
 						<li class="fieldcontain">Negotiable</li>
 					</g:if>
 					
-					<li class="fieldcontain">Info <%-- TODO :<g:link> </g:link> --%></li>
+					<li class="fieldcontain">
+						<g:link action="show" controller="employee" id="${result.employee?.id}"> Info </g:link>
+					</li>
 				</ul>
 			 
 		</div>

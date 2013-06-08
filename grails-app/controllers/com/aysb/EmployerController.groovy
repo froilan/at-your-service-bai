@@ -1,5 +1,7 @@
 package com.aysb
 
+import grails.plugins.springsecurity.Secured;
+
 import org.springframework.dao.DataIntegrityViolationException
 
 class EmployerController {
@@ -37,10 +39,14 @@ class EmployerController {
             redirect(action: "list")
             return
         }
-
-        [employerInstance: employerInstance]
+		def loggedIn
+		if(springSecurityService.currentUser && springSecurityService.currentUser.employer.id == id){
+			loggedIn = true
+		}
+        [employerInstance: employerInstance, loggedIn: loggedIn]
     }
 
+	@Secured("ROLE_EMPLOYER")
     def edit(Long id) {
         def employerInstance = Employer.get(id)
         if (!employerInstance) {
@@ -52,6 +58,7 @@ class EmployerController {
         [employerInstance: employerInstance]
     }
 
+	@Secured("ROLE_EMPLOYER")
     def update(Long id, Long version) {
         def employerInstance = Employer.get(id)
         if (!employerInstance) {
