@@ -1,0 +1,10 @@
+.settings
+bin
+classes
+*~
+stacktrace*
+*.log
+*.war
+*.ser
+/target/test-reports
+/target/*
