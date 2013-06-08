@@ -17,7 +17,7 @@ class Employee {
 	String imageType
 	CompanyProfile companyProfile
 	
-	static hasMany = [clients : Client]
+	static hasMany = [clients : Client, reviews: Review]
     static constraints = {
 		name nullable: false, blank: false
 		contactNumber nullable: false, blank:false
@@ -31,6 +31,10 @@ class Employee {
 		photo nullable:true, blank:true
 		imageType nullable:true, blank:true
     }
+	
+	BigDecimal getAverageRating() {
+		return BigDecimal.ZERO
+	}
 
 	public String toString(){
 		return name

@@ -3,7 +3,7 @@ package com.aysb
 class Employer {
 
 	String name
-	String contractNumber
+	String contactNumber
 	
 	static constraints = {
 	}
