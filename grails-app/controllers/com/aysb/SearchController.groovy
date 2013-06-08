@@ -7,12 +7,15 @@ class SearchController {
 	}
 	
 	def search(){
-		println params
 		def category = params.category
 		def subcategory = params.subCategory
-		def results = Employee.findAllByCategoryAndSubCategoryIlike(category, subcategory)
-		println results
-		//TODO: change redirect action
-		redirect(action:"index", params:[subCategory:subcategory, category:category])
+		def results = Employee.findAllByCategoryAndSubCategoryIlike(category, subcategory, [max:5]) //sort by rating
+		def count = Employee.countByCategoryAndSubCategoryIlike(categoy, subcategory)
+		redirect(action:"view", params:[subCategory:subcategory, category:category])
+	}
+	
+	def view(){
+		//TODO
+		[params:params]
 	}
 }

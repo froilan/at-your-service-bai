@@ -18,6 +18,11 @@
 				</fieldset>
 			</g:form>
 		</div>
+		
+		<div role="result">
+			<g:render template="result"/>
+		</div>
+		
 	</div>
 </body>
 </html>
