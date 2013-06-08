@@ -21,5 +21,7 @@ class Employee {
 		location nullable: false, blank:false 
 		highRate nullable: true, blank:true
 		lowRate nullable: true, blank:true
+		category nullable:true, blank: true, inList:["CatA", "CatB", "CatC"]
+		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
     }
 }
