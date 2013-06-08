@@ -5,7 +5,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartHttpServletRequest
 
 class SiteUserController {
-
+	def springSecurityService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -28,24 +28,36 @@ class SiteUserController {
     def save() {
 		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request
         def siteUserInstance = new SiteUser(params)
-		def employerInstance
-		def employeeInstance
 		siteUserInstance.enabled = true
 		siteUserInstance.accountExpired = false
 		siteUserInstance.accountLocked = false
 		siteUserInstance.passwordExpired = false
+		
+		def siteUserSiteRoleInstance = new SiteUserSiteRole()
+		siteUserSiteRoleInstance.siteUser = siteUserInstance
+		if(params.isEmployee){
+			siteUserSiteRoleInstance.siteRole = SiteRole.findByAuthority("ROLE_EMPLOYEE")
+		}else{
+			siteUserSiteRoleInstance.siteRole = SiteRole.findByAuthority("ROLE_EMPLOYER")
+		}
+		def employerInstance
+		def employeeInstance
+		
 
 		if(params.isEmployee){
 			employeeInstance = new Employee(params)
 			def photo = mRequest.getFile('avatar')
-			def okcontents = ['image/png', 'image/jpeg', 'image/gif']
-			if (! okcontents.contains(photo.getContentType())) {
-			  siteUserInstance = new SiteUser(params)
-			  siteUserInstance.errors.reject("error.fileType", "Unacceptable image type")
-			  render(view: "create", model: [siteUserInstance: siteUserInstance, employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
-			  return;
+			if(!photo.isEmpty()){
+				def okcontents = ['image/png', 'image/jpeg', 'image/gif']
+				if (! okcontents.contains(photo.getContentType())) {
+				  siteUserInstance = new SiteUser(params)
+				  siteUserInstance.errors.reject("error.fileType", "Unacceptable image type")
+				  render(view: "create", model: [siteUserInstance: siteUserInstance, employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
+				  return;
+				}
+				employeeInstance.photo = photo.getBytes()
 			}
-			employeeInstance.photo = photo.getBytes()
+			
 			siteUserInstance.employee = employeeInstance
 		} else {
 			employerInstance = new Employer(params)
@@ -67,7 +79,11 @@ class SiteUserController {
             render(view: "create", model: [siteUserInstance: new SiteUser(params), employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
             return
         }
-		
+		if (!siteUserSiteRoleInstance.save(flush: true, failOnError: true)) {
+			flash.message = "something went wrong in saving site user site role instance"
+			render(view: "create", model: [siteUserInstance: new SiteUser(params), employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
+			return
+		}
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
         redirect(action: "show", id: siteUserInstance.id)

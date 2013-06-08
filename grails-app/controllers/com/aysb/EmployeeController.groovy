@@ -1,5 +1,7 @@
 package com.aysb
 
+import grails.plugins.springsecurity.Secured;
+
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartHttpServletRequest
 
@@ -56,6 +58,7 @@ class EmployeeController {
         [employeeInstance: employeeInstance]
     }
 
+	@Secured("ROLE_EMPLOYEE")
     def edit(Long id) {
         def employeeInstance = Employee.get(id)
         if (!employeeInstance) {
@@ -67,6 +70,7 @@ class EmployeeController {
         [employeeInstance: employeeInstance]
     }
 
+	@Secured("ROLE_EMPLOYEE")
     def update(Long id, Long version) {
         def employeeInstance = Employee.get(id)
         if (!employeeInstance) {
