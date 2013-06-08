@@ -12,9 +12,10 @@ class Employee {
 	Boolean negotiableRate
 	BigDecimal highRate
 	BigDecimal lowRate
+	byte[] photo
+	CompanyProfile companyProfile
 	
 	static hasMany = [clients : Client]
-	
     static constraints = {
 		name nullable: false, blank: false
 		contactNumber nullable: false, blank:false
@@ -23,5 +24,7 @@ class Employee {
 		lowRate nullable: true, blank:true
 		category nullable:true, blank: true, inList:["CatA", "CatB", "CatC"]
 		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
+		companyProfile nullable: true, blank:true
+
     }
 }

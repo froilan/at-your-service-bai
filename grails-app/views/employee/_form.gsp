@@ -1,6 +1,11 @@
 <%@ page import="com.aysb.Employee" %>
 
-
+<label for="avatar">Avatar (16K)</label>
+    <input type="file" name="avatar" id="avatar" />
+    <div style="font-size:0.8em; margin: 1.0em;">
+      For best results, your avatar should have a width-to-height ratio of 4:5.
+      For example, if your image is 80 pixels wide, it should be 100 pixels high.
+    </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'name', 'error')} required">
 	<label for="name">
@@ -67,6 +72,13 @@
 
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'companyProfile', 'error')} ">
+	<label for="companyProfile">
+		<g:message code="employee.companyProfile.label" default="Company Profile" />
+	</label>
+	<g:select id="companyProfile" name="companyProfile.id" from="${com.aysb.CompanyProfile.list()}" optionKey="id" value="${employeeInstance?.companyProfile?.id}" class="many-to-one"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'email', 'error')} ">
 	<label for="email">
 		<g:message code="employee.email.label" default="Email" />
@@ -83,7 +95,15 @@
 	<g:checkBox name="negotiableRate" value="${employeeInstance?.negotiableRate}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'skills', 'error')} ">
+<%--<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'photo', 'error')} required">
+	<label for="photo">
+		<g:message code="employee.photo.label" default="Photo" />
+		<span class="required-indicator">*</span>
+	</label>
+	<input type="file" id="photo" name="photo" />
+</div>
+
+--%><div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'skills', 'error')} ">
 	<label for="skills">
 		<g:message code="employee.skills.label" default="Skills" />
 		

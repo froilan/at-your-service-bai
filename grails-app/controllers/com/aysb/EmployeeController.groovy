@@ -1,6 +1,7 @@
 package com.aysb
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.web.multipart.MultipartHttpServletRequest
 
 class EmployeeController {
 
@@ -21,7 +22,20 @@ class EmployeeController {
 
     def save() {
         def employeeInstance = new Employee(params)
-        if (!employeeInstance.save(flush: true)) {
+		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request
+		def photo = mRequest.getFile('avatar')
+		
+		  // List of OK mime-types
+		  def okcontents = ['image/png', 'image/jpeg', 'image/gif']
+		  if (! okcontents.contains(photo.getContentType())) {
+			flash.message = "unnacceptable image type"
+			render(view: "create", model: [employeeInstance: employeeInstance])
+			return;
+		  }
+		
+		  // Save the image and mime type
+		  employeeInstance.photo = photo.getBytes()
+		if (!employeeInstance.save(flush: true)) {
             render(view: "create", model: [employeeInstance: employeeInstance])
             return
         }

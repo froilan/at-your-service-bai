@@ -88,6 +88,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${employeeInstance?.companyProfile}">
+				<li class="fieldcontain">
+					<span id="companyProfile-label" class="property-label"><g:message code="employee.companyProfile.label" default="Company Profile" /></span>
+					
+						<span class="property-value" aria-labelledby="companyProfile-label"><g:link controller="companyProfile" action="show" id="${employeeInstance?.companyProfile?.id}">${employeeInstance?.companyProfile?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${employeeInstance?.email}">
 				<li class="fieldcontain">
 					<span id="email-label" class="property-label"><g:message code="employee.email.label" default="Email" /></span>
@@ -102,6 +111,13 @@
 					<span id="negotiableRate-label" class="property-label"><g:message code="employee.negotiableRate.label" default="Negotiable Rate" /></span>
 					
 						<span class="property-value" aria-labelledby="negotiableRate-label"><g:formatBoolean boolean="${employeeInstance?.negotiableRate}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${employeeInstance?.photo}">
+				<li class="fieldcontain">
+					<span id="photo-label" class="property-label"><g:message code="employee.photo.label" default="Photo" /></span>
 					
 				</li>
 				</g:if>
