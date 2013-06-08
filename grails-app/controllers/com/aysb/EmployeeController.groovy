@@ -9,6 +9,7 @@ class EmployeeController {
 	
 	def springSecurityService
 
+	def springSecurityService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -56,8 +57,12 @@ class EmployeeController {
             redirect(action: "list")
             return
         }
+		def loggedIn
+		if(springSecurityService.currentUser && springSecurityService.currentUser.employee.id == id){
+			loggedIn = true
+		}
 
-        [employeeInstance: employeeInstance]
+        [employeeInstance: employeeInstance, loggedIn: loggedIn]
     }
 
 	@Secured("ROLE_EMPLOYEE")

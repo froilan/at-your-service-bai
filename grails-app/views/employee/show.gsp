@@ -155,16 +155,23 @@
 			
 			</ol>
 			
-			<%-- This is hidden for the mean time. Show this is user is trying to update his/her profile.
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${employeeInstance?.id}" />
-					<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-			--%>
-			<g:link action="postReview" id="${employeeInstance?.id}">Post Review</g:link>
+			<sec:ifLoggedIn>
+				<g:if test="${loggedIn == true}">
+					<g:form>
+						<fieldset class="buttons">
+							<g:hiddenField name="id" value="${employeeInstance?.id}" />
+							<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						</fieldset>
+					</g:form>
+				</g:if>
+				<sec:ifAllGranted roles="ROLE_EMPLOYER">
+					<g:form>
+						<fieldset class="buttons">
+							<g:link action="postReview" id="${employeeInstance?.id}">Post Review</g:link>
+						</fieldset>
+					</g:form>
+				</sec:ifAllGranted>
+			</sec:ifLoggedIn>
 		</div>
 	</body>
 </html>

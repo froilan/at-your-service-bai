@@ -39,8 +39,11 @@ class EmployerController {
             redirect(action: "list")
             return
         }
-
-        [employerInstance: employerInstance]
+		def loggedIn
+		if(springSecurityService.currentUser && springSecurityService.currentUser.employer.id == id){
+			loggedIn = true
+		}
+        [employerInstance: employerInstance, loggedIn: loggedIn]
     }
 
 	@Secured("ROLE_EMPLOYER")
