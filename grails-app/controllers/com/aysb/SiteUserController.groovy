@@ -28,12 +28,21 @@ class SiteUserController {
     def save() {
 		MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request
         def siteUserInstance = new SiteUser(params)
-		def employerInstance
-		def employeeInstance
 		siteUserInstance.enabled = true
 		siteUserInstance.accountExpired = false
 		siteUserInstance.accountLocked = false
 		siteUserInstance.passwordExpired = false
+		
+		def siteUserSiteRoleInstance = new SiteUserSiteRole()
+		siteUserSiteRoleInstance.siteUser = siteUserInstance
+		if(params.isEmployee){
+			siteUserSiteRoleInstance.siteRole = SiteRole.findByAuthority("ROLE_EMPLOYEE")
+		}else{
+			siteUserSiteRoleInstance.siteRole = SiteRole.findByAuthority("ROLE_EMPLOYER")
+		}
+		def employerInstance
+		def employeeInstance
+		
 
 		if(params.isEmployee){
 			employeeInstance = new Employee(params)
@@ -66,7 +75,11 @@ class SiteUserController {
             render(view: "create", model: [siteUserInstance: new SiteUser(params), employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
             return
         }
-		
+		if (!siteUserSiteRoleInstance.save(flush: true, failOnError: true)) {
+			flash.message = "something went wrong in saving site user site role instance"
+			render(view: "create", model: [siteUserInstance: new SiteUser(params), employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
+			return
+		}
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
         redirect(action: "show", id: siteUserInstance.id)
