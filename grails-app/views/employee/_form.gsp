@@ -2,10 +2,6 @@
 
 <label for="avatar">Avatar (16K)</label>
     <input type="file" name="avatar" id="avatar" />
-    <div style="font-size:0.8em; margin: 1.0em;">
-      For best results, your avatar should have a width-to-height ratio of 4:5.
-      For example, if your image is 80 pixels wide, it should be 100 pixels high.
-    </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'name', 'error')} required">
 	<label for="name">
@@ -52,7 +48,23 @@
 		<g:message code="employee.category.label" default="Category" />
 		
 	</label>
-	<g:textField name="category" value="${employeeInstance?.category}"/>
+	<g:select name="category" from="${employeeInstance.constraints.category.inList}" value="${employeeInstance?.category}" valueMessagePrefix="employee.category" noSelection="['': '']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'subCategory', 'error')} ">
+	<label for="subCategory">
+		<g:message code="employee.subCategory.label" default="Sub Category" />
+		
+	</label>
+	<g:select name="subCategory" from="${employeeInstance.constraints.subCategory.inList}" value="${employeeInstance?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': '']"/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'companyProfile', 'error')} ">
+	<label for="companyProfile">
+		<g:message code="employee.companyProfile.label" default="Company Profile" />
+		
+	</label>
+	<g:select id="companyProfile" name="companyProfile.id" from="${com.aysb.CompanyProfile.list()}" optionKey="id" value="${employeeInstance?.companyProfile?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'clients', 'error')} ">
@@ -70,13 +82,6 @@
 </li>
 </ul>
 
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'companyProfile', 'error')} ">
-	<label for="companyProfile">
-		<g:message code="employee.companyProfile.label" default="Company Profile" />
-	</label>
-	<g:select id="companyProfile" name="companyProfile.id" from="${com.aysb.CompanyProfile.list()}" optionKey="id" value="${employeeInstance?.companyProfile?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'email', 'error')} ">
@@ -109,13 +114,5 @@
 		
 	</label>
 	<g:textField name="skills" value="${employeeInstance?.skills}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'subCategory', 'error')} ">
-	<label for="subCategory">
-		<g:message code="employee.subCategory.label" default="Sub Category" />
-		
-	</label>
-	<g:textField name="subCategory" value="${employeeInstance?.subCategory}"/>
 </div>
 
