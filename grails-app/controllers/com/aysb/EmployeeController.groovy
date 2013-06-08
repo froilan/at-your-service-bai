@@ -9,7 +9,6 @@ class EmployeeController {
 	
 	def springSecurityService
 
-	def springSecurityService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
