@@ -1,7 +1,7 @@
 <%@ page import="com.aysb.Employee" %>
 
 <label for="avatar">Avatar (16K)</label>
-    <input type="file" name="avatar" id="avatar" />
+    <input type="file" name="avatar" id="avatar" value="${employeeInstance?.photo }" />
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'name', 'error')} required">
 	<label for="name">

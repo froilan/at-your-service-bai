@@ -4,19 +4,46 @@
 
 	<g:each in="${results}" var="result">
 
-		<div id="entry-employee" class="entries" role="entry">
-			<span class="photo">
-			 
-			</span>
-			${result.siteUser?.username}
-			${result.employee }
-			<div class="details">
-				<ul>
-					<li>Rate </li>
-					<li>Ratings </li>
-					<li>Info <%-- TODO :<g:link> </g:link> --%></li>
+		<div id="entry-employee" class="content scaffold-show" role="entry">
+
+				<ul class="property-list employee">
+					<g:if test="${result.employee?.id}">
+						<li class="fieldcontain">
+			 				<img class="photo" src="${createLink(controller:'employee', action:'avatar_image', id:result?.employee?.id)}" />
+						</li>
+					</g:if>	
+						
+					<g:if test="${result.siteUser?.username}">
+						<li class="fieldcontain">
+							${result.siteUser?.username}
+						</li>
+					</g:if>
+					
+					<g:if test="${result.employee?.name}">
+						<li class="fieldcontain">
+							${result.employee?.name }
+						</li>
+					</g:if>
+				
+					<g:if test="${result.employee?.rating}">
+						<li class="fieldcontain">
+							Rate ${result.employee?.rating}
+						</li>
+					</g:if>	
+					
+					<g:if test="${result.employee?.lowRate || result.employee?.highRate}">
+						<li class="fieldcontain">
+							Ratings ${result.employee?.lowRate} - ${result.employee?.highRate}
+						</li>
+					</g:if>
+					
+					<g:if test="${result.employee?.negotiableRate}">
+						<li class="fieldcontain">Negotiable</li>
+					</g:if>
+					
+					<li class="fieldcontain">Info <%-- TODO :<g:link> </g:link> --%></li>
 				</ul>
-			</div> 
+			 
 		</div>
 
 	</g:each>
