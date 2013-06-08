@@ -15,7 +15,16 @@
 		<g:message code="siteUser.password.label" default="Password" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="password" required="" value="${siteUserInstance?.password}"/>
+	<g:passwordField name="password" required="" id="password"  />
+	<span id="confirmMessage" class="confirmMessage"></span>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: siteUserInstance, field: 'passwordRetry', 'error')} required">
+	<label for="passwordRetry">
+		<g:message code="siteUser.passwordRetry.label" default="Password Retry" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:passwordField name="passwordRetry" required="" id="passwordRetry" onkeyup="checkPass(); return false;" />
 </div>
 
 <%--<div class="fieldcontain ${hasErrors(bean: siteUserInstance, field: 'accountExpired', 'error')} ">

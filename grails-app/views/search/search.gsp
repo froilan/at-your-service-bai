@@ -7,6 +7,29 @@
 	<title><g:message code="site.label" /></title>
 </head>
 <body>
+	<div role="search template">
+		<ul>
+			<li>
+				<g:link controller="search" action="search" params="[category:'accountants']"><g:message code="template.search.accountants" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'doctors']"><g:message code="template.search.doctors" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'legal services']"><g:message code="template.search.services" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'nurses']"><g:message code="template.search.nurses" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="template.search.bookkeepers" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'caretakes']"><g:message code="template.search.caretakes" /></g:link>
+			</li>	
+		</ul>
+	</div>
+	
 	<div class="content scaffold-create" role="main">
 		<div role="search">
 			<g:form action="search" >
