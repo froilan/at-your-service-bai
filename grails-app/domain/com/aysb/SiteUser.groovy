@@ -16,6 +16,8 @@ class SiteUser {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		employee nullable: true
+		employer nullable: true
 	}
 
 	static mapping = {
