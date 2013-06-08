@@ -146,15 +146,16 @@
 			
 			</ol>
 			
-			<%-- This is hidden for the mean time. Show this is user is trying to update his/her profile.
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${employeeInstance?.id}" />
-					<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-			--%>
+			 This is hidden for the mean time. Show this is user is trying to update his/her profile.
+			<g:if test="${loggedIn == true}">
+				<g:form>
+					<fieldset class="buttons">
+						<g:hiddenField name="id" value="${employeeInstance?.id}" />
+						<g:link class="edit" action="edit" id="${employeeInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+						<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+					</fieldset>
+				</g:form>
+			</g:if>
 		</div>
 	</body>
 </html>
