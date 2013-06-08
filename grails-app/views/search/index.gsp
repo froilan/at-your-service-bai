@@ -7,13 +7,7 @@
 	<title><g:message code="site.label" /></title>
 </head>
 <body>
-	<div class="nav" role="navigation">
-		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-			<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
-			<li><g:link class="create" controller="login"><g:message code="login.label" /></g:link></li>
-		</ul>
-	</div>
+	
 	
 	<div class="content scaffold-create" role="main">
 		<div role="search">
@@ -22,7 +16,7 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.search.label', default: 'Search')}" />
+					<g:submitButton name="create" class="save" value="${message(code: 'search.label', default: 'Search')}" />
 				</fieldset>
 			</g:form>
 		</div>
