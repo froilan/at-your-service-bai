@@ -6,6 +6,8 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartHttpServletRequest
 
 class EmployeeController {
+	
+	def springSecurityService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -145,5 +147,24 @@ class EmployeeController {
 		OutputStream out = response.getOutputStream();
 		out.write(employee.photo);
 		out.close();
+	}
+	
+	def postReview(Long id) {
+		[reviewInstance: new Review(params), employeeId: id]
+	}
+
+	def submitReview() {
+		def reviewInstance = new Review(params)
+		def employee = Employee.get(params.id)
+		reviewInstance.employee = employee
+		def employer = springSecurityService.currentUser.employer
+		reviewInstance.postedBy = employer
+		if (!reviewInstance.save(flush: true)) {
+			render(view: "postReview", model: [reviewInstance: reviewInstance])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
+		redirect(action: "show", id: params.id)
 	}
 }

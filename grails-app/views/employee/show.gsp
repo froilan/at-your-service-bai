@@ -143,6 +143,15 @@
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${employeeInstance?.averageRating}">
+				<li class="fieldcontain">
+					<span id="skills-label" class="property-label">Average Rating</span>
+					
+						<span class="property-value" aria-labelledby="rating-label">${employeeInstance.getAverageRating()}</span>
+					
+				</li>
+				</g:if>
 			
 			</ol>
 			
@@ -155,6 +164,7 @@
 				</fieldset>
 			</g:form>
 			--%>
+			<g:link action="postReview" id="${employeeInstance?.id}">Post Review</g:link>
 		</div>
 	</body>
 </html>
