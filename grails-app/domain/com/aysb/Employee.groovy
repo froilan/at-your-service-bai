@@ -28,6 +28,8 @@ class Employee {
 		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
 		companyProfile nullable: true, blank:true
 		rating nullable:true, blank:true
+		photo nullable:true, blank:true
+		imageType nullable:true, blank:true
     }
 
 	public String toString(){
