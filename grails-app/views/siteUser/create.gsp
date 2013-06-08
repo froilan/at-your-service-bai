@@ -29,7 +29,7 @@
 			<g:form action="save" enctype="multipart/form-data">
 				<fieldset class="form">
 					<g:render template="form"/>
-				</fieldset>${isEmployee}
+				</fieldset>
 				<g:if test = "${isEmployee}">
 					<fieldset id="employeeDetails" class="form">
 						<g:render template="/employee/form"/>

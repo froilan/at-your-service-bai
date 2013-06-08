@@ -29,18 +29,27 @@
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'highRate', 'error')} ">
 	<label for="highRate">
-		<g:message code="employee.highRate.label" default="High Rate" />
+		<g:message code="employee.highRate.label" default="Low Rate - High Rate" />
 		
 	</label>
-	<g:field name="highRate" value="${fieldValue(bean: employeeInstance, field: 'highRate')}"/>
+	<g:field name="highRate" value="${fieldValue(bean: employeeInstance, field: 'highRate')}"/> - 
+	<g:field name="lowRate" value="${fieldValue(bean: employeeInstance, field: 'lowRate')}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'lowRate', 'error')} ">
+<%--<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'lowRate', 'error')} ">
 	<label for="lowRate">
 		<g:message code="employee.lowRate.label" default="Low Rate" />
 		
 	</label>
 	<g:field name="lowRate" value="${fieldValue(bean: employeeInstance, field: 'lowRate')}"/>
+</div>
+
+--%><div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'negotiableRate', 'error')} ">
+	<label for="negotiableRate">
+		<g:message code="employee.negotiableRate.label" default="Negotiable Rate?" />
+		
+	</label>
+	<g:checkBox name="negotiableRate" value="${employeeInstance?.negotiableRate}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'category', 'error')} ">
@@ -92,13 +101,7 @@
 	<g:textField name="email" value="${employeeInstance?.email}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'negotiableRate', 'error')} ">
-	<label for="negotiableRate">
-		<g:message code="employee.negotiableRate.label" default="Negotiable Rate" />
-		
-	</label>
-	<g:checkBox name="negotiableRate" value="${employeeInstance?.negotiableRate}" />
-</div>
+
 
 <%--<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'photo', 'error')} required">
 	<label for="photo">
