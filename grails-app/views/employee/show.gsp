@@ -146,7 +146,6 @@
 			
 			</ol>
 			
-			 This is hidden for the mean time. Show this is user is trying to update his/her profile.
 			<g:if test="${loggedIn == true}">
 				<g:form>
 					<fieldset class="buttons">
@@ -156,6 +155,11 @@
 					</fieldset>
 				</g:form>
 			</g:if>
+			<g:else>
+			<%--
+				TODO: add back to search results button here later	 			 
+			--%>
+			</g:else>
 		</div>
 	</body>
 </html>
