@@ -12,6 +12,7 @@ class Employee {
 	Boolean negotiableRate
 	BigDecimal highRate
 	BigDecimal lowRate
+	BigDecimal rating
 	byte[] photo
 	CompanyProfile companyProfile
 	
@@ -25,6 +26,6 @@ class Employee {
 		category nullable:true, blank: true, inList:["CatA", "CatB", "CatC"]
 		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
 		companyProfile nullable: true, blank:true
-
+		rating nullable:true, blank:true
     }
 }
