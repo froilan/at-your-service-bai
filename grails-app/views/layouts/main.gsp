@@ -25,9 +25,9 @@
 		<div class="nav" role="navigation">
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-			<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
 			
 			<sec:ifLoggedIn>
+				<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
 				<li><g:link class="create" controller="logout"><g:message code="logout.label" /></g:link></li>
 			</sec:ifLoggedIn>
 			
