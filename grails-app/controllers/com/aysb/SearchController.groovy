@@ -7,6 +7,7 @@ class SearchController {
 	}
 	
 	def search(){
-		
+		def category = params.category
+		def subcategory = params.subcategory
 	}
 }
