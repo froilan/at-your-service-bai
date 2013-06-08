@@ -172,6 +172,9 @@
 					</g:form>
 				</sec:ifAllGranted>
 			</sec:ifLoggedIn>
+			<%--
+				TODO: add back to search results button here later	 			 
+			--%>
 		</div>
 	</body>
 </html>
