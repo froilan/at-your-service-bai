@@ -27,11 +27,11 @@
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 			
 			<sec:ifLoggedIn>
-				<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
 				<li><g:link class="create" controller="logout"><g:message code="logout.label" /></g:link></li>
 			</sec:ifLoggedIn>
 			
 			<sec:ifNotLoggedIn>
+				<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
 				<li><g:link class="create" controller="login"><g:message code="login.label" /></g:link></li>
 			</sec:ifNotLoggedIn>
 			
