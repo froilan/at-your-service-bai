@@ -60,7 +60,7 @@ body {
 	color: #fff;
 	font-size: 42px;
 	text-shadow:0 3px 2px #3f312d;
-	padding:80px 100px 50px 0;
+	padding:80px 70px 50px 100px;
 	line-height: 1.1em;
 }
 
@@ -70,10 +70,10 @@ body {
 	font-weight: bold;
 	font-size: 30px;
 	margin: 0;
-	padding: 0 200px 10px 0;
+	padding: 0 100px 10px 100px;
 	text-shadow:0 3px 2px #3f312d;
 	line-height: 1.1em;
-	background: url(../images/linequote.png) no-repeat 260px 100%;
+	background: url(../images/linequote.png) no-repeat 360px 100%;
 }
 
 .scaffold-create {
@@ -82,6 +82,7 @@ body {
 	width: 410px;
 	border-bottom: 5px solid #4884e7;
 	margin-top: 100px;
+	margin-left: 50px;
 }
 
 .searchform {

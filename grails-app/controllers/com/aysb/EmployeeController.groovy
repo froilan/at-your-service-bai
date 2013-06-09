@@ -49,6 +49,7 @@ class EmployeeController {
         redirect(action: "show", id: employeeInstance.id)
     }
 
+	@Secured("IS_AUTHENTICATED_FULLY")
     def show(Long id) {
         def employeeInstance = Employee.get(id)
         if (!employeeInstance) {

@@ -52,20 +52,19 @@
 	<g:checkBox name="negotiableRate" value="${employeeInstance?.negotiableRate}" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'category', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: employee, field: 'category', 'error')} ">
 	<label for="category">
 		<g:message code="employee.category.label" default="Category" />
-		
 	</label>
-	<g:select name="category" from="${employeeInstance.constraints.category.inList}" value="${employeeInstance?.category}" valueMessagePrefix="employee.category" noSelection="['': '']"/>
+	<g:select name="category" from="['Financial','Skilled']" value="${employee?.category}" valueMessagePrefix="employee.category" noSelection="['': 'select category']"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'subCategory', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: employee, field: 'subCategory', 'error')} ">
 	<label for="subCategory">
 		<g:message code="employee.subCategory.label" default="Sub Category" />
-		
 	</label>
-	<g:select name="subCategory" from="${employeeInstance.constraints.subCategory.inList}" value="${employeeInstance?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': '']"/>
+	<g:select name="subCategory" from="['Bookkeeper', 'Accountant', 'Doctors', 'Nurse', 'Caregiver', 'Legal', 'Cleaner', 'Janitor', 'Plumber', 'Carpenter', 'Painter', 'Mason', 'Electrician']" 
+	value="${employee?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': 'select subcategory']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employeeInstance, field: 'companyProfile', 'error')} ">
