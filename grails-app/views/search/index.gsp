@@ -7,14 +7,29 @@
 	<title><g:message code="site.label" /></title>
 </head>
 <body>
-	<div class="nav" role="navigation">
+	<div role="search template">
 		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-			<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
-			<li><g:link class="create" controller="login"><g:message code="login.label" /></g:link></li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'accountants']"><g:message code="template.search.accountants" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'doctors']"><g:message code="template.search.doctors" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'legal services']"><g:message code="template.search.services" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'nurses']"><g:message code="template.search.nurses" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="template.search.bookkeepers" /></g:link>
+			</li>
+			<li>
+				<g:link controller="search" action="search" params="[category:'caretakes']"><g:message code="template.search.caretakes" /></g:link>
+			</li>	
 		</ul>
 	</div>
-	
+		
 	<div class="content scaffold-create" role="main">
 		<div role="search">
 			<g:form action="search" >
@@ -22,10 +37,38 @@
 					<g:render template="form"/>
 				</fieldset>
 				<fieldset class="buttons">
-					<g:submitButton name="create" class="save" value="${message(code: 'default.button.search.label', default: 'Search')}" />
+					<g:submitButton name="create" class="save" value="${message(code: 'search.label', default: 'Search')}" />
 				</fieldset>
 			</g:form>
 		</div>
+	</div>
+	
+	<div role="search template">
+		<ul>
+			<li>
+				<g:message code="template.search.contractors" /> <g:link controller="search" action="search" params="[category:'contractors']"><g:message code="search.label" /></g:link>
+			</li>
+			<li>
+				<g:message code="template.search.doctors" /> <g:link controller="search" action="search" params="[category:'doctors']"><g:message code="search.label" /></g:link>
+			</li>
+			
+			<li>
+				<g:message code="template.search.gardeners" /> <g:link controller="search" action="search" params="[category:'gardeners']"><g:message code="search.label" /></g:link>
+			</li>
+			
+			<li>
+				<g:message code="template.search.accountants" /> <g:link controller="search" action="search" params="[category:'accountants']"> <g:message code="search.label" /></g:link>
+			</li>
+			
+			<li>
+				<g:message code="template.search.lawyers" /> <g:link controller="search" action="search" params="[category:'lawyers']"><g:message code="search.label" /></g:link>
+			</li>
+			
+			<li>
+				<g:message code="template.search.bookkeepers" /> <g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="search.label" /></g:link>
+			</li>
+				
+		</ul>
 	</div>
 </body>
 </html>

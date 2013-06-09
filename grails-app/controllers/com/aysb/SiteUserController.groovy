@@ -50,8 +50,9 @@ class SiteUserController {
 			if(!photo.isEmpty()){
 				def okcontents = ['image/png', 'image/jpeg', 'image/gif']
 				if (! okcontents.contains(photo.getContentType())) {
-				  flash.message = "unnacceptable image type"
-				  render(view: "create", model: [siteUserInstance: new SiteUser(params), employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
+				  siteUserInstance = new SiteUser(params)
+				  siteUserInstance.errors.reject("error.fileType", "Unacceptable image type")
+				  render(view: "create", model: [siteUserInstance: siteUserInstance, employeeInstance: new Employee(params), employerInstance: new Employer(params), isEmployee: params.isEmployee])
 				  return;
 				}
 				employeeInstance.photo = photo.getBytes()

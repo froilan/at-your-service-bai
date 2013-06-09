@@ -6,8 +6,9 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.web.multipart.MultipartHttpServletRequest
 
 class EmployeeController {
-
+	
 	def springSecurityService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -55,12 +56,15 @@ class EmployeeController {
             redirect(action: "list")
             return
         }
-		def loggedIn
-		if(springSecurityService.currentUser && springSecurityService.currentUser.employee.id == id){
-			loggedIn = true
+		def sameEmployee = false
+		if (springSecurityService.loggedIn) {
+			def user = springSecurityService.currentUser
+			if (user.isAnEmployee() && user.employee.id == id) {
+				sameEmployee = true
+			}
 		}
 
-        [employeeInstance: employeeInstance, loggedIn: loggedIn]
+        [employeeInstance: employeeInstance, sameEmployee: sameEmployee]
     }
 
 	@Secured("ROLE_EMPLOYEE")
@@ -150,5 +154,28 @@ class EmployeeController {
 		OutputStream out = response.getOutputStream();
 		out.write(employee.photo);
 		out.close();
+	}
+	
+	def postReview(Long id) {
+		[reviewInstance: new Review(params), employeeId: id]
+	}
+
+	def submitReview() {
+		System.out.println(">> (params) " + params);
+		def reviewInstance = new Review(params)
+		def employee = Employee.get(params.id)
+		System.out.println(">> (id) " + params.id);
+		System.out.println(">> " + employee);
+		reviewInstance.employee = employee
+		def employer = springSecurityService.currentUser.employer
+		reviewInstance.postedBy = employer
+		System.out.println(">> " + reviewInstance.employee);
+		if (!reviewInstance.save(flush: true)) {
+			render(view: "postReview", model: [reviewInstance: reviewInstance, employeeId: params.id])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'review.label', default: 'Review'), reviewInstance.id])
+		redirect(action: "show", id: params.id)
 	}
 }

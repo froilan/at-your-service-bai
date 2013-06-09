@@ -28,25 +28,17 @@
 			<!-- <a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a> -->
 					<div class="user-options">
 						<a href="#">List Your Services</a>
-						<a class="btn login-btn" href="#">Login</a>
+						<sec:ifLoggedIn>
+							<g:link class="create btn login-btn" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link>
+							<g:link class="create btn login-btn" controller="logout"><g:message code="logout.label" /></g:link>
+						</sec:ifLoggedIn>
+						<sec:ifNotLoggedIn>
+							<g:link class="create btn login-btn" controller="login"><g:message code="login.label" /></g:link>
+						</sec:ifNotLoggedIn>
 					</div>
 				</div>
 			</div>
 		</header>
-		<div class="navbar">
-	    	<div class="navbar-inner">
-	    		 <div class="container">
-		    		<ul class="nav">
-		    			<li><a href="#">Accountant</a></li>
-		    			<li><a href="#">Doctors</a></li>
-		   			 	<li><a href="#">Legal Services</a></li>
-		   			 	<li><a href="#">Nurses</a></li>
-		   			 	<li><a href="#">Bookkeepers</a></li>
-		   			 	<li><a href="#">Caretakers</a></li>
-		    		</ul>
-		    	 </div>
-	    	</div>
-	    </div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
