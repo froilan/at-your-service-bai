@@ -27,13 +27,13 @@
 					<h1 class="logo"><a href="">At Your Service</a></h1>
 			<!-- <a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a> -->
 					<div class="user-options">
-						<a href="#">List Your Services</a>
+						<a href="#" class="btn">List Your Services</a>
 						<sec:ifLoggedIn>
 							<g:link class="create btn login-btn" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link>
 							<g:link class="create btn login-btn" controller="logout"><g:message code="logout.label" /></g:link>
 						</sec:ifLoggedIn>
 						<sec:ifNotLoggedIn>
-							<g:link class="create btn login-btn" controller="login"><g:message code="login.label" /></g:link>
+							<g:link class="create btn btn-primary" controller="login"><g:message code="login.label" /></g:link>
 						</sec:ifNotLoggedIn>
 					</div>
 				</div>
@@ -44,8 +44,11 @@
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />
-		<footer>
-			<p class="copyright">&copy; Copyright 2013 | AtYourService.ph | All rights reserved | Terms of Service</p>
+		<footer class="container-fluid">
+			<div class="container footer">
+				<a class="footer-logo" href="#">At Your Service</a>
+				<p class="copyright">&copy; Copyright 2013 | AtYourService.ph | All rights reserved | Terms of Service</p>
+			</div>
 		</footer>
 	</body>
 </html>
