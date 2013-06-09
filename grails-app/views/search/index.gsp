@@ -7,6 +7,33 @@
 	<title><g:message code="site.label" /></title>
 </head>
 <body>
+    <div class="navbar">
+	    <div class="navbar-inner">
+		    <div class="container">
+		     	<ul  class="nav">
+					<li>
+						<g:link controller="search" action="search" params="[category:'accountants']"><g:message code="template.search.accountants" /></g:link>
+					</li>
+					<li>
+						<g:link controller="search" action="search" params="[category:'doctors']"><g:message code="template.search.doctors" /></g:link>
+					</li>
+					<li>
+						<g:link controller="search" action="search" params="[category:'legal services']"><g:message code="template.search.services" /></g:link>
+					</li>
+					<li>
+						<g:link controller="search" action="search" params="[category:'nurses']"><g:message code="template.search.nurses" /></g:link>
+					</li>
+					<li>
+						<g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="template.search.bookkeepers" /></g:link>
+					</li>
+					<li>
+						<g:link controller="search" action="search" params="[category:'caretakes']"><g:message code="template.search.caretakes" /></g:link>
+					</li>	
+				</ul>
+		    </div>
+	    </div>
+    </div>
+
 	<div class="container-fluid search-container">
 		<div style="display:none;">
 			<div class="nav" role="navigation">
