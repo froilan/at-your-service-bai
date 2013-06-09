@@ -4,14 +4,15 @@
 	<label for="category">
 		<g:message code="employee.category.label" default="Category" />
 	</label>
-	<g:select name="category" from="${employee.constraints.category.inList}" value="${employee?.category}" valueMessagePrefix="employee.category" noSelection="['': '']"/>
+	<g:select name="category" from="['Financial','Skilled']" value="${employee?.category}" valueMessagePrefix="employee.category" noSelection="['': 'select category']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employee, field: 'subCategory', 'error')} ">
 	<label for="subCategory">
 		<g:message code="employee.subCategory.label" default="Sub Category" />
 	</label>
-	<g:select name="subCategory" from="${employee.constraints.subCategory.inList}" value="${employee?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': '']"/>
+	<g:select name="subCategory" from="['Bookkeeper', 'Accountant', 'Doctors', 'Nurse', 'Caregiver', 'Legal', 'Cleaner', 'Janitor', 'Plumber', 'Carpenter', 'Painter', 'Mason', 'Electrician']" 
+	value="${employee?.subCategory}" valueMessagePrefix="employee.subCategory" noSelection="['': 'select subcategory']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: employee, field: 'location', 'error')} ">

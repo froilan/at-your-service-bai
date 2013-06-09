@@ -24,8 +24,8 @@ class Employee {
 		location nullable: false, blank:false 
 		highRate nullable: true, blank:true
 		lowRate nullable: true, blank:true
-		category nullable:true, blank: true, inList:["Accountant", "Doctors", "Legal Services", "Nurses", "Bookkeepers", "Caretakes", "Gardener", "Contractors", "Lawyers"]
-		subCategory nullable:true, blank: true, inList:["SubCatA", "SubCatB", "SubCatC"]
+		category nullable:true, blank: true
+		subCategory nullable:true, blank: true 
 		companyProfile nullable: true, blank:true
 		rating nullable:true, blank:true
 		photo nullable:true, blank:true
