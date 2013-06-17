@@ -3,7 +3,7 @@ dataSource {
 	driverClassName="org.postgresql.Driver"
 	url="jdbc:postgresql://localhost/ays"
 	username="postgres"
-	password="janipericon"
+	password="password"
 }
 hibernate {
     cache.use_second_level_cache = true
