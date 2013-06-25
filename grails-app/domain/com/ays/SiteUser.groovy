@@ -1,4 +1,6 @@
-package com.aysb
+package com.ays
+
+import java.util.Date;
 
 class SiteUser {
 
@@ -6,28 +8,30 @@ class SiteUser {
 
 	String username
 	String password
-	boolean enabled
+	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-	Employee employee
-	Employer employer
+	Profile profile
+	Membership membership
+	Date dateCreated
+	Date lastUpdated
 
+	static hasMany = [ otherFeatures: Feature, bookmarks: Bookmark ]
+	
 	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-		employee nullable: true
-		employer nullable: true
+		username(blank: false, unique: true)
+		password(blank: false)
+		profile(nullable: true)
+		membership(nullable: true)
 	}
 
 	static mapping = {
 		password column: '`password`'
 	}
-	
-	static transients = [ 'anEmployee' ]
 
-	Set<SiteRole> getAuthorities() {
-		SiteUserSiteRole.findAllBySiteUser(this).collect { it.siteRole } as Set
+	Set<Role> getAuthorities() {
+		SiteUserRole.findAllBySiteUser(this).collect { it.role } as Set
 	}
 
 	def beforeInsert() {
@@ -43,9 +47,4 @@ class SiteUser {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
-	
-	boolean isAnEmployee() {
-		return employee != null
-	}
-
 }

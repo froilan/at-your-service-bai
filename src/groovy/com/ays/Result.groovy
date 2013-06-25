@@ -1,8 +1,10 @@
-package com.aysb
+package com.ays
+
+import com.ays.Result;
 
 class Result {
 	SiteUser siteUser;
-	Employee employee;
+	Profile employee;
 	
 	/********************************
 	 *** Count
@@ -29,14 +31,14 @@ class Result {
 	********************************/
 	
 	public static List<Result> list(String category){
-		def employees = Employee.findAllByCategoryIlike(category,
+		def employees = Profile.findAllByCategoryIlike(category,
 									[sort:"rating", order:"desc"])
 		return siteUserBinder(employees);
 	}
 	
 	//Default: Limited Search
 	public static List<Result> list(String category, int max){
-		def employees =  Employee.findAllByCategoryIlike(category,
+		def employees =  Profile.findAllByCategoryIlike(category,
 									[max:max, sort:"rating", order:"desc"])
 		return siteUserBinder(employees);
 	}
@@ -47,14 +49,14 @@ class Result {
 	********************************/
 	
 	public static List<Result> list(String category, String subcategory){
-		def employees = Employee.findAllByCategoryAndSubCategoryIlike(category, subcategory,
+		def employees = Profile.findAllByCategoryAndSubCategoryIlike(category, subcategory,
 									[sort:"rating", order:"desc"])
 		return siteUserBinder(employees);
 	}
 	
 	//Default: Limited Search
 	public static List<Result> list(String category, String subcategory, int max){
-		def employees =  Employee.findAllByCategoryAndSubCategoryIlike(category, subcategory, 
+		def employees =  Profile.findAllByCategoryAndSubCategoryIlike(category, subcategory, 
 									[max:max, sort:"rating", order:"desc"])
 		return siteUserBinder(employees);
 	}
@@ -65,7 +67,7 @@ class Result {
 	 ********************************/
 	
 	public static List<Result> list(String category, String subcategory, String location){
-		def criteria = Employee.createCriteria()
+		def criteria = Profile.createCriteria()
 		def employees = criteria.list () {
 			ilike("location", location+"%")
 			and {
@@ -79,7 +81,7 @@ class Result {
 	
 	// Default: Limited Advance Search
 	public static List<Result> list(String category, String subcategory, String location, int max){
-		def criteria = Employee.createCriteria()
+		def criteria = Profile.createCriteria()
 		def employees = criteria.list (max:max) {
 			ilike("location", location+"%")
 			and {

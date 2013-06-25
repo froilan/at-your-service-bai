@@ -1,12 +1,11 @@
-package com.aysb
+package com.ays
 
 class Review {
 	
 	BigDecimal rating
 	String remarks
-	Employer postedBy
-	
-	static belongsTo = [ employee: Employee ]
+	SiteUser ratedBy
+	Date dateCreated
 
     static constraints = {
     }

@@ -1,16 +1,11 @@
-
-import com.aysb.Employee;
-import com.aysb.Employer;
-import com.aysb.SiteUser;
-import com.aysb.SiteRole;
-import com.aysb.SiteUserSiteRole;
+import com.ays.Role;
 class BootStrap {
 
     def init = { servletContext ->
-		SiteRole roleEmployee = SiteRole.findByAuthority("ROLE_EMPLOYEE") ? 
-			SiteRole.findByAuthority("ROLE_EMPLOYEE") : new SiteRole(authority:"ROLE_EMPLOYEE").save(flush:true);
-		SiteRole roleEmployer = SiteRole.findByAuthority("ROLE_EMPLOYER") ? 
-			SiteRole.findByAuthority("ROLE_EMPLOYER") : new SiteRole(authority:"ROLE_EMPLOYER").save(flush:true);
+		Role roleEmployee = Role.findByAuthority("ROLE_ADMIN") ? 
+			Role.findByAuthority("ROLE_ADMIN") : new Role(authority:"ROLE_ADMIN").save(flush:true);
+		Role roleEmployer = Role.findByAuthority("ROLE_SITE_USER") ? 
+			Role.findByAuthority("ROLE_SITE_USER") : new Role(authority:"ROLE_SITE_USER").save(flush:true);
     }
     def destroy = {
     }

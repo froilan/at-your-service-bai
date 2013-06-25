@@ -1,9 +1,12 @@
-package com.aysb
+package com.ays.controller
+
+import com.ays.Result;
+import com.ays.Profile;
 
 class SearchController {
 
     def index() { 
-		[employee:new Employee(params)]
+		[profile:new Profile(params)]
 	}
 	
 	def search(){
@@ -11,7 +14,7 @@ class SearchController {
 		def category = params.category
 		def subcategory = params.subCategory
 		def location = params.location
-		Employee employee = new Employee(category:category, subCategory:subcategory, location:location)
+		Profile profile = new Profile(category:category, subCategory:subcategory, location:location)
 		
 		//default limited searching
 		def results = []
@@ -27,7 +30,7 @@ class SearchController {
 			count = Result.count(category, subcategory, location)
 		}
 		
-		[employee:employee, results: results, count:count]
+		[employee:profile, results: results, count:count]
 	}
 }
 
