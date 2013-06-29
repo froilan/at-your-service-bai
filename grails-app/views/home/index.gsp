@@ -26,9 +26,9 @@
 			   	<div class="span6">
 					<div class="content scaffold-create" role="main">
 						<div role="search" class="searchform">
-							<g:form action="search" >
+							<g:form action="search" controller="search">
 								<fieldset class="form">
-									<g:render template="form"/>
+									<g:render template="../search/form"/>
 								</fieldset>
 								<fieldset class="buttons">
 									<g:submitButton name="create" class="save btn btn-large btn-block btn-primary" value="${message(code: 'default.button.search.label', default: 'Search')}" />
