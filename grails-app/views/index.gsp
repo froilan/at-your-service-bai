@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("${request.contextPath}"+"/search")
+response.sendRedirect("${request.contextPath}"+"/home")
 %>

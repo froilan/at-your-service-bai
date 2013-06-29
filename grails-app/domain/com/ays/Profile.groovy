@@ -5,8 +5,8 @@ import java.util.Date;
 class Profile {
 
 	String name
-	Category category
-	SubCategory subCategory
+	String category
+	String subCategory
 	byte[] displayPicture
 	BigDecimal askingFee
 	FeeStructure feeStructure
@@ -24,11 +24,18 @@ class Profile {
 
 	static embedded = [ 'feeStructure', 'license' ]
 
+	static transients = [ 'rating' ]
+
     static constraints = {
 		subCategory(nullable: true)
 		displayPicture(nullable: true)
 		companyProfile(nullable: true)
 		license(nullable: true)
 		differentiation(blank: true, nullable: true)
+    }
+
+    BigDecimal getRating() {
+    	// TODO
+    	BigDecimal.ZERO
     }
 }

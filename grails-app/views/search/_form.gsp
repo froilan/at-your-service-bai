@@ -7,5 +7,5 @@
 	<g:select class="span12 select-form" name="subCategory" from="['Bookkeeper', 'Accountant', 'Doctors', 'Nurse', 'Caregiver', 'Legal', 'Cleaner', 'Janitor', 'Plumber', 'Carpenter', 'Painter', 'Mason', 'Electrician']" value="${employee?.subCategory}" valueMessagePrefix="employee.subCategory"  noSelection="['': 'select subcategory']"/>
 </div>
 <div class="fieldcontain ${hasErrors(bean: employee, field: 'location', 'error')} ">
-	<g:textField class="span12" placeholder="Location" name="location" value="${employee?.location}"/>
+	<g:textField class="span12" placeholder="Location" name="location" value="${location}"/>
 </div>

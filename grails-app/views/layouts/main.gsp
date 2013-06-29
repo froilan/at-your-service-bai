@@ -39,6 +39,32 @@
 				</div>
 			</div>
 		</header>
+		<div class="navbar">
+	    	<div class="navbar-inner">
+		    	<div class="container">
+		     		<ul  class="nav">
+						<li>
+							<g:link controller="search" action="search" params="[category:'accountants']"><g:message code="template.search.accountants" /></g:link>
+						</li>
+						<li>
+							<g:link controller="search" action="search" params="[category:'doctors']"><g:message code="template.search.doctors" /></g:link>
+						</li>
+						<li>
+							<g:link controller="search" action="search" params="[category:'legal services']"><g:message code="template.search.services" /></g:link>
+						</li>
+						<li>
+							<g:link controller="search" action="search" params="[category:'nurses']"><g:message code="template.search.nurses" /></g:link>
+						</li>
+						<li>
+							<g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="template.search.bookkeepers" /></g:link>
+						</li>
+						<li>
+							<g:link controller="search" action="search" params="[category:'caretakes']"><g:message code="template.search.caretakes" /></g:link>
+						</li>
+					</ul>
+			    </div>
+		    </div>
+    	</div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
