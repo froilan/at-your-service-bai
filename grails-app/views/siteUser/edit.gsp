@@ -1,4 +1,4 @@
-<%@ page import="com.aysb.SiteUser" %>
+<%@ page import="com.ays.SiteUser" %>
 <!doctype html>
 <html>
 	<head>
