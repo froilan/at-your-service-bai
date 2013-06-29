@@ -2,8 +2,8 @@ dataSource {
     pooled=true
 	driverClassName="org.postgresql.Driver"
 	url="jdbc:postgresql://localhost/ays"
-	username="postgres"
-	password="password"
+	username="bai"
+	password="@urServ1c3_"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -27,7 +27,7 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            //url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
             pooled = true
             properties {
                maxActive = -1
