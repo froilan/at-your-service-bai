@@ -7,6 +7,7 @@ import com.ays.SiteUser;
 class SiteUserController {
 
 	def simpleCaptchaService
+	def springSecurityService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -34,9 +35,13 @@ class SiteUserController {
             render(view: "create", model: [siteUserInstance: siteUserInstance])
             return
         }
-
+		
+		if (!springSecurityService.loggedIn) {
+			springSecurityService.reauthenticate siteUserInstance.username
+		}
+		
         flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
-        redirect(action: "show", id: siteUserInstance.id)
+        redirect(action: "postCreate", id: siteUserInstance.id)
     }
 
     def show(Long id) {
@@ -109,5 +114,8 @@ class SiteUserController {
         }
     }
 	
+	def postCreate() {
+		
+	}
 	
 }

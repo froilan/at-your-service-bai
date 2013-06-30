@@ -32,6 +32,7 @@ class Profile {
 		companyProfile(nullable: true)
 		license(nullable: true)
 		differentiation(blank: true, nullable: true)
+		feeStructure(nullable: true)
     }
 
     BigDecimal getRating() {
