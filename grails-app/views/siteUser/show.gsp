@@ -1,5 +1,5 @@
 
-<%@ page import="com.aysb.SiteUser" %>
+<%@ page import="com.ays.SiteUser" %>
 <!doctype html>
 <html>
 	<head>
@@ -41,6 +41,24 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${siteUserInstance?.profile}">
+				<li class="fieldcontain">
+					<span id="profile-label" class="property-label"><g:message code="siteUser.profile.label" default="Profile" /></span>
+					
+						<span class="property-value" aria-labelledby="profile-label"><g:link controller="profile" action="show" id="${siteUserInstance?.profile?.id}">${siteUserInstance?.profile?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${siteUserInstance?.membership}">
+				<li class="fieldcontain">
+					<span id="membership-label" class="property-label"><g:message code="siteUser.membership.label" default="Membership" /></span>
+					
+						<span class="property-value" aria-labelledby="membership-label"><g:link controller="membership" action="show" id="${siteUserInstance?.membership?.id}">${siteUserInstance?.membership?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${siteUserInstance?.accountExpired}">
 				<li class="fieldcontain">
 					<span id="accountExpired-label" class="property-label"><g:message code="siteUser.accountExpired.label" default="Account Expired" /></span>
@@ -59,20 +77,22 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${siteUserInstance?.employee}">
+				<g:if test="${siteUserInstance?.bookmarks}">
 				<li class="fieldcontain">
-					<span id="employee-label" class="property-label"><g:message code="siteUser.employee.label" default="Employee" /></span>
+					<span id="bookmarks-label" class="property-label"><g:message code="siteUser.bookmarks.label" default="Bookmarks" /></span>
 					
-						<span class="property-value" aria-labelledby="employee-label"><g:link controller="employee" action="show" id="${siteUserInstance?.employee?.id}">${siteUserInstance?.employee?.encodeAsHTML()}</g:link></span>
+						<g:each in="${siteUserInstance.bookmarks}" var="b">
+						<span class="property-value" aria-labelledby="bookmarks-label"><g:link controller="bookmark" action="show" id="${b.id}">${b?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${siteUserInstance?.employer}">
+				<g:if test="${siteUserInstance?.dateCreated}">
 				<li class="fieldcontain">
-					<span id="employer-label" class="property-label"><g:message code="siteUser.employer.label" default="Employer" /></span>
+					<span id="dateCreated-label" class="property-label"><g:message code="siteUser.dateCreated.label" default="Date Created" /></span>
 					
-						<span class="property-value" aria-labelledby="employer-label"><g:link controller="employer" action="show" id="${siteUserInstance?.employer?.id}">${siteUserInstance?.employer?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${siteUserInstance?.dateCreated}" /></span>
 					
 				</li>
 				</g:if>
@@ -82,6 +102,26 @@
 					<span id="enabled-label" class="property-label"><g:message code="siteUser.enabled.label" default="Enabled" /></span>
 					
 						<span class="property-value" aria-labelledby="enabled-label"><g:formatBoolean boolean="${siteUserInstance?.enabled}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${siteUserInstance?.lastUpdated}">
+				<li class="fieldcontain">
+					<span id="lastUpdated-label" class="property-label"><g:message code="siteUser.lastUpdated.label" default="Last Updated" /></span>
+					
+						<span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${siteUserInstance?.lastUpdated}" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${siteUserInstance?.otherFeatures}">
+				<li class="fieldcontain">
+					<span id="otherFeatures-label" class="property-label"><g:message code="siteUser.otherFeatures.label" default="Other Features" /></span>
+					
+						<g:each in="${siteUserInstance.otherFeatures}" var="o">
+						<span class="property-value" aria-labelledby="otherFeatures-label"><g:link controller="feature" action="show" id="${o.id}">${o?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>
@@ -99,6 +139,8 @@
 			<g:form>
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${siteUserInstance?.id}" />
+					<g:link class="edit" action="edit" id="${siteUserInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>

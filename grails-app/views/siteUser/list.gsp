@@ -1,5 +1,5 @@
 
-<%@ page import="com.aysb.SiteUser" %>
+<%@ page import="com.ays.SiteUser" %>
 <!doctype html>
 <html>
 	<head>
@@ -12,7 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="preCreate"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-siteUser" class="content scaffold-list" role="main">
@@ -28,13 +28,13 @@
 					
 						<g:sortableColumn property="password" title="${message(code: 'siteUser.password.label', default: 'Password')}" />
 					
+						<th><g:message code="siteUser.profile.label" default="Profile" /></th>
+					
+						<th><g:message code="siteUser.membership.label" default="Membership" /></th>
+					
 						<g:sortableColumn property="accountExpired" title="${message(code: 'siteUser.accountExpired.label', default: 'Account Expired')}" />
 					
 						<g:sortableColumn property="accountLocked" title="${message(code: 'siteUser.accountLocked.label', default: 'Account Locked')}" />
-					
-						<th><g:message code="siteUser.employee.label" default="Employee" /></th>
-					
-						<th><g:message code="siteUser.employer.label" default="Employer" /></th>
 					
 					</tr>
 				</thead>
@@ -46,13 +46,13 @@
 					
 						<td>${fieldValue(bean: siteUserInstance, field: "password")}</td>
 					
+						<td>${fieldValue(bean: siteUserInstance, field: "profile")}</td>
+					
+						<td>${fieldValue(bean: siteUserInstance, field: "membership")}</td>
+					
 						<td><g:formatBoolean boolean="${siteUserInstance.accountExpired}" /></td>
 					
 						<td><g:formatBoolean boolean="${siteUserInstance.accountLocked}" /></td>
-					
-						<td>${fieldValue(bean: siteUserInstance, field: "employee")}</td>
-					
-						<td>${fieldValue(bean: siteUserInstance, field: "employer")}</td>
 					
 					</tr>
 				</g:each>
