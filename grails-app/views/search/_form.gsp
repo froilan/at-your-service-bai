@@ -1,5 +1,3 @@
-<%@ page import="com.aysb.Employee" %>
-
 <div class="fieldcontain ${hasErrors(bean: employee, field: 'category', 'error')} ">
 	<g:select class="span12 select-form" name="category" from="['Financial','Skilled']" value="${employee?.category}" valueMessagePrefix="employee.category" noSelection="['': 'select category']"/>
 </div>
