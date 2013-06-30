@@ -27,4 +27,7 @@
 	<g:passwordField name="passwordRetry" id="passwordRetry" required="" onkeyup="checkPass(); return false"/>
 </div>
 
+<img src="${createLink(controller: 'simpleCaptcha', action: 'captcha')}"/>
+<label for="captcha">Type the letters above in the box below:</label>
+<g:textField name="captcha"/>
 

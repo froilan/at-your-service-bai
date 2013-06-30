@@ -6,6 +6,7 @@ import com.ays.SiteUser;
 
 class SiteUserController {
 
+	def simpleCaptchaService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -23,7 +24,13 @@ class SiteUserController {
 
     def save() {
         def siteUserInstance = new SiteUser(params)
-        if (!siteUserInstance.save(flush: true)) {
+		boolean captchaValid = simpleCaptchaService.validateCaptcha(params.captcha)
+        if(!captchaValid) {
+			flash.message = message(code: 'invalid.captcha.message', default: "invalid captcha")
+			render(view: "create", model: [siteUserInstance: siteUserInstance])
+			return
+		}
+		if (!siteUserInstance.save(flush: true)) {
             render(view: "create", model: [siteUserInstance: siteUserInstance])
             return
         }
@@ -101,4 +108,6 @@ class SiteUserController {
             redirect(action: "show", id: id)
         }
     }
+	
+	
 }
