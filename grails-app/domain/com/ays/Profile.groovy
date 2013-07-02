@@ -5,10 +5,9 @@ import java.util.Date;
 class Profile {
 
 	String name
-	String category
-	String subCategory
+	Category category
+	SubCategory subCategory
 	byte[] displayPicture
-	BigDecimal askingFee
 	FeeStructure feeStructure
 	CompanyProfile companyProfile
 	String differentiation	// format: title | description
@@ -25,6 +24,20 @@ class Profile {
 	static embedded = [ 'feeStructure', 'license' ]
 
 	static transients = [ 'rating' ]
+
+	static searchable = {
+		except = [ 'version', 'dateCreated', 'lastUpdated', 'feeStructure' ]
+		name boost: 2.0
+		category component: true
+		subCategory component: true
+		companyProfile component: true
+		license component: true
+		contactInformation component: true
+		services component: true
+		affiliations component: true
+		awards component: true
+		displayPicture index: 'no'
+	}
 
     static constraints = {
 		subCategory(nullable: true)

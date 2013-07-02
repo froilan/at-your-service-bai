@@ -7,7 +7,14 @@ class License {
 	String authority
 	Date expirationDate
 	String description
+	Date dateCreated
+	Date lastUpdated
 
 	static constraints = {
+    }
+
+    static searchable = {
+    	root false
+    	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
 }

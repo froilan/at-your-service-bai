@@ -24,4 +24,11 @@ class CompanyProfile {
 		address(blank: true, nullable: true)
 		directionsToAddress(blank: true, nullable: true)
     }
+
+    static searchable = {
+    	root false
+    	name boost: 2.0
+    	logo index: 'no'
+    	except = [ 'version', 'dateCreated', 'lastUpdated' ]
+    }
 }
