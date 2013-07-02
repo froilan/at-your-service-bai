@@ -9,7 +9,7 @@ import com.ays.Profile;
 class ProfileController {
 
 	def springSecurityService
-	
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -22,7 +22,7 @@ class ProfileController {
     }
 
     def create() {
-        [profileInstance: new Profile(params), licenseInstance: new License(), feeStructureInstance: new FeeStructure()]
+        [profileInstance: new Profile(params), licenseInstance: new License()]
     }
 
     def save() {

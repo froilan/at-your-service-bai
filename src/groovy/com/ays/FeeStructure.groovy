@@ -1,12 +1,19 @@
 package com.ays
 
-class FeeStructure {
+enum FeeStructure {
 
-	FeeStructureType feeType
-	BigDecimal rate
-	Date dateCreated
-	Date lastUpdated
+	HOURLY("HOURLY"),
+	DAILY("DAILY"),
+	OTHER("OTHER")
 
-	static constraints = {
-    }
+	final String value
+
+	FeeStructure(String value) {
+		this.value = value
+	}
+
+	String toString() {
+		value
+	}
+
 }

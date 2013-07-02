@@ -9,6 +9,7 @@ class Profile {
 	SubCategory subCategory
 	byte[] displayPicture
 	FeeStructure feeStructure
+	BigDecimal askingFee
 	CompanyProfile companyProfile
 	String differentiation	// format: title | description
 	License license
@@ -21,12 +22,10 @@ class Profile {
 						awards: Award,
 						reviews: Review ]
 
-	static embedded = [ 'feeStructure', 'license' ]
-
 	static transients = [ 'rating' ]
 
 	static searchable = {
-		except = [ 'version', 'dateCreated', 'lastUpdated', 'feeStructure' ]
+		except = [ 'version', 'dateCreated', 'lastUpdated' ]
 		name boost: 2.0
 		category component: true
 		subCategory component: true
