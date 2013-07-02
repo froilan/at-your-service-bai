@@ -27,7 +27,7 @@
 				<li class="fieldcontain">
 					<span id="subCategory-label" class="property-label"><g:message code="profile.subCategory.label" default="Sub Category" /></span>
 					
-						<span class="property-value" aria-labelledby="subCategory-label"><g:fieldValue bean="${profileInstance}" field="subCategory"/></span>
+						<span class="property-value" aria-labelledby="subCategory-label"><g:link controller="subCategory" action="show" id="${profileInstance?.subCategory?.id}">${profileInstance?.subCategory?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -52,7 +52,7 @@
 				<li class="fieldcontain">
 					<span id="license-label" class="property-label"><g:message code="profile.license.label" default="License" /></span>
 					
-						<span class="property-value" aria-labelledby="license-label"><g:fieldValue bean="${profileInstance}" field="license"/></span>
+						<span class="property-value" aria-labelledby="license-label"><g:link controller="license" action="show" id="${profileInstance?.license?.id}">${profileInstance?.license?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
@@ -110,7 +110,7 @@
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="profile.category.label" default="Category" /></span>
 					
-						<span class="property-value" aria-labelledby="category-label"><g:fieldValue bean="${profileInstance}" field="category"/></span>
+						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${profileInstance?.category?.id}">${profileInstance?.category?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

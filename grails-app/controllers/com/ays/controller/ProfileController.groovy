@@ -2,6 +2,7 @@ package com.ays.controller
 
 import org.springframework.dao.DataIntegrityViolationException
 
+import com.ays.CompanyProfile
 import com.ays.FeeStructure
 import com.ays.License
 import com.ays.Profile;
@@ -22,21 +23,42 @@ class ProfileController {
     }
 
     def create() {
-        [profileInstance: new Profile(params), licenseInstance: new License()]
+        [profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile()]
     }
 
     def save() {
 		def siteUserInstance = springSecurityService.currentUser
         def profileInstance = new Profile(params)
-        if (!profileInstance.save(flush: true)) {
-            render(view: "create", model: [profileInstance: profileInstance])
+		def licenseInstance = new License(params)
+		def companyProfileInstance = new CompanyProfile(params) 
+			
+		if (!licenseInstance.save(flush:true)) {
+			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
             return
-        }
+		}
+		
+		if (!companyProfileInstance.save(flush:true)) {
+			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
+			return
+		}
+		
+		
+		profileInstance.companyProfile = companyProfileInstance
+		profileInstance.license = licenseInstance
+		
+		if (!profileInstance.save(flush: true)) {
+			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
+			return
+		}
+		
 		siteUserInstance.profile = profileInstance
 		if (!siteUserInstance.save(flush: true)) {
 			render(view: "create", model: [profileInstance: profileInstance])
 			return
 		}
+		
+		
+		
         flash.message = message(code: 'default.created.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
         redirect(action: "show", id: profileInstance.id)
     }

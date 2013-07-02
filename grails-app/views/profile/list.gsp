@@ -24,7 +24,7 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="subCategory" title="${message(code: 'profile.subCategory.label', default: 'Sub Category')}" />
+						<th><g:message code="profile.subCategory.label" default="Sub Category" /></th>
 					
 						<g:sortableColumn property="displayPicture" title="${message(code: 'profile.displayPicture.label', default: 'Display Picture')}" />
 					
@@ -34,7 +34,7 @@
 					
 						<g:sortableColumn property="differentiation" title="${message(code: 'profile.differentiation.label', default: 'Differentiation')}" />
 					
-						<th><g:message code="profile.feeStructure.label" default="Fee Structure" /></th>
+						<g:sortableColumn property="feeStructure" title="${message(code: 'profile.feeStructure.label', default: 'Fee Structure')}" />
 					
 					</tr>
 				</thead>
