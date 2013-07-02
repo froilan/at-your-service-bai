@@ -18,14 +18,14 @@
 	<input type="file" id="displayPicture" name="displayPicture" />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'companyProfile', 'error')} ">
+<%--<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'companyProfile', 'error')} ">
 	<label for="companyProfile">
 		<g:message code="profile.companyProfile.label" default="Company Profile" />
 		
 	</label>
 	<g:select id="companyProfile" name="companyProfile.id" from="${com.ays.CompanyProfile.list()}" optionKey="id" value="${profileInstance?.companyProfile?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
-<fieldset class="embedded"><legend><g:message code="profile.license.label" default="License" /></legend>
+--%><fieldset class="embedded"><legend><g:message code="profile.license.label" default="License" /></legend>
 <div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.area', 'error')} ">
 	<label for="license.area">
 		<g:message code="profile.license.area.label" default="Area" />
@@ -58,7 +58,7 @@
 	<g:datePicker name="expirationDate" precision="day"  value="${licenseInstance?.expirationDate}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.id', 'error')} required">
+<%--<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.id', 'error')} required">
 	<label for="license.id">
 		<g:message code="profile.license.id.label" default="Id" />
 		<span class="required-indicator">*</span>
@@ -66,7 +66,7 @@
 	<g:field name="id" type="number" value="${licenseInstance.id}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.number', 'error')} ">
+--%><div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.number', 'error')} ">
 	<label for="license.number">
 		<g:message code="profile.license.number.label" default="Number" />
 		
@@ -74,7 +74,7 @@
 	<g:textField name="number" value="${licenseInstance?.number}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.version', 'error')} required">
+<%--<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'license.version', 'error')} required">
 	<label for="license.version">
 		<g:message code="profile.license.version.label" default="Version" />
 		<span class="required-indicator">*</span>
@@ -89,7 +89,7 @@
 	</label>
 	<g:textField name="differentiation" value="${profileInstance?.differentiation}"/>
 </div>
-<fieldset class="embedded"><legend><g:message code="profile.feeStructure.label" default="Fee Structure" /></legend>
+--%><fieldset class="embedded"><legend><g:message code="profile.feeStructure.label" default="Fee Structure" /></legend>
 <div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.feeType', 'error')} required">
 	<label for="feeStructure.feeType">
 		<g:message code="profile.feeStructure.feeType.label" default="Fee Type" />
@@ -98,7 +98,7 @@
 	<g:select name="feeType" from="${com.ays.FeeStructureType?.values()}" keys="${com.ays.FeeStructureType.values()*.name()}" required="" value="${feeStructureInstance?.feeType?.name()}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.id', 'error')} required">
+<%--<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.id', 'error')} required">
 	<label for="feeStructure.id">
 		<g:message code="profile.feeStructure.id.label" default="Id" />
 		<span class="required-indicator">*</span>
@@ -106,7 +106,7 @@
 	<g:field name="id" type="number" value="${feeStructureInstance.id}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.rate', 'error')} required">
+--%><div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.rate', 'error')} required">
 	<label for="feeStructure.rate">
 		<g:message code="profile.feeStructure.rate.label" default="Rate" />
 		<span class="required-indicator">*</span>
@@ -114,14 +114,14 @@
 	<g:field name="rate" value="${fieldValue(bean: feeStructureInstance, field: 'rate')}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.version', 'error')} required">
+<%--<div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'feeStructure.version', 'error')} required">
 	<label for="feeStructure.version">
 		<g:message code="profile.feeStructure.version.label" default="Version" />
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="version" type="number" value="${feeStructureInstance.version}" required=""/>
 </div>
-</fieldset>
+--%></fieldset>
 <div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'affiliations', 'error')} ">
 	<label for="affiliations">
 		<g:message code="profile.affiliations.label" default="Affiliations" />

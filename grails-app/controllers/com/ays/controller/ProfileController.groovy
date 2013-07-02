@@ -8,6 +8,8 @@ import com.ays.Profile;
 
 class ProfileController {
 
+	def springSecurityService
+	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -24,12 +26,17 @@ class ProfileController {
     }
 
     def save() {
+		def siteUserInstance = springSecurityService.currentUser
         def profileInstance = new Profile(params)
         if (!profileInstance.save(flush: true)) {
             render(view: "create", model: [profileInstance: profileInstance])
             return
         }
-
+		siteUserInstance.profile = profileInstance
+		if (!siteUserInstance.save(flush: true)) {
+			render(view: "create", model: [profileInstance: profileInstance])
+			return
+		}
         flash.message = message(code: 'default.created.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
         redirect(action: "show", id: profileInstance.id)
     }
