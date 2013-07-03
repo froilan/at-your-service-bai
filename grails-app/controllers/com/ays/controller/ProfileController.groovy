@@ -2,10 +2,7 @@ package com.ays.controller
 
 import org.springframework.dao.DataIntegrityViolationException
 
-import com.ays.CompanyProfile
-import com.ays.FeeStructure
-import com.ays.License
-import com.ays.Profile;
+import com.ays.*;
 
 class ProfileController {
 
@@ -23,42 +20,72 @@ class ProfileController {
     }
 
     def create() {
-        [profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile()]
+        [profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile(),
+        affiliationInstance: new Affiliation(), awardInstance: new Award(), contactInfoInstance: new ContactInfo(),
+        primaryServiceInstance: new Service(), secondaryServiceInstance: new Service()]
     }
 
     def save() {
 		def siteUserInstance = springSecurityService.currentUser
         def profileInstance = new Profile(params)
 		def licenseInstance = new License(params)
-		def companyProfileInstance = new CompanyProfile(params) 
-			
+		def companyProfileInstance = new CompanyProfile(params)
+
+		def affiliationInstance = new Affiliation()
+		affiliationInstance.name = params['affiliation.name']
+		affiliationInstance.role = params['affiliation.role']
+		profileInstance.addToAffiliations(affiliationInstance)
+
+		def awardInstance = new Award()
+		awardInstance.name = params['award.name']
+		awardInstance.year = params.int('award.year')
+		awardInstance.description = params['award.description']
+		profileInstance.addToAwards(awardInstance)
+
+		def contactInfoInstance = new ContactInfo()
+		contactInfoInstance.type = params['contactInfo.type']
+		contactInfoInstance.value = params['contactInfo.value']
+		profileInstance.addToContacts(contactInfoInstance)
+
+        def primaryServiceInstance = new Service()
+        primaryServiceInstance.type = ServiceOfferingType.PRIMARY
+        primaryServiceInstance.name = params['primaryService.name']
+        primaryServiceInstance.description = params['primaryService.description']
+        profileInstance.addToServices(primaryServiceInstance)
+
+        def secondaryServiceInstance = new Service()
+        secondaryServiceInstance.type = ServiceOfferingType.SECONDARY
+        secondaryServiceInstance.name = params['secondaryService.name']
+        secondaryServiceInstance.description = params['secondaryService.description']
+        profileInstance.addToServices(secondaryServiceInstance)
+
 		if (!licenseInstance.save(flush:true)) {
 			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
             return
 		}
-		
+
 		if (!companyProfileInstance.save(flush:true)) {
 			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
 			return
 		}
-		
-		
+
+
 		profileInstance.companyProfile = companyProfileInstance
 		profileInstance.license = licenseInstance
-		
-		if (!profileInstance.save(flush: true)) {
+
+		if (!profileInstance.save(flush: true, failOnError: true)) {
 			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
 			return
 		}
-		
+
 		siteUserInstance.profile = profileInstance
 		if (!siteUserInstance.save(flush: true)) {
 			render(view: "create", model: [profileInstance: profileInstance])
 			return
 		}
-		
-		
-		
+
+
+
         flash.message = message(code: 'default.created.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
         redirect(action: "show", id: profileInstance.id)
     }

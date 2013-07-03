@@ -28,11 +28,11 @@
 			<!-- <a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a> -->
 					<div class="user-options">
 						<sec:ifLoggedIn>
-							<g:link class="create btn login-btn" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link>
+							<%--g:link class="create btn login-btn" action="create" controller="siteUser"><g:message code="signup.label" /></g:link--%>
 							<g:link class="create btn btn-primary" controller="logout"><g:message code="logout.label" /></g:link>
 						</sec:ifLoggedIn>
 						<sec:ifNotLoggedIn>
-							<g:link class="create btn login-btn" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link>
+							<g:link class="create btn login-btn" action="create" controller="siteUser"><g:message code="signup.label" /></g:link>
 							<g:link class="create btn btn-primary" controller="login"><g:message code="login.label" /></g:link>
 						</sec:ifNotLoggedIn>
 					</div>

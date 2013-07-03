@@ -4,7 +4,7 @@ import java.util.Date;
 
 class ContactInfo {
 
-	String type
+	ContactInfoType type
 	String value
 	boolean defaultContact
 	Date dateCreated

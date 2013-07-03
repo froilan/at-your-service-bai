@@ -16,7 +16,7 @@ class Profile {
 	Date dateCreated
 	Date lastUpdated
 
-	static hasMany = [ contactInformation: ContactInfo,
+	static hasMany = [ contacts: ContactInfo,
 						services: Service,
 						affiliations: Affiliation,
 						awards: Award,
@@ -31,7 +31,7 @@ class Profile {
 		subCategory component: true
 		companyProfile component: true
 		license component: true
-		contactInformation component: true
+		contacts component: true
 		services component: true
 		affiliations component: true
 		awards component: true

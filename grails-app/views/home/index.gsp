@@ -8,15 +8,6 @@
 </head>
 <body>
 	<div class="container-fluid search-container">
-		<div style="display:none;">
-			<div class="nav" role="navigation">
-				<ul>
-					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-					<li><g:link class="create" action="preCreate" controller="siteUser"><g:message code="signup.label" /></g:link></li>
-					<li><g:link class="create" controller="login"><g:message code="login.label" /></g:link></li>
-				</ul>
-			</div>
-		</div>
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span6">

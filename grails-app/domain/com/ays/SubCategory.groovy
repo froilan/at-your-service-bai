@@ -18,4 +18,6 @@ class SubCategory {
     	root false
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
+
+    String toString() { name }
 }

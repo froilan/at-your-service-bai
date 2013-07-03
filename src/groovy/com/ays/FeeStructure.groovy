@@ -8,12 +8,10 @@ enum FeeStructure {
 
 	final String value
 
-	FeeStructure(String value) {
+	private FeeStructure(String value) {
 		this.value = value
 	}
 
-	String toString() {
-		value
-	}
+	String toString() { value }
 
 }
