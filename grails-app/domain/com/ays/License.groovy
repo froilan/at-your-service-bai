@@ -13,7 +13,7 @@ class License {
 	static constraints = {
     }
 
-    static belongsTo = Profile
+    static belongsTo = [ Profile ]
 
     static searchable = {
     	root false

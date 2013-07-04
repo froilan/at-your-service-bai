@@ -30,14 +30,6 @@
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
-				<h2>Company Profile</h2>
-				<fieldset class="form">
-					<g:render template="/companyProfile/form"/>
-				</fieldset>
-				<h2>License</h2>
-				<fieldset class="form">
-					<g:render template="/license/form"/>
-				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>

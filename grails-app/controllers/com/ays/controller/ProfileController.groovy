@@ -8,6 +8,8 @@ class ProfileController {
 
 	def springSecurityService
 
+	def profileService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -20,14 +22,15 @@ class ProfileController {
     }
 
     def create() {
-        [profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile(),
-        affiliationInstance: new Affiliation(), awardInstance: new Award(), contactInfoInstance: new ContactInfo(),
-        primaryServiceInstance: new Service(), secondaryServiceInstance: new Service()]
+        //[profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile(),
+        //affiliationInstance: new Affiliation(), awardInstance: new Award(), contactInfoInstance: new ContactInfo(),
+        //primaryServiceInstance: new Service(), secondaryServiceInstance: new Service()]
+        []
     }
 
     def save() {
 		def siteUserInstance = springSecurityService.currentUser
-        def profileInstance = new Profile(params)
+        /*def profileInstance = new Profile(params)
 		def licenseInstance = new License(params)
 		def companyProfileInstance = new CompanyProfile(params)
 
@@ -76,15 +79,87 @@ class ProfileController {
 		if (!profileInstance.save(flush: true, failOnError: true)) {
 			render(view: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance, companyProfileInstance: companyProfileInstance])
 			return
-		}
+		}*/
 
-		siteUserInstance.profile = profileInstance
-		if (!siteUserInstance.save(flush: true)) {
-			render(view: "create", model: [profileInstance: profileInstance])
+		def profileInstance = new Profile(params)
+
+		def licenseInstance = new License(params)
+		profileInstance.license = licenseInstance
+
+		def companyProfileInstance = new CompanyProfile(params)
+		profileInstance.companyProfile = companyProfileInstance
+
+		def affiliationInstance = new Affiliation()
+		affiliationInstance.name = params['affiliation.name']
+		affiliationInstance.role = params['affiliation.role']
+		profileInstance.addToAffiliations(affiliationInstance)
+
+		def awardInstance = new Award()
+		awardInstance.name = params['award.name']
+		awardInstance.year = params.int('award.year')
+		awardInstance.description = params['award.description']
+		profileInstance.addToAwards(awardInstance)
+
+        def primaryServiceInstance = new Service()
+        primaryServiceInstance.type = ServiceOfferingType.PRIMARY
+        primaryServiceInstance.name = params['primaryService.name']
+        primaryServiceInstance.description = params['primaryService.description']
+        profileInstance.addToServices(primaryServiceInstance)
+
+        def secondaryServiceInstance = new Service()
+        secondaryServiceInstance.type = ServiceOfferingType.SECONDARY
+        secondaryServiceInstance.name = params['secondaryService.name']
+        secondaryServiceInstance.description = params['secondaryService.description']
+        profileInstance.addToServices(secondaryServiceInstance)
+
+		def phoneNumberInstance = new ContactInfo()
+		phoneNumberInstance.type = ContactInfoType.PHONE_NUMBER
+		phoneNumberInstance.value = params['contactInfo.phoneNumber']
+		phoneNumberInstance.name = params['contactInfo.phoneNumber.name']
+		profileInstance.addToContacts(phoneNumberInstance)
+
+		def emailInstance = new ContactInfo()
+		emailInstance.type = ContactInfoType.EMAIL
+		emailInstance.value = params['contactInfo.email']
+		emailInstance.name = params['contactInfo.phoneNumber.name']
+		profileInstance.addToContacts(emailInstance)
+
+		def websiteInstance = new ContactInfo()
+		websiteInstance.type = ContactInfoType.WEBSITE
+		websiteInstance.value = params['contactInfo.website']
+		profileInstance.addToContacts(websiteInstance)
+
+		def facebookInstance = new ContactInfo()
+		facebookInstance.type = ContactInfoType.FACEBOOK
+		facebookInstance.value = params['contactInfo.facebook']
+		profileInstance.addToContacts(facebookInstance)
+
+		def twitterInstance = new ContactInfo()
+		twitterInstance.type = ContactInfoType.TWITTER
+		twitterInstance.value = params['contactInfo.twitter']
+		profileInstance.addToContacts(twitterInstance)
+
+		def linkedInInstance = new ContactInfo()
+		linkedInInstance.type = ContactInfoType.LINKEDIN
+		linkedInInstance.value = params['contactInfo.linkedIn']
+		profileInstance.addToContacts(linkedInInstance)
+
+		profileInstance.companyProfile = companyProfileInstance
+		profileInstance.license = licenseInstance
+
+		if (!profileInstance.save(flush: true, failOnError: true)) {
+			chain(action: "create", model: [profileInstance: profileInstance, licenseInstance: licenseInstance,
+				companyProfileInstance: companyProfileInstance, affiliationInstance: affiliationInstance,
+				awardInstance: awardInstance, primaryServiceInstance: primaryServiceInstance,
+				secondaryServiceInstance: secondaryInstance, phoneNumberInstance: phoneNumberInstance,
+				emailInstance: emailInstance, websiteInstance: websiteInstance,
+				facebookInstance: facebookInstance, twitterInstance: twitterInstance,
+				linkedInInstance: linkedInInstance])
 			return
 		}
 
-
+		siteUserInstance.profile = profileInstance
+		siteUserInstance.save(flush: true)
 
         flash.message = message(code: 'default.created.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
         redirect(action: "show", id: profileInstance.id)

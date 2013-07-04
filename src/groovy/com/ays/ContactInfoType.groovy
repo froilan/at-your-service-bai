@@ -2,12 +2,13 @@ package com.ays
 
 enum ContactInfoType {
 
-	HOME_NUMBER('Home Number'),
-	OFFICE_NUMBER('Office Number'),
-	FAX_NUMBER('Fax Number'),
-	MOBILE_NUMBER('Mobile Number'),
+	PHONE_NUMBER('Phone Number'),
 	EMAIL('E-mail'),
-	WEBSITE('Website')
+	WEBSITE('Website'),
+	FACEBOOK('Facebook'),
+	TWITTER('Twitter'),
+	LINKEDIN('LinkedIn'),
+	OTHER('Other')
 
 	final String type
 
