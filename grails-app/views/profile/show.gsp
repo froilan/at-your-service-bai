@@ -144,11 +144,20 @@
 				</li>
 				</g:if>
 
-				<g:if test="${profileInstance?.name}">
+				<g:if test="${profileInstance?.lastName}">
 				<li class="fieldcontain">
-					<span id="name-label" class="property-label"><g:message code="profile.name.label" default="Name" /></span>
+					<span id="lastName-label" class="property-label"><g:message code="profile.lastName.label" default="Last Name" /></span>
 
-						<span class="property-value" aria-labelledby="name-label"><g:fieldValue bean="${profileInstance}" field="name"/></span>
+						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${profileInstance}" field="lastName"/></span>
+
+				</li>
+				</g:if>
+				
+				<g:if test="${profileInstance?.firstName}">
+				<li class="fieldcontain">
+					<span id="firstName-label" class="property-label"><g:message code="profile.firstName.label" default="First Name" /></span>
+
+						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${profileInstance}" field="firstName"/></span>
 
 				</li>
 				</g:if>
