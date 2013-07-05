@@ -17,7 +17,7 @@
 			   	<div class="span6">
 					<div class="content scaffold-create" role="main">
 						<div role="search" class="searchform">
-							<g:form action="search" controller="search">
+							<g:form controller="search">
 								<fieldset class="form">
 									<g:render template="../search/form"/>
 								</fieldset>

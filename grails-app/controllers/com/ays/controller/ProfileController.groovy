@@ -25,7 +25,7 @@ class ProfileController {
         //[profileInstance: new Profile(params), licenseInstance: new License(), companyProfileInstance: new CompanyProfile(),
         //affiliationInstance: new Affiliation(), awardInstance: new Award(), contactInfoInstance: new ContactInfo(),
         //primaryServiceInstance: new Service(), secondaryServiceInstance: new Service()]
-        []
+        [:]
     }
 
     def save() {

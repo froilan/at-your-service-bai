@@ -4,7 +4,8 @@ import java.util.Date;
 
 class Profile {
 
-	String name
+	String firstName
+	String lastName
 	Category category
 	SubCategory subCategory
 	byte[] displayPicture
@@ -22,11 +23,12 @@ class Profile {
 						awards: Award,
 						reviews: Review ]
 
-	static transients = [ 'rating' ]
+	static transients = [ 'averageRating', 'businessName' ]
 
 	static searchable = {
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
-		name boost: 2.0
+		firstName boost: 2.0
+		lastName boost: 2.0
 		category component: true
 		subCategory component: true
 		companyProfile component: true
@@ -47,8 +49,25 @@ class Profile {
 		feeStructure(nullable: true)
     }
 
-    BigDecimal getRating() {
-    	// TODO
-    	BigDecimal.ZERO
+    BigDecimal getAverageRating() {
+		BigDecimal total = BigDecimal.ZERO;
+		reviews.each { review ->
+			total = total.plus(review.rating)
+		}
+		
+		BigDecimal average = null;
+		if (!BigDecimal.ZERO.equals(total)) {
+			average = total.divide(reviews.size())
+		}
+		
+		return average
     }
+	
+	String getBusinessName() {
+		if (companyProfile?.name) {
+			return companyProfile.name
+		}
+		System.out0.println("${lastName}, ${firstName}")
+		return "${lastName}, ${firstName}"
+	}
 }

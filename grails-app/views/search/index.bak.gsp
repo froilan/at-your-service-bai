@@ -5,9 +5,8 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>At Your Service</title>
-    <meta name="layout" content="main" />
-    <%--style type="text/css">
+    <title><g:if test="${params.q && params.q?.trim() != ''}">${params.q} - </g:if>Grails Searchable Plugin</title>
+    <style type="text/css">
       * {
         font-family: Arial, sans-serif;
         padding: 0;
@@ -88,10 +87,16 @@
         var focusQueryInput = function() {
             document.getElementById("q").focus();
         }
-    </script--%>
+    </script>
   </head>
-  <body>
-  
+  <body onload="focusQueryInput();">
+  <div id="header">
+    <h1><a href="http://grails.org/Searchable+Plugin" target="_blank">Grails <span>Searchable</span> Plugin</a></h1>
+    <g:form url='[controller: "searchable", action: "index"]' id="searchableForm" name="searchableForm" method="get">
+        <g:textField name="q" value="${params.q}" size="50"/> <input type="submit" value="Search" />
+    </g:form>
+    <div style="clear: both; display: none;" class="hint">See <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for advanced queries</div>
+  </div>
   <div id="main">
     <g:set var="haveQuery" value="${params.q?.trim()}" />
     <g:set var="haveResults" value="${searchResult?.results}" />
@@ -143,7 +148,7 @@
     </g:if>
 
     <g:if test="${haveResults}">
-      <%--div class="results">
+      <div class="results">
         <g:each var="result" in="${searchResult.results}" status="index">
           <div class="result">
             <g:set var="className" value="${ClassUtils.getShortName(result.getClass())}" />
@@ -166,34 +171,7 @@
               <g:else><g:paginate controller="searchable" action="index" params="[q: params.q]" total="${searchResult.total}" prev="&lt; previous" next="next &gt;"/></g:else>
           </g:if>
         </div>
-      </div--%>
-      
-		<div id="list-employee" class="content scaffold-list" role="results">
-			<g:each in="${searchResult.results}" var="profile">
-				<div class="content scaffold-show entry-employee row-fluid" role="entry">
-					<div class="span3 image-container">
-			 			<img class="photo" src="${createLink(controller:'profile', action:'avatar_image', id:profile.id)}" />
-					</div>
-					<div class="span9 list-content">
-						<h4>${profile.businessName}</h4>
-						<g:if test="${profile.companyProfile?.description}">
-							<p>${profile.companyProfile?.description}</p>
-						</g:if>
-						<p class="meta-salary">
-							<g:if test="${profile.askingFee}">
-								<strong>${profile.askingFee}</strong> ${profile.feeStructure.displayValue}
-							</g:if>
-						</p>
-						<p class="meta-rate">
-							<g:if test="${profile.averageRating}">
-								Rating: <strong>${profile.averageRating} / 5</strong>
-							</g:if>
-						</p>
-						<g:link action="show" class="btn btn-info btn-small btn-details" controller="profile" id="${profile.id}"> View Details </g:link>
-					</div>
-				</div>
-			</g:each>
-		</div>
+      </div>
     </g:if>
   </div>
   </body>
