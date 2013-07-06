@@ -2,9 +2,9 @@ package com.ays
 
 class Service {
 
-	ServiceOfferingType type
-	String name
-	String description
+	ServiceOfferingType serviceType
+	String serviceName
+	String serviceDescription
 	Date dateCreated
 	Date lastUpdated
 
@@ -15,7 +15,7 @@ class Service {
 
 	static searchable = {
 		root false
-		type index: 'no'
+		serviceType index: 'no'
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
 	}
 }

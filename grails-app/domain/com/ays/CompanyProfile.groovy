@@ -4,7 +4,7 @@ import java.util.Date;
 
 class CompanyProfile {
 
-	String name
+	String companyName
 	String description
 	byte[] logo
 	Integer inBusinessSince
@@ -27,7 +27,7 @@ class CompanyProfile {
 
     static searchable = {
     	root false
-    	name boost: 2.0
+    	companyName boost: 2.0
     	logo index: 'no'
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }

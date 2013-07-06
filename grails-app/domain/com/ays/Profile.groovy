@@ -33,7 +33,6 @@ class Profile {
 		subCategory component: true
 		companyProfile component: true
 		license component: true
-		contacts component: true
 		services component: true
 		affiliations component: true
 		awards component: true
@@ -64,10 +63,9 @@ class Profile {
     }
 	
 	String getBusinessName() {
-		if (companyProfile?.name) {
-			return companyProfile.name
+		if (companyProfile?.companyName) {
+			return companyProfile.companyName
 		}
-		System.out0.println("${lastName}, ${firstName}")
 		return "${lastName}, ${firstName}"
 	}
 }

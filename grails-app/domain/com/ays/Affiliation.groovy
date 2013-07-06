@@ -2,8 +2,8 @@ package com.ays
 
 class Affiliation {
 
-	String name
-	String role
+	String affiliationName
+	String affiliationRole
 	Date dateCreated
 	Date lastUpdated
 

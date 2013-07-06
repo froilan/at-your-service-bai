@@ -4,12 +4,12 @@
 
 <h2>Categories & Offerings</h2>
 
-<div class="fieldcontain ${hasErrors(bean: companyProfileInstance, field: 'name', 'error')} ">
-	<label for="name">
+<div class="fieldcontain ${hasErrors(bean: companyProfileInstance, field: 'companyName', 'error')} ">
+	<label for="companyName">
 		<g:message code="companyProfile.name.label" default="Business Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="name" value="${companyProfileInstance?.name}" required=""/>
+	<g:textField name="companyName" value="${companyProfileInstance?.companyName}" required=""/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: profileInstance, field: 'category', 'error')} required">
@@ -36,32 +36,32 @@
 	<g:textField name="description" value="${companyProfileInstance?.description}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: primaryServiceInstance, field: 'name', 'error')} ">
-	<label for="primaryService.name">
+<div class="fieldcontain ${hasErrors(bean: primaryServiceInstance, field: 'serviceName', 'error')} ">
+	<label for="primaryService.serviceName">
 		<g:message code="profile.primaryService.name.label" default="Primary Service Offering" />
 	</label>
-	<g:textField name="primaryService.name" value="${primaryServiceInstance?.name}"/>
+	<g:textField name="primaryService.serviceName" value="${primaryServiceInstance?.serviceName}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: primaryServiceInstance, field: 'description', 'error')} ">
-	<label for="primaryService.description">
+<div class="fieldcontain ${hasErrors(bean: primaryServiceInstance, field: 'serviceDescription', 'error')} ">
+	<label for="primaryService.serviceDescription">
 		<g:message code="profile.primaryService.description.label" default="Primary Service Description" />
 	</label>
-	<g:textField name="primaryService.description" value="${primaryServiceInstance?.description}"/>
+	<g:textField name="primaryService.serviceDescription" value="${primaryServiceInstance?.serviceDescription}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: secondaryServiceInstance, field: 'name', 'error')} ">
-	<label for="secondaryService.name">
+<div class="fieldcontain ${hasErrors(bean: secondaryServiceInstance, field: 'serviceName', 'error')} ">
+	<label for="secondaryService.serviceName">
 		<g:message code="profile.secondaryService.name.label" default="Secondary Service Offering" />
 	</label>
-	<g:textField name="secondaryService.name" value="${secondaryServiceInstance?.name}"/>
+	<g:textField name="secondaryService.serviceName" value="${secondaryServiceInstance?.serviceName}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: secondaryServiceInstance, field: 'description', 'error')} ">
-	<label for="secondaryService.description">
+<div class="fieldcontain ${hasErrors(bean: secondaryServiceInstance, field: 'serviceDescription', 'error')} ">
+	<label for="secondaryService.serviceDescription">
 		<g:message code="profile.secondaryService.description.label" default="Secondary Service Description" />
 	</label>
-	<g:textField name="secondaryService.description" value="${secondaryServiceInstance?.description}"/>
+	<g:textField name="secondaryService.serviceDescription" value="${secondaryServiceInstance?.serviceDescription}"/>
 </div>
 
 <!-- PAGE 2 -->
@@ -148,138 +148,138 @@
 	<g:textField name="differentiation" value="${profileInstance?.differentiation}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'number', 'error')} ">
-	<label for="number">
+<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'licenseNumber', 'error')} ">
+	<label for="licenseNumber">
 		<g:message code="license.number.label" default="Number" />
 
 	</label>
-	<g:textField name="number" value="${licenseInstance?.number}"/>
+	<g:textField name="licenseNumber" value="${licenseInstance?.licenseNumber}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'area', 'error')} ">
-	<label for="area">
+<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'licenseArea', 'error')} ">
+	<label for="licenseArea">
 		<g:message code="license.area.label" default="Area" />
 
 	</label>
-	<g:textField name="area" value="${licenseInstance?.area}"/>
+	<g:textField name="licenseArea" value="${licenseInstance?.licenseArea}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'authority', 'error')} ">
-	<label for="authority">
+<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'licenseAuthority', 'error')} ">
+	<label for="licenseAuthority">
 		<g:message code="license.authority.label" default="Authority" />
 
 	</label>
-	<g:textField name="authority" value="${licenseInstance?.authority}"/>
+	<g:textField name="licenseAuthority" value="${licenseInstance?.licenseAuthority}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'expirationDate', 'error')} required">
-	<label for="expirationDate">
+<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'licenseExpirationDate', 'error')} required">
+	<label for="licenseExpirationDate">
 		<g:message code="license.expirationDate.label" default="Expiration Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="expirationDate" precision="day"  value="${licenseInstance?.expirationDate}"  />
+	<g:datePicker name="licenseExpirationDate" precision="day"  value="${licenseInstance?.licenseExpirationDate}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'description', 'error')} ">
-	<label for="description">
+<div class="fieldcontain ${hasErrors(bean: licenseInstance, field: 'licenseDescription', 'error')} ">
+	<label for="licenseDescription">
 		<g:message code="license.description.label" default="Description" />
 
 	</label>
-	<g:textField name="description" value="${licenseInstance?.description}"/>
+	<g:textField name="licenseDescription" value="${licenseInstance?.licenseDescription}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: affiliationInstance, field: 'name', 'error')} ">
-	<label for="affiliation">
+<div class="fieldcontain ${hasErrors(bean: affiliationInstance, field: 'affiliationName', 'error')} ">
+	<label for="affiliationName">
 		<g:message code="profile.affiliation.label" default="Affiliation" />
 	</label>
-	<g:textField name="affiliation.name" value="${affiliationInstance?.name}"/>
+	<g:textField name="affiliation.affiliationName" value="${affiliationInstance?.affiliationName}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: affiliationInstance, field: 'role', 'error')} ">
-	<label for="affiliation.role">
+<div class="fieldcontain ${hasErrors(bean: affiliationInstance, field: 'affiliationRole', 'error')} ">
+	<label for="affiliation.affiliationRole">
 		<g:message code="profile.affiliation.role.label" default="Affiliation Role" />
 	</label>
-	<g:textField name="affiliation.role" value="${affiliationInstance?.role}"/>
+	<g:textField name="affiliation.affiliationRole" value="${affiliationInstance?.affiliationRole}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'name', 'error')} ">
-	<label for="award">
+<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'awardName', 'error')} ">
+	<label for="awardName">
 		<g:message code="profile.award.label" default="Award" />
 	</label>
-	<g:textField name="award.name" value="${awardInstance?.name}"/>
+	<g:textField name="award.awardName" value="${awardInstance?.awardName}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'year', 'error')} ">
-	<label for="award.year">
+<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'awardYear', 'error')} ">
+	<label for="award.awardYear">
 		<g:message code="profile.award.year.label" default="Award Year" />
 	</label>
-	<g:textField name="award.year" value="${awardInstance?.year}"/>
+	<g:textField name="award.awardYear" value="${awardInstance?.awardYear}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'description', 'error')} ">
-	<label for="award.description">
+<div class="fieldcontain ${hasErrors(bean: awardInstance, field: 'awardDescription', 'error')} ">
+	<label for="award.awardDescription">
 		<g:message code="profile.award.description.label" default="Award Description" />
 	</label>
-	<g:textField name="award.description" value="${awardInstance?.description}"/>
+	<g:textField name="award.awardDescription" value="${awardInstance?.awardDescription}"/>
 </div>
 
 <!-- PAGE 5 -->
 
 <h2>Contact Details</h2>
 
-<div class="fieldcontain ${hasErrors(bean: phoneNumberInstance, field: 'name', 'error')} ">
-	<label for="contactInfo.phoneNumber.name">
-		<g:message code="profile.contactInfo.phoneNumber.name.label" default="Name" />
+<div class="fieldcontain ${hasErrors(bean: phoneNumberInstance, field: 'contactAlias', 'error')} ">
+	<label for="contactInfo.phoneNumber.contactAlias">
+		<g:message code="profile.contactInfo.phoneNumber.name.label" default="Alias" />
 	</label>
-	<g:textField name="contactInfo.phoneNumber.name" value="${phoneNumberInstance?.name}"/>
+	<g:textField name="contactInfo.phoneNumber.contactAlias" value="${phoneNumberInstance?.contactAlias}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: phoneNumberInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: phoneNumberInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.phoneNumber">
 		<g:message code="profile.contactInfo.phoneNumber.label" default="Phone Number" />
 	</label>
-	<g:textField name="contactInfo.phoneNumber" value="${phoneNumberInstance?.value}"/>
+	<g:textField name="contactInfo.phoneNumber" value="${phoneNumberInstance?.contactValue}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: emailInstance, field: 'name', 'error')} ">
-	<label for="contactInfo.email.name">
-		<g:message code="profile.contactInfo.email.name.label" default="Email Name" />
+<div class="fieldcontain ${hasErrors(bean: emailInstance, field: 'contactAlias', 'error')} ">
+	<label for="contactInfo.email.contactAlias">
+		<g:message code="profile.contactInfo.email.name.label" default="Email Alias" />
 	</label>
-	<g:textField name="contactInfo.email.name" value="${emailInstance?.name}"/>
+	<g:textField name="contactInfo.email.contactAlias" value="${emailInstance?.contactAlias}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: emailInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: emailInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.email">
 		<g:message code="profile.contactInfo.email.label" default="Email" />
 	</label>
-	<g:textField name="contactInfo.email" value="${emailInstance?.value}"/>
+	<g:textField name="contactInfo.email" value="${emailInstance?.contactValue}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: websiteInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: websiteInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.website">
 		<g:message code="profile.contactInfo.website.label" default="Website" />
 	</label>
-	<g:textField name="contactInfo.website" value="${websiteInstance?.value}"/>
+	<g:textField name="contactInfo.website" value="${websiteInstance?.contactValue}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: facebookInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: facebookInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.facebook">
 		<g:message code="profile.contactInfo.facebook.label" default="Facebook" />
 	</label>
-	<g:textField name="contactInfo.facebook" value="${facebookInstance?.value}"/>
+	<g:textField name="contactInfo.facebook" value="${facebookInstance?.contactValue}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: twitterInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: twitterInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.twitter">
 		<g:message code="profile.contactInfo.twitter.label" default="Twitter" />
 	</label>
-	<g:textField name="contactInfo.twitter" value="${twitterInstance?.value}"/>
+	<g:textField name="contactInfo.twitter" value="${twitterInstance?.contactValue}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: linkedInInstance, field: 'value', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: linkedInInstance, field: 'contactValue', 'error')} ">
 	<label for="contactInfo.linkedIn">
 		<g:message code="profile.contactInfo.linkedIn.label" default="LinkedIn" />
 	</label>
-	<g:textField name="contactInfo.linkedIn" value="${linkedInInstance?.value}"/>
+	<g:textField name="contactInfo.linkedIn" value="${linkedInInstance?.contactValue}"/>
 </div>
 
