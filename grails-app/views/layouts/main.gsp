@@ -24,8 +24,7 @@
 	<body>
 		<header class="container-fluid">
 			<div class="container header">
-					<h1 class="logo"><a href="">At Your Service</a></h1>
-			<!-- <a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a> -->
+					<h1 class="logo"><g:link controller="home">At Your Service</g:link></h1>
 					<div class="user-options">
 						<sec:ifLoggedIn>
 							<%--g:link class="create btn login-btn" action="create" controller="siteUser"><g:message code="signup.label" /></g:link--%>
