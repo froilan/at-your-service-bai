@@ -60,6 +60,7 @@
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
+				<g:link controller="profile" action="profileDivision">test flow</g:link>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
 				</fieldset>
