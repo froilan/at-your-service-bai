@@ -8,16 +8,18 @@ class SiteUser {
 
 	String username
 	String password
+	String firstName
+	String lastName
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
 	Profile profile
-	Membership membership
+	UserMembership membership
 	Date dateCreated
 	Date lastUpdated
 
-	static hasMany = [ otherFeatures: Feature, bookmarks: Bookmark ]
+	static hasMany = [ otherFeatures: UserFeature, bookmarks: Bookmark ]
 	
 	static constraints = {
 		username(blank: false, unique: true)

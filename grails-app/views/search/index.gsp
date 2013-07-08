@@ -3,146 +3,83 @@
 <%@ page import="grails.plugin.searchable.internal.lucene.LuceneUtils" %>
 <%@ page import="grails.plugin.searchable.internal.util.StringQueryUtils" %>
 <html>
-  <head>
+<head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>At Your Service</title>
     <meta name="layout" content="main" />
-    <%--style type="text/css">
-      * {
-        font-family: Arial, sans-serif;
-        padding: 0;
-        margin: 0;
-      }
-
-      body {
-        font-size: 0.9em;
-        padding: .5em;
-      }
-
-      #header form input {
-        padding: .1em;
-      }
-
-      #header .hint {
-        color: gray;
-      }
-
-      #header h1 a {
-        text-decoration: none;
-        font-family: Georgia, serif;
-          color: dimgray;
-      }
-
-      #header h1 {
-          letter-spacing: -0.1em;
-          float: left;
-      }
-
-      #header h1 span {
-          font-family: Georgia, serif;
-          color: #424242;
-      }
-
-      #header form {
-          margin-left: 22em;
-          padding-top: .1em;
-      }
-
-      .title {
-        margin: 1em 0;
-        padding: .3em .5em;
-        text-align: right;
-        background-color: seashell;
-        border-top: 1px solid lightblue;
-      }
-
-      .result {
-        margin-bottom: 1em;
-      }
-
-      .result .displayLink {
-        color: green;
-      }
-
-      .result .name {
-        font-size: larger;
-      }
-
-      .paging a.step {
-        padding: 0 .3em;
-      }
-
-      .paging span.currentStep {
-          font-weight: bold;
-      }
-
-      ul {
-        margin: 1em 2em;
-      }
-
-      li, p {
-        margin-bottom: 1em;
-      }
-    </style>
-    <script type="text/javascript">
-        var focusQueryInput = function() {
-            document.getElementById("q").focus();
-        }
-    </script--%>
-  </head>
-  <body>
+</head>
+<body>
   
-  <div id="main">
+<div class="container-fluid search-result">
+	<div class="container">
     <g:set var="haveQuery" value="${params.q?.trim()}" />
     <g:set var="haveResults" value="${searchResult?.results}" />
-    <div class="title">
-      <span>
-        <g:if test="${haveQuery && haveResults}">
-          Showing <strong>${searchResult.offset + 1}</strong> - <strong>${searchResult.results.size() + searchResult.offset}</strong> of <strong>${searchResult.total}</strong>
-          results for <strong>${params.q}</strong>
-        </g:if>
-        <g:else>
-        &nbsp;
-        </g:else>
-      </span>
-    </div>
-
-    <g:if test="${haveQuery && !haveResults && !parseException}">
-      <p>Nothing matched your query - <strong>${params.q}</strong></p>
-      <g:if test="${!searchResult?.suggestedQuery}">
-        <p>Suggestions:</p>
-        <ul>
-          <li>Try a suggested query: <g:link controller="searchable" action="index" params="[q: params.q, suggestQuery: true]">Search again with the <strong>suggestQuery</strong> option</g:link><br />
-            <em>Note: Suggestions are only available when classes are mapped with <strong>spellCheck</strong> options, either at the class or property level.<br />
-		The simplest way to do this is add <strong>spellCheck "include"</strong> to the domain class searchable mapping closure.<br />
-                See the plugin/Compass documentation Mapping sections for details.</em>
-          </li>
-        </ul>
-      </g:if>
-    </g:if>
-
-    <g:if test="${searchResult?.suggestedQuery}">
-      <p>Did you mean <g:link controller="searchable" action="index" params="[q: searchResult.suggestedQuery]">${StringQueryUtils.highlightTermDiffs(params.q.trim(), searchResult.suggestedQuery)}</g:link>?</p>
-    </g:if>
-
-    <g:if test="${parseException}">
-      <p>Your query - <strong>${params.q}</strong> - is not valid.</p>
-      <p>Suggestions:</p>
-      <ul>
-        <li>Fix the query: see <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for examples</li>
-        <g:if test="${LuceneUtils.queryHasSpecialCharacters(params.q)}">
-          <li>Remove special characters like <strong>" - [ ]</strong>, before searching, eg, <em><strong>${LuceneUtils.cleanQuery(params.q)}</strong></em><br />
-              <em>Use the Searchable Plugin's <strong>LuceneUtils#cleanQuery</strong> helper method for this: <g:link controller="searchable" action="index" params="[q: LuceneUtils.cleanQuery(params.q)]">Search again with special characters removed</g:link></em>
-          </li>
-          <li>Escape special characters like <strong>" - [ ]</strong> with <strong>\</strong>, eg, <em><strong>${LuceneUtils.escapeQuery(params.q)}</strong></em><br />
-              <em>Use the Searchable Plugin's <strong>LuceneUtils#escapeQuery</strong> helper method for this: <g:link controller="searchable" action="index" params="[q: LuceneUtils.escapeQuery(params.q)]">Search again with special characters escaped</g:link></em><br />
-              <em>Or use the Searchable Plugin's <strong>escape</strong> option: <g:link controller="searchable" action="index" params="[q: params.q, escape: true]">Search again with the <strong>escape</strong> option enabled</g:link></em>
-          </li>
-        </g:if>
-      </ul>
-    </g:if>
-
-    <g:if test="${haveResults}">
+    
+    <div class="row-fluid">
+		<div class="span4 refine-search-form">
+			<h2>Refine Results</h2>
+			<div role="search">
+				<g:form action="index" >
+					<fieldset class="form">
+						<g:render template="form"/>
+					</fieldset>
+					<fieldset class="buttons">
+						<g:submitButton name="create" class="save btn btn-large btn-block btn-primary" value="${message(code: 'search.results.label', default: 'Search')}" />
+					</fieldset>
+				</g:form>
+			</div>
+		</div>
+		<div class="span8">
+			<div class="title">
+		      <span>
+		        <g:if test="${haveQuery && haveResults}">
+		          Showing <strong>${searchResult.offset + 1}</strong> - <strong>${searchResult.results.size() + searchResult.offset}</strong> of <strong>${searchResult.total}</strong>
+		          results for <strong>${params.q}</strong>
+		        </g:if>
+		        <g:else>
+		        &nbsp;
+		        </g:else>
+		      </span>
+		    </div>
+			<div role="result" class="result-list">
+			
+			    <g:if test="${haveQuery && !haveResults && !parseException}">
+			      <p>Nothing matched your query - <strong>${params.q}</strong></p>
+			      <g:if test="${!searchResult?.suggestedQuery}">
+			        <p>Suggestions:</p>
+			        <ul>
+			          <li>Try a suggested query: <g:link controller="searchable" action="index" params="[q: params.q, suggestQuery: true]">Search again with the <strong>suggestQuery</strong> option</g:link><br />
+			            <em>Note: Suggestions are only available when classes are mapped with <strong>spellCheck</strong> options, either at the class or property level.<br />
+					The simplest way to do this is add <strong>spellCheck "include"</strong> to the domain class searchable mapping closure.<br />
+			                See the plugin/Compass documentation Mapping sections for details.</em>
+			          </li>
+			        </ul>
+			      </g:if>
+			    </g:if>
+			
+			    <g:if test="${searchResult?.suggestedQuery}">
+			      <p>Did you mean <g:link controller="searchable" action="index" params="[q: searchResult.suggestedQuery]">${StringQueryUtils.highlightTermDiffs(params.q.trim(), searchResult.suggestedQuery)}</g:link>?</p>
+			    </g:if>
+			
+			    <g:if test="${parseException}">
+			      <p>Your query - <strong>${params.q}</strong> - is not valid.</p>
+			      <p>Suggestions:</p>
+			      <ul>
+			        <li>Fix the query: see <a href="http://lucene.apache.org/java/docs/queryparsersyntax.html">Lucene query syntax</a> for examples</li>
+			        <g:if test="${LuceneUtils.queryHasSpecialCharacters(params.q)}">
+			          <li>Remove special characters like <strong>" - [ ]</strong>, before searching, eg, <em><strong>${LuceneUtils.cleanQuery(params.q)}</strong></em><br />
+			              <em>Use the Searchable Plugin's <strong>LuceneUtils#cleanQuery</strong> helper method for this: <g:link controller="searchable" action="index" params="[q: LuceneUtils.cleanQuery(params.q)]">Search again with special characters removed</g:link></em>
+			          </li>
+			          <li>Escape special characters like <strong>" - [ ]</strong> with <strong>\</strong>, eg, <em><strong>${LuceneUtils.escapeQuery(params.q)}</strong></em><br />
+			              <em>Use the Searchable Plugin's <strong>LuceneUtils#escapeQuery</strong> helper method for this: <g:link controller="searchable" action="index" params="[q: LuceneUtils.escapeQuery(params.q)]">Search again with special characters escaped</g:link></em><br />
+			              <em>Or use the Searchable Plugin's <strong>escape</strong> option: <g:link controller="searchable" action="index" params="[q: params.q, escape: true]">Search again with the <strong>escape</strong> option enabled</g:link></em>
+			          </li>
+			        </g:if>
+			      </ul>
+			    </g:if>
+			
+			    <g:if test="${haveResults}">
+			    	<h3>Results:</h3>
       <%--div class="results">
         <g:each var="result" in="${searchResult.results}" status="index">
           <div class="result">
@@ -194,7 +131,12 @@
 				</div>
 			</g:each>
 		</div>
-    </g:if>
-  </div>
-  </body>
+    			</g:if>
+    
+    		</div><!-- result-list -->
+    	</div><!-- span8 -->
+  	</div><!-- row-fluid -->
+	</div><!-- container -->
+</div><!-- container-fluid -->
+</body>
 </html>

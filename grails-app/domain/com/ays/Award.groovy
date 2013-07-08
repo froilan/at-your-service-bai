@@ -4,15 +4,16 @@ import java.io.Serializable;
 
 class Award implements Serializable{
 
-	String name
-	Integer year
-	String description
+	String awardName
+	Integer awardYear
+	String awardDescription
 	Date dateCreated
 	Date lastUpdated
 
 	static belongsTo = [ Profile ]
 
 	static constraints = {
+		awardDescription(nullable: true, blank: true)
     }
 
     static searchable = {

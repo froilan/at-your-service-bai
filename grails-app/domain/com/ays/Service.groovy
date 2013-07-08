@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 class Service implements Serializable{
 
-	ServiceOfferingType type
-	String name
-	String description
+	ServiceOfferingType serviceType
+	String serviceName
+	String serviceDescription
 	Date dateCreated
 	Date lastUpdated
 
@@ -17,7 +17,7 @@ class Service implements Serializable{
 
 	static searchable = {
 		root false
-		type index: 'no'
+		serviceType index: 'no'
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
 	}
 }

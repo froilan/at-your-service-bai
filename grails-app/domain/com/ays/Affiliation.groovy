@@ -2,8 +2,8 @@ package com.ays
 
 class Affiliation implements Serializable{
 
-	String name
-	String role
+	String affiliationName
+	String affiliationRole
 	Date dateCreated
 	Date lastUpdated
 

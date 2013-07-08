@@ -2,12 +2,12 @@ package com.ays
 
 class Category implements Serializable{
 
-	String name
+	String categoryName
 	Date dateCreated
 	Date lastUpdated
 
     static constraints = {
-		name(unique: true)
+		categoryName(unique: true)
     }
 
     static searchable = {
@@ -15,5 +15,5 @@ class Category implements Serializable{
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
 
-    String toString() { name }
+    String toString() { categoryName }
 }
