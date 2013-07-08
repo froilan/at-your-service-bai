@@ -1,6 +1,8 @@
 package com.ays
 
-class Award {
+import java.io.Serializable;
+
+class Award implements Serializable{
 
 	String name
 	Integer year

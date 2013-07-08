@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class Profile {
+class Profile implements Serializable{
 
 	String firstName
 	String lastName

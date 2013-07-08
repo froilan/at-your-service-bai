@@ -1,6 +1,8 @@
 package com.ays
 
-class Service {
+import java.io.Serializable;
+
+class Service implements Serializable{
 
 	ServiceOfferingType type
 	String name

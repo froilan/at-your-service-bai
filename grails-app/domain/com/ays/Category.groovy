@@ -1,6 +1,6 @@
 package com.ays
 
-class Category {
+class Category implements Serializable{
 
 	String name
 	Date dateCreated

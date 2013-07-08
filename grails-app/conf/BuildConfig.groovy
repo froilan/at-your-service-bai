@@ -33,7 +33,7 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
+		compile "org.grails:grails-webflow:$grailsVersion"
         // runtime 'mysql:mysql-connector-java:5.1.20'
 		runtime "postgresql:postgresql:9.1-901.jdbc4"
     }
@@ -53,5 +53,9 @@ grails.project.dependency.resolution = {
         runtime ":database-migration:1.1"
 
         compile ':cache:1.0.0'
+		
+		compile ':webflow:2.0.0', {
+			exclude 'grails-webflow'
+		  }
     }
 }

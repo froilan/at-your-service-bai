@@ -1,6 +1,8 @@
 package com.ays
 
-class License {
+import java.io.Serializable;
+
+class License implements Serializable{
 
 	String number
 	String area

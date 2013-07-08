@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class ContactInfo {
+class ContactInfo implements Serializable{
 
 	ContactInfoType type
 	String value

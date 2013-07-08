@@ -1,8 +1,9 @@
 package com.ays
 
+import java.io.Serializable;
 import java.util.Date;
 
-class SubCategory {
+class SubCategory implements Serializable{
 
 	String name
 	Date dateCreated

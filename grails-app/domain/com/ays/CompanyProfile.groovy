@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class CompanyProfile {
+class CompanyProfile implements Serializable{
 
 	String name
 	String description

@@ -1,6 +1,6 @@
 package com.ays
 
-class Affiliation {
+class Affiliation implements Serializable{
 
 	String name
 	String role
