@@ -16,64 +16,73 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-responsive.min.css')}" type="text/css">
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700italic,400italic,700|Muli:400,300,300italic,400italic' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700italic,400italic,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
+		<!-- <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css"> -->
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-general-style.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-user-style.css')}" type="text/css">
 		<!-- <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css"> -->
+		<script src="${resource(dir: 'js', file: 'jquery.js')}"></script>
+		<script src="${resource(dir: 'js', file: 'app-biz-form.js')}"></script>
 		<g:layoutHead/>
 		<r:layoutResources />
 	</head>
 	<body>
-		<header class="container-fluid">
-			<div class="container header">
-					<h1 class="logo"><g:link controller="home">At Your Service</g:link></h1>
-					<div class="user-options">
+	<div id="wrap">
+	
+		<div id="header">	
+			<div class="wrap">
+				<div class="header-left">
+					<g:link class="logo-link" controller="home"><img src="${resource(dir: 'images', file: 'atyourservice-logo-a.png')}"></g:link>
+				</div>	
+		
+				<div class="header-right">			
+					<div class="logout-btn blue-btn">
 						<sec:ifLoggedIn>
-							<%--g:link class="create btn login-btn" action="create" controller="siteUser"><g:message code="signup.label" /></g:link--%>
-							<g:link class="create btn btn-primary" controller="logout"><g:message code="logout.label" /></g:link>
+							<g:link controller="logout"><g:message code="logout.label" /></g:link>
 						</sec:ifLoggedIn>
 						<sec:ifNotLoggedIn>
-							<g:link class="create btn login-btn" action="create" controller="siteUser"><g:message code="signup.label" /></g:link>
-							<g:link class="create btn btn-primary" controller="login"><g:message code="login.label" /></g:link>
+							<g:link controller="login"><g:message code="login.label" /></g:link>
 						</sec:ifNotLoggedIn>
 					</div>
+					<sec:ifLoggedIn>
+					<div class="user-info">
+						<p class="bold">Welcome <span class="first-last-name">John Smith</span></p>
+						<p class="header-company">ABC Corporation</p>
+					</div>
+					</sec:ifLoggedIn>
+				</div>
+			</div><!-- .end wrap -->
+		</div><!-- end #header -->
+		
+		<div id="nav">
+			<div class="wrap">
+				<ul class="top-left-menu business-user-menu">
+					<li><g:link controller="home">Home</g:link></li>
+					<sec:ifLoggedIn>
+						<li><a class="active" href="#">Content Manager</a></li>
+						<li><a href="#">Public Profile</a></li>
+					</sec:ifLoggedIn>
+					<li><a href="#">Contact Us</a></li>
+				</ul>
+			</div>
+		</div><!-- end #nav -->
+		
+		<g:layoutBody/>
+		
+		<div id="footer">
+			<div class="wrap">
+				<div class="footer-left">
+					<p>© Copyright 2013  |  <a href="#" target="_blank">AtYourService.ph</a>  |  All rights reserved  |  <a href="#" target="_blank">Terms of Service</a></p>
+				</div>
+				<div class="footer-right">
+					<a href="#" target="_blank"><img src="${resource(dir: 'images', file: 'ays-app-footer-logo.png')}" alt="at your service logo"></a>
 				</div>
 			</div>
-		</header>
-		<div class="navbar">
-	    	<div class="navbar-inner">
-		    	<div class="container">
-		     		<ul  class="nav">
-						<li>
-							<g:link controller="search" action="search" params="[category:'accountants']"><g:message code="template.search.accountants" /></g:link>
-						</li>
-						<li>
-							<g:link controller="search" action="search" params="[category:'doctors']"><g:message code="template.search.doctors" /></g:link>
-						</li>
-						<li>
-							<g:link controller="search" action="search" params="[category:'legal services']"><g:message code="template.search.services" /></g:link>
-						</li>
-						<li>
-							<g:link controller="search" action="search" params="[category:'nurses']"><g:message code="template.search.nurses" /></g:link>
-						</li>
-						<li>
-							<g:link controller="search" action="search" params="[category:'bookkeepers']"><g:message code="template.search.bookkeepers" /></g:link>
-						</li>
-						<li>
-							<g:link controller="search" action="search" params="[category:'caretakes']"><g:message code="template.search.caretakes" /></g:link>
-						</li>
-					</ul>
-			    </div>
-		    </div>
-    	</div>
-		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+		</div><!-- end #footer -->
+		
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 		<g:javascript library="application"/>
 		<r:layoutResources />
-		<footer class="container-fluid">
-			<div class="container footer">
-				<a class="footer-logo" href="#">At Your Service</a>
-				<p class="copyright">&copy; Copyright 2013 | AtYourService.ph | All rights reserved | Terms of Service</p>
-			</div>
-		</footer>
+		
+	</div>
 	</body>
 </html>

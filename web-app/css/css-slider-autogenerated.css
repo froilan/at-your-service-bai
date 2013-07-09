@@ -1,0 +1,24 @@
+
+	#css-slider { position:relative;  width:900px;  margin:0 auto;  }
+
+	#css-slider .pagination { text-align:center; list-style:none; margin:0; padding:0; }
+
+	#css-slider .pagination li { display:inline-block; margin: 10px 5px 0; }
+
+	#css-slider .pagination a { display:inline-block; width:13px; height:15px; background:url(http://localhost/plugin-dev/wp-content/plugins/css-slider/images/marker_button.png) no-repeat -3px -1px ; }
+
+	#css-slider .pagination a:hover { background-position: -18px -1px; }
+
+	#css-slider .pagination li.active-marker a { background-position: -18px -1px; }
+
+	#css-slider a.prev, #css-slider a.next { position:absolute; z-index:1000; display:inline-block; width:28px; height:28px; }
+
+	#css-slider a.prev { top: 40%; left:10px; background:url(http://localhost/plugin-dev/wp-content/plugins/css-slider/images/prev.png) no-repeat; }
+
+	#css-slider a.next { top:40%; right:10px; background:url(http://localhost/plugin-dev/wp-content/plugins/css-slider/images/next.png) no-repeat; }
+
+	.slides_container { width:900px; display:none; }
+
+	.slides_container div.css_slide { width:900px; height:331px; display:block; overflow:hidden; }
+
+	.slide-95 { background: url(http://localhost/plugin-dev/wp-content/uploads/2012/03/free-wallpaper-27.jpg) no-repeat top left; }	.slide-99 { background: url(http://localhost/plugin-dev/wp-content/uploads/2012/03/hd-colorful-abstract-wallpaper-1024x640.jpg) no-repeat top left; }	.slide-101 { background: url(http://localhost/plugin-dev/wp-content/uploads/2012/03/spring-flowers-on-black-background-2.jpg) no-repeat top left; }	.slide-104 { background: url(http://localhost/plugin-dev/wp-content/uploads/2012/03/The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-33.jpg) no-repeat top left; }

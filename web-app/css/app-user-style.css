@@ -1,0 +1,321 @@
+/* @override http://184.173.193.62/~ays/app/css/app-user-style.css */
+
+/*  
+
+WARNING!!!! ALWAYS BACKUP THIS FILE BEFORE EDITING!!!!!
+
+
+-----------------------------------------------------
+THIS IS THE 
+
+*** USER APPLICATION STYLESHEET *** 
+
+AND SHOULD BE USED TO STYLE SPECIFIC USER PAGES ONLY.  
+-----------------------------------------------------
+
+
+TABLE OF CONTENTS: AYS APPLICATION STYLESHEETS
+-----------------------------------------------------
+app-general-style.css - ALL GENERAL STYLES FOR USERS & ADMIN OF ALL AYS APPLICATION MODULES GO HERE
+app-admin-style.css - ONLY FOR SPECIFIC STYLES FOR ADMIN & AYS STAFF PAGES 
+app-user-style.css - ONLY FOR SPECIFIC STYLES FOR USER ONLY PAGES 
+
+
+AYS STYLESHEET GUIDELINES 
+-----------------------------------------------------
+- AVOID THE!IMPORTANT DECLARATION AT ALL COSTS, SERIOUSLY, AT ALL COSTS!!
+- USE FLOATS FOR POSITIONING ALL MAJOR SECTIONS
+- CSS STRUCTURE SHOULD FOLLOW HTML STRUCTURE, WHEN CSS DOES NOT FOLLOW ANY LOGICAL HTML ORDER, IT GOES AT THE BOTTOM
+- ADD COMMENTS TO ALL SECTIONS AND SUB-SECTIONS
+- WHEN IS DOUBT, ASK SOMEONE ELSE!
+
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,400italic);
+
+/* CSS Reset 
+----------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* @Header USER ONLY STYLESHEET  
+----------------------------------------------*/	
+#wrap #header .header-right {
+	width: 600px;
+	margin: 27px 0 0 0;
+}
+
+#wrap #header .header-right .user-info {
+	overflow: hidden;
+	float: right;
+	margin: 0 25px 0 0;
+}
+
+#wrap #header .header-right p {
+	float: left;
+	clear: both;
+	color: #707070;
+	font-size: 13px;
+	line-height: 14px;
+}
+
+#wrap #header .header-right p.header-company {
+	color: #828282;
+	font-size: 11px;
+}
+
+#wrap #header .header-right .logout-btn {
+	float: right;
+	font-size: 13px;
+	font-weight: bold;	
+	margin: 7px 0 0 0;
+}
+
+/* @Nav USER ONLY STYLESHEET 
+----------------------------------------------*/	
+
+/* @Inner  USER ONLY STYLESHEET 
+----------------------------------------------*/
+#inner .title-right-meta .steps {
+	color: #4884e7;
+	font-size: 16px;
+	line-height: 17px;
+	font-weight: bold;
+}
+
+#inner .title-right-meta .time-to-complete {
+	color: #ababab;
+	font-size: 14px;
+	font-weight: lighter;
+}
+
+/* @Sidebar  USER ONLY STYLESHEET 
+----------------------------------------------*/	
+	
+	
+/* @Content  USER ONLY STYLESHEET 
+----------------------------------------------*/	
+
+/* Step 1 Business Initialization Form */
+#content .init-message {
+	background: #fdfde9;
+	margin: 0 0 30px 0;
+	padding: 25px 50px;
+	text-align: center;
+	border-radius: 3px;
+	box-shadow: 0 2px 5px #b1b1b1
+}
+
+.init-message h2 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #5e5e5e;
+	margin: 0 0 15px 0;
+}
+
+.init-message p {
+	line-height: 16px;
+	color: #707070;
+}
+
+#content h2.category-heading {
+	font-size: 22px;
+	display: inline-block;
+}
+
+a.tips-link {
+	font-size: 12px;
+	line-height: 12px;
+	display: inline-block;
+	margin: 0 0 0 5px;
+	-moz-transition-duration: 300ms, 300ms;
+    -moz-transition-property: color, opacity;
+    -moz-transition-timing-function: ease, ease;
+    -webkit-transition-duration: 300ms, 300ms;
+    -webkit-transition-property: color, opacity;
+    -webkit-transition-timing-function: ease, ease;
+    -o-transition-duration: 300ms, 300ms;
+    -o-transition-property: color, opacity;
+    -o-transition-timing-function: ease, ease;
+    transition-duration: 300ms, 300ms;
+    transition-property: color, opacity;
+    transition-timing-function: ease, ease;
+}
+
+#content ul.tips {
+	margin: 10px 0 30px 0;
+}
+
+#content ul.tips li {
+	list-style: disc;
+	list-style-position: inside;
+	margin: 0 0 15px 0;
+	line-height: 17px;
+}
+
+#content .blue-star {
+	display: inline-block;
+	padding: 0;
+}
+
+.prem-brand {
+	color: #4884e7;
+	font-style: italic;
+}
+
+.tip-badge {
+	background: #fbb530;
+	color: #FFF;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 3px 9px;
+	margin: 0 3px 0 0;
+	border-radius: 3px;
+	position: relative;
+	bottom: 1px;
+}
+
+/* Start Form Styles */
+form#business-profile-setup-form-1 {
+	margin: 10px 0 0 0;
+}
+
+ul.outer-form-ul {
+	background: #e8edf8;
+	border-radius: 3px;
+	padding: 25px 40px;
+}
+
+ul.outer-form-ul li.input-section {
+	border-bottom: 1px dashed #aaa;
+	margin: 0 0 25px 0;
+	padding: 0 0 25px;
+	overflow: hidden;
+}
+
+ul.outer-form-ul li.input-section.last {
+	border-bottom: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+#content ul.outer-form-ul h3 .red {
+	font-size: 12px;
+	position: relative;
+	bottom: 7px;
+}
+
+ul.outer-form-ul p {
+	font-size: 15px;
+	line-height: 18px;
+	color: #424242;
+	margin: 0 0 10px 0;
+}
+
+ul.outer-form-ul ul.input-wrap {
+	overflow: hidden;
+}
+
+ul.outer-form-ul ul.input-wrap li.user-input {
+	float: left;
+	overflow: hidden;
+	color: #aaa;
+	padding: 0;
+	margin: 0;
+}
+
+#content ul.outer-form-ul ul.input-wrap li.user-input label {
+	float: left;
+	clear: both;
+	font-size: 13px;
+	display: inline-block;
+	margin: 0 0 4px 0;
+	color: #424242;
+}
+
+ul.outer-form-ul ul.input-wrap li.user-input select {
+	float: left;
+	clear: both;
+	width: 250px;
+}
+
+#content ul.outer-form-ul input.award-name {
+	width: 370px;
+}
+
+#content #social-networks .inline-wrap {
+	float: left;
+	clear: both;
+	margin: 0 0 6px 0;
+}
+#content #social-networks span.icon {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	float: left;
+	margin: 0 6px 0 0;
+}
+
+#content #social-networks input.custom-width {
+	padding: 6px 5px 6px 5px;
+	margin: 0;
+	width: 480px;
+}
+
+#content #social-networks .facebook-wrap span.icon {
+	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -20px -2px no-repeat;
+}
+
+#content #social-networks .twitter-wrap span.icon {
+	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -53px -2px no-repeat;
+}
+
+#content #social-networks .linkedin-wrap span.icon {
+	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -86px -2px no-repeat;
+}
+
+/* @Footer  USER ONLY STYLESHEET 
+----------------------------------------------*/	
+
+
