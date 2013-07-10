@@ -46,11 +46,11 @@
 								<ul id="header-right-nav">
 									<%--<li><a id="how-it-works-menu-item" href="#">How It Works</a></li> --%>
 									<%--<li><a id="list-services-menu-item" href="#">List Your Services</a></li> --%>
-									<li><a id="list-services-menu-item" href="/at-your-service/siteUser/create">List Your Services</a></li>
 									<sec:ifLoggedIn>
 										<li><g:link controller="logout" class="blue-btn"><g:message code="logout.label" /></g:link></li>
 									</sec:ifLoggedIn>
 									<sec:ifNotLoggedIn>
+										<li><a id="list-services-menu-item" href="/at-your-service/siteUser/create?createProfile=y">List Your Services</a></li>
 										<li><g:link controller="login" class="blue-btn"><g:message code="login.label" /></g:link></li>
 									</sec:ifNotLoggedIn>
 								</ul>

@@ -40,8 +40,12 @@ class SiteUserController {
 			springSecurityService.reauthenticate siteUserInstance.username
 		}
 		
-        flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
-        redirect(action: "postCreate", id: siteUserInstance.id)
+		if (params.createProfile == 'y') {
+			redirect(controller: "profile", action: "profileDivision")
+		} else {
+	        flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
+	        redirect(action: "postCreate", id: siteUserInstance.id)
+		}
     }
 
     def show(Long id) {
