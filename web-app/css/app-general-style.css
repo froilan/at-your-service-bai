@@ -87,7 +87,7 @@ html,body {
 
 
 body {
-	background: url(http://184.173.193.62/~ays/app/images/bg/lgt-grey-pattern-bg.png) 0 0 repeat;
+	background: url(../images/bg/lgt-grey-pattern-bg.png) 0 0 repeat;
 	color: #424242;
 	font-size: 12px;
 	font-family: 'Open Sans', sans-serif;
@@ -523,7 +523,7 @@ form input {
 #header {
 	margin: 0 auto 0;
 	padding: 0;
-	background: url(http://184.173.193.62/~ays/app/images/bg/wht-pattern-bg.png) 0 0 repeat;
+	background: url(../images/bg/wht-pattern-bg.png) 0 0 repeat;
 	}
 	
 #header .wrap {
@@ -550,7 +550,7 @@ form input {
 	color: #202020;
 	margin: 0 auto 0;
 	padding: 0;
-	background: url(http://184.173.193.62/~ays/app/images/bg/blue-pattern-bg.png) 0 0 repeat;
+	background: url(../images/bg/blue-pattern-bg.png) 0 0 repeat;
 	}
 
 #nav .wrap {
@@ -607,7 +607,7 @@ form input {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background: url(http://184.173.193.62/~ays/app/images/bg/wht-pattern-bg.png) 0 0 repeat;
+	background: url(../images/bg/wht-pattern-bg.png) 0 0 repeat;
 }
 
 #inner #inner-wrap {
@@ -637,7 +637,7 @@ form input {
 }
 
 #inner #content-sidebar-inside-wrap {
-	background: url(http://184.173.193.62/~ays/app/images/bg/app-sb-content-col-bg.png) 0 0 repeat;
+	background: url(../images/bg/app-sb-content-col-bg.png) 0 0 repeat;
 	border-radius: 3px;
 	border: 1px solid #DDD;
 	padding: 0;
@@ -659,7 +659,7 @@ form input {
 
 #primary-sidebar ul li.page.active a {
 	color: #FFF;
-	background: url(http://184.173.193.62/~ays/app/images/buttons/active-page-arrow.png);
+	background: url(../images/buttons/active-page-arrow.png);
 	padding: 16px 0 16px 20px;
 	width: 274px;
 	display: inline-block;
@@ -670,7 +670,7 @@ form input {
 }
 
 #primary-sidebar ul li.page.active.parent a .dropdown-arrow {
-	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -1px -1px no-repeat;
+	background: url(../images/sprites/app-sprite.png) -1px -1px no-repeat;
 	display: inline-block;
 	height: 6px;
 	width: 7px;
@@ -696,11 +696,11 @@ form input {
 }
 
 #primary-sidebar ul ul.page-sub-menu li.not-clickable a {
-	background: url(http://184.173.193.62/~ays/app/images/icons/grey-menu-lock.png) 247px 9px no-repeat;
+	background: url(../images/icons/grey-menu-lock.png) 247px 9px no-repeat;
 }
 
 #primary-sidebar ul ul.page-sub-menu li.completed a {
-	background: url(http://184.173.193.62/~ays/app/images/icons/green-menu-checkmark.png) 247px 9px no-repeat;
+	background: url(../images/icons/green-menu-checkmark.png) 247px 9px no-repeat;
 }
 
 #primary-sidebar ul ul.page-sub-menu li:hover {
@@ -743,7 +743,7 @@ form input {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background: url(http://184.173.193.62/~ays/app/images/bg/lgt-grey-pattern-bg.png) 0 0 repeat;
+	background: url(../images/bg/lgt-grey-pattern-bg.png) 0 0 repeat;
 }
 
 #footer .wrap {

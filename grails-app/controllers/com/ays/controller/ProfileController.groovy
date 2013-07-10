@@ -122,32 +122,32 @@ class ProfileController {
 				if(!flow.phoneNumberInstance) {
 					def phoneNumberInstance = new ContactInfo()
 					flow.phoneNumberInstance = phoneNumberInstance
-					flow.phoneNumberInstance.type = ContactInfoType.PHONE_NUMBER
+					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
 				}
 				if(!flow.websiteInstance) {
 					def websiteInstance = new ContactInfo()
 					flow.websiteInstance = websiteInstance
-					flow.websiteInstance.type = ContactInfoType.WEBSITE
+					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
 				}
 				if(!flow.emailInstance) {
 					def emailInstance = new ContactInfo()
 					flow.emailInstance = emailInstance
-					flow.emailInstance.type = ContactInfoType.EMAIL
+					flow.emailInstance.contactType = ContactInfoType.EMAIL
 				}
 				if(!flow.facebookInstance) {
 					def facebookInstance = new ContactInfo()
 					flow.facebookInstance = facebookInstance
-					flow.facebookInstance.type = ContactInfoType.FACEBOOK
+					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
 				}
 				if(!flow.twitterInstance) {
 					def twitterInstance = new ContactInfo()
 					flow.twitterInstance = twitterInstance
-					flow.twitterInstance.type = ContactInfoType.TWITTER
+					flow.twitterInstance.contactType = ContactInfoType.TWITTER
 				}
 				if(!flow.linkedInInstance) {
 					def linkedInInstance = new ContactInfo()
 					flow.linkedInInstance = linkedInInstance
-					flow.linkedInInstance.type = ContactInfoType.LINKEDIN
+					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
 				}
 				if(!flow.awardInstance) {
 					def awardInstance = new Award()
@@ -164,12 +164,12 @@ class ProfileController {
 				if(!flow.primaryServiceInstance) {
 					def primaryServiceInstance = new Service()
 					flow.primaryServiceInstance = primaryServiceInstance
-					flow.primaryServiceInstance.type = ServiceOfferingType.PRIMARY
+					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
 				}
 				if(!flow.secondaryServiceInstance) {
 					def secondaryServiceInstance = new Service()
 					flow.secondaryServiceInstance = secondaryServiceInstance
-					flow.secondaryServiceInstance.type = ServiceOfferingType.SECONDARY
+					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
 				}
 				if(!flow.companyProfileInstance) {
 					def companyProfileInstance = new CompanyProfile()
@@ -194,11 +194,11 @@ class ProfileController {
 				flow.profileInstance.subCategory = tempProfileInstance.subCategory
 				flow.profileInstance.category = tempProfileInstance.category
 				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
-				flow.companyProfileInstance.name = tempCompanyProfileInstance.name
-				flow.primaryServiceInstance.name = params['primaryService.name']
-				flow.primaryServiceInstance.description = params['primaryService.description']
-				flow.secondaryServiceInstance.name = params['secondaryService.name']
-				flow.secondaryServiceInstance.description = params['secondaryService.description']
+				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
+				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
+				flow.primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
+				flow.secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
+				flow.secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
 			}.to "createCompanyInfoAndRates"
 		}
 		createCompanyInfoAndRates {
@@ -218,31 +218,31 @@ class ProfileController {
 				flow.companyProfileInstance.address = tempCompanyProfileInstance.address
 				flow.companyProfileInstance.directionsToAddress = tempCompanyProfileInstance.directionsToAddress
 				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
-			}.to "createProffesionalAndLicensing"
+			}.to "createProfesionalAndLicensing"
 		}
-		createProffesionalAndLicensing {
+		createProfesionalAndLicensing {
 			on("next") {
 				def tempProfileInstance = new Profile(params)
 				flow.profileInstance.differentiation = tempProfileInstance.differentiation
 				def tempLicenseInstance = new License(params) 
 				flow.licenseInstance = tempLicenseInstance
-				flow.affiliationInstance.name = params['affiliation.name']
-				flow.affiliationInstance.role = params['affiliation.role']
-				flow.awardInstance.name = params['award.name']
-				flow.awardInstance.year = params.int('award.year')
-				flow.awardInstance.description = params['award.description']
+				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']
+				flow.affiliationInstance.affiliationRole = params['affiliation.affiliationRole']
+				flow.awardInstance.awardName = params['award.awardName']
+				flow.awardInstance.awardYear = params.int('award.awardYear')
+				flow.awardInstance.awardDescription = params['award.awardDescription']
 			}.to "createContactDetails"
 		}
 		createContactDetails {
 			on("next") {
-				flow.phoneNumberInstance.value = params['contactInfo.phoneNumber']
-				flow.phoneNumberInstance.name = params['contactInfo.phoneNumber.name']
-				flow.emailInstance.value = params['contactInfo.email']
-				flow.emailInstance.name = params['contactInfo.phoneNumber.name']
-				flow.websiteInstance.value = params['contactInfo.website']
-				flow.facebookInstance.value = params['contactInfo.facebook']
-				flow.twitterInstance.value = params['contactInfo.twitter']
-				flow.linkedInInstance.value = params['contactInfo.linkedIn']
+				flow.phoneNumberInstance.contactValue = params['contactInfo.phoneNumber']
+				flow.phoneNumberInstance.contactAlias = params['contactInfo.phoneNumber.contactAlias']
+				flow.emailInstance.contactValue = params['contactInfo.email']
+				flow.emailInstance.name = params['contactInfo.phoneNumber.contactAlias']
+				flow.websiteInstance.contactValue = params['contactInfo.website']
+				flow.facebookInstance.contactValue = params['contactInfo.facebook']
+				flow.twitterInstance.contactValue = params['contactInfo.twitter']
+				flow.linkedInInstance.contactValue = params['contactInfo.linkedIn']
 			}.to "createCategoryAndOffering"
 		}
 	}

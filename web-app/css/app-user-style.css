@@ -304,15 +304,15 @@ ul.outer-form-ul ul.input-wrap li.user-input select {
 }
 
 #content #social-networks .facebook-wrap span.icon {
-	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -20px -2px no-repeat;
+	background: url(../images/sprites/app-sprite.png) -20px -2px no-repeat;
 }
 
 #content #social-networks .twitter-wrap span.icon {
-	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -53px -2px no-repeat;
+	background: url(../images/sprites/app-sprite.png) -53px -2px no-repeat;
 }
 
 #content #social-networks .linkedin-wrap span.icon {
-	background: url(http://184.173.193.62/~ays/app/images/sprites/app-sprite.png) -86px -2px no-repeat;
+	background: url(../images/sprites/app-sprite.png) -86px -2px no-repeat;
 }
 
 /* @Footer  USER ONLY STYLESHEET 
