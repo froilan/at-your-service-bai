@@ -44,8 +44,15 @@
 						<div class="textwidget">
 							<div class="header-right-nav-wrap">
 								<ul id="header-right-nav">
-									<li><a id="how-it-works-menu-item" href="#">How It Works</a></li>
-									<li><a id="list-services-menu-item" href="#">List Your Services</a></li>
+									<%--<li><a id="how-it-works-menu-item" href="#">How It Works</a></li> --%>
+									<%--<li><a id="list-services-menu-item" href="#">List Your Services</a></li> --%>
+									<li><a id="list-services-menu-item" href="/at-your-service/siteUser/create">List Your Services</a></li>
+									<sec:ifLoggedIn>
+										<li><g:link controller="logout" class="blue-btn"><g:message code="logout.label" /></g:link></li>
+									</sec:ifLoggedIn>
+									<sec:ifNotLoggedIn>
+										<li><g:link controller="login" class="blue-btn"><g:message code="login.label" /></g:link></li>
+									</sec:ifNotLoggedIn>
 								</ul>
 							</div>
 						</div>
@@ -71,7 +78,7 @@
 					<div id="text-5" class="widget widget_text">
 						<div class="textwidget">
 							<h1>The smartest way to hire<br>service providers is coming<br>to Cebu City in late 2013</h1>
-							<h4>Registar your business today and get 3<br>months of our premium service for free!</h4>
+							<h4>Register your business today and get 3<br>months of our premium service for free!</h4>
 						</div>
 					</div>
 				</div><!-- end .home-top-left -->
@@ -221,24 +228,26 @@
 					<p class="directions"><span class="left-down-arrow down-arrow"></span>Get Started Below:<span class="right-down-arrow down-arrow"></span></p>
 				</div>
 				<div class="form-body">
-					<form id="start-sign-up-form-1">
+					<g:form controller="siteUser" action="save">
 						<ul>
 							<li class="hidden"><input name="primary_city" type="hidden"></li>
 							<li class="hidden"><input name="secondary_city" type="hidden"></li>
 							<li class="half-field inline">
-								<input name="first_name" value="First name" type="text">
-								<input name="last_name" value="Last name" type="text">
+								<input name="first_name" value="First name" type="text" required=""></input>
+								<input name="last_name" value="Last name" type="text" required=""></input>
 							</li>
 							<li class="full-field"><input name="company_name" value="Company name" type="text"></li>
 							<li class="full-field title-position-input inner-note-container">
 								<input class="has-inner-note" name="title_position" value="Title / Position" type="text">
 							</li>
+							<%--
 							<li class="full-field phone-number-input inner-note-container">
 								<input class="has-inner-note" name="phone_number_1" value="Phone number" type="text">
 								<p class="input-description">Format: 0915-234-7890 OR 412-1234</p>
 							</li>
+							 --%>
 							<li class="full-field email-input inner-note-container">
-								<input class="has-inner-note" name="email-primary" value="Email" type="text">
+								<input class="has-inner-note" name="email-primary" value="Email" type="text" required=""></input>
 								<p class="input-description">This will also be your username</p>
 							</li>
 							<!-- *** EMAIL will be username ***					
@@ -248,14 +257,14 @@
 							</li> 
 							-->
 							<li class="half-field inline">
-								<input name="password" value="Password" type="text">
-								<input name="confirm_password" value="Confirm Password" type="text">
+								<input name="password" value="Password" type="text" required=""></input>
+								<input name="confirm_password" value="Confirm Password" type="text" required=""></input>
 							</li>
 							<li class="service-terms"><input name="confirm_service_terms" type="checkbox"><span>I have read and accept the <a href="#">terms of service</a>.</span></li>
-							<li><a href="http://184.173.193.62/%7Eays/app/step-1-categories-and-offerings.html" class="biz-pop-up-submit">Create My FREE Account</a></li>						
-							<!-- <li><input name="submit" type="submit" value="Create My FREE Account"></li> -->
+							<!-- <li><a href="http://184.173.193.62/%7Eays/app/step-1-categories-and-offerings.html" class="biz-pop-up-submit">Create My FREE Account</a></li> -->						
+							<li><input class="biz-pop-up-submit" name="submit" type="submit" value="Create My FREE Account"></li>
 						</ul>
-					</form>
+					</g:form>
 				</div>
 			</div><!-- end .form-wrap -->
 		</div><!-- end .wrap -->
