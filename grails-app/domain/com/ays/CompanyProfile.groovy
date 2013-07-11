@@ -9,12 +9,14 @@ class CompanyProfile implements Serializable{
 	byte[] logo
 	CompanySize companySize
 	CompanyAge companyAge
-	String address
+	Address address
 	String directionsToAddress
 	Date dateCreated
 	Date lastUpdated
 
 	static belongsTo = [ Profile ]
+	
+	static embedded = [ 'address' ]
 
 	static hasMany = [ contactInformation: ContactInfo,
 						photos: PlaceOfBusinessPhoto ]
@@ -29,6 +31,7 @@ class CompanyProfile implements Serializable{
     	root false
     	companyName boost: 2.0
     	logo index: 'no'
+		address component: true
 		companySize index: 'no'
 		companyAge index: 'no'
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
