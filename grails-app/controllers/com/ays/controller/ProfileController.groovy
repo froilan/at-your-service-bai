@@ -120,61 +120,65 @@ class ProfileController {
 		println params
 		createCategoryAndOffering {
 			on("next") {
-				if(!flow.phoneNumberInstance) {
+				if (!flow.phoneNumberInstance) {
 					def phoneNumberInstance = new ContactInfo()
 					flow.phoneNumberInstance = phoneNumberInstance
 					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
 				}
-				if(!flow.websiteInstance) {
+				if (!flow.websiteInstance) {
 					def websiteInstance = new ContactInfo()
 					flow.websiteInstance = websiteInstance
 					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
 				}
-				if(!flow.emailInstance) {
+				if (!flow.emailInstance) {
 					def emailInstance = new ContactInfo()
 					flow.emailInstance = emailInstance
 					flow.emailInstance.contactType = ContactInfoType.EMAIL
 				}
-				if(!flow.facebookInstance) {
+				if (!flow.facebookInstance) {
 					def facebookInstance = new ContactInfo()
 					flow.facebookInstance = facebookInstance
 					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
 				}
-				if(!flow.twitterInstance) {
+				if (!flow.twitterInstance) {
 					def twitterInstance = new ContactInfo()
 					flow.twitterInstance = twitterInstance
 					flow.twitterInstance.contactType = ContactInfoType.TWITTER
 				}
-				if(!flow.linkedInInstance) {
+				if (!flow.linkedInInstance) {
 					def linkedInInstance = new ContactInfo()
 					flow.linkedInInstance = linkedInInstance
 					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
 				}
-				if(!flow.awardInstance) {
+				if (!flow.awardInstance) {
 					def awardInstance = new Award()
 					flow.awardInstance = awardInstance
 				}
-				if(!flow.affiliationInstance) {
+				if (!flow.affiliationInstance) {
 					def affiliationInstance = new Affiliation()
 					flow.affiliationInstance = affiliationInstance
 				}
-				if(!flow.licenseInstance) {
+				if (!flow.licenseInstance) {
 					def licenseInstance = new License()
 					flow.licenseInstance = licenseInstance
 				}
-				if(!flow.primaryServiceInstance) {
+				if (!flow.primaryServiceInstance) {
 					def primaryServiceInstance = new Service()
 					flow.primaryServiceInstance = primaryServiceInstance
 					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
 				}
-				if(!flow.secondaryServiceInstance) {
+				if (!flow.secondaryServiceInstance) {
 					def secondaryServiceInstance = new Service()
 					flow.secondaryServiceInstance = secondaryServiceInstance
 					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
 				}
-				if(!flow.companyProfileInstance) {
+				if (!flow.companyProfileInstance) {
 					def companyProfileInstance = new CompanyProfile()
 					flow.companyProfileInstance = companyProfileInstance
+				}
+				if (!flow.differentiationInstance) {
+					def differentiationInstance = new Differentiation()
+					flow.differentiationInstance = differentiationInstance
 				}
 				if (!flow.profileInstance) {
 					def profileInstance = new Profile()
@@ -223,8 +227,8 @@ class ProfileController {
 		}
 		createProfesionalAndLicensing {
 			on("next") {
-				def tempProfileInstance = new Profile(params)
-				flow.profileInstance.differentiation = tempProfileInstance.differentiation
+				flow.differentiationInstance.differentiationKeywords = params['differentiation.differentiationKeywords']
+				flow.differentiationInstance.differentiationDescription = params['differentiation.differentiationDescription']
 				def tempLicenseInstance = new License(params) 
 				flow.licenseInstance = tempLicenseInstance
 				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']

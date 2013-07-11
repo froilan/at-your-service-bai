@@ -12,13 +12,13 @@ class Profile implements Serializable{
 	BigDecimal askingFee
 	Boolean rateNegotiable
 	CompanyProfile companyProfile
-	String differentiation	// format: title | description
 	License license
 	Date dateCreated
 	Date lastUpdated
 
 	static hasMany = [ contacts: ContactInfo,
 						services: Service,
+						differentiations: Differentiation,
 						affiliations: Affiliation,
 						awards: Award,
 						reviews: Review ]
@@ -47,7 +47,6 @@ class Profile implements Serializable{
 		companyProfile(nullable: true)
 		rateNegotiable(nullable: true)
 		license(nullable: true)
-		differentiation(blank: true, nullable: true)
 		feeStructure(nullable: true)
     }
 

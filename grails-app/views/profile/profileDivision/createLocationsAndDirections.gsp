@@ -73,7 +73,7 @@ premium business account at the end of this form.</li>
 													<div class="inline-wrap line-3 blue-star">
 														<!-- input class="inline city half" value="City" type="text">
 														<input class="inline zip-code short" value="Zip Code" type="text"-->
-														<g:textField class="inline zip-code half" name="barangay" placeholder="Zip Code"
+														<g:textField class="inline zip-code half" name="zipCode" placeholder="Zip Code"
 															value="${companyProfileInstance?.address?.zipCode}" required="" />
 													</div>										
 													<p class="lower-address-comment"><span class="red">* </span>Barangay, City and Zip Code are required.</p>
