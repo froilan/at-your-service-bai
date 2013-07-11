@@ -117,6 +117,7 @@ class ProfileController {
 	//		in case of direct access to middle of flow
 	//TODO: image are not yet retained
 	def profileDivisionFlow = {
+		println params
 		createCategoryAndOffering {
 			on("next") {
 				if(!flow.phoneNumberInstance) {

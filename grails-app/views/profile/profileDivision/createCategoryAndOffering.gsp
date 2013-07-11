@@ -54,7 +54,7 @@ premium business account at the end of this form.</li>
 								<li><span class="tip-badge">Hot Tip</span> The more quality information you enter, the more trusted your profile will be and the more business you will attract.</li>
 							</ul>
 							<div class="step-1 edit form-wrap">
-								<form id="business-profile-setup-form-1">
+								<g:form enctype="multipart/form-data">
 									<ul class="outer-form-ul">
 										<li id="business-name" class="input-section">
 											<h3>Business Name</h3>
@@ -62,7 +62,7 @@ premium business account at the end of this form.</li>
 											<ul class="input-wrap">
 												<li class="user-input">
 													<g:textField class="full-width" name="name" 
-														value="${profileInstance?.companyProfile?.name}" />
+														value="${profileInstance?.companyProfile?.companyName}" />
 												</li>
 											</ul>
 										</li>
@@ -104,10 +104,10 @@ premium business account at the end of this form.</li>
 											<ul class="input-wrap">
 												<li class="user-input">
 													<g:textField class="full-width" name="primaryService.name" 
-														value="${primaryServiceInstance?.name}" placeholder="Primary Service Title" />
+														value="${primaryServiceInstance?.serviceName}" placeholder="Primary Service Title" />
 													<div class="star-wrap">
 														<g:textArea class="premium-field" name="primaryService.description" 
-															value="${primaryServiceInstance?.description}" placeholder="Describe this service..." />
+															value="${primaryServiceInstance?.serviceDescription}" placeholder="Describe this service..." />
 														<span class="blue-star-icon"></span>
 													</div>
 													<div class="add-btn-wrap">		
@@ -125,12 +125,12 @@ premium business account at the end of this form.</li>
 												<li class="user-input">
 													<div class="star-wrap">
 														<g:textField class="full-width" name="secondaryService.name" 
-															value="${secondaryServiceInstance?.name}" placeholder="Secondary Service Title" />
+															value="${secondaryServiceInstance?.serviceName}" placeholder="Secondary Service Title" />
 														<span class="blue-star-icon"></span>
 													</div>
 													<div class="star-wrap">
 														<g:textField class="premium-field" name="secondaryService.description" 
-															value="${secondaryServiceInstance?.description}" placeholder="Describe this service..." />
+															value="${secondaryServiceInstance?.serviceDescription}" placeholder="Describe this service..." />
 														<span class="blue-star-icon"></span>
 													</div>
 													<div class="add-btn-wrap">
@@ -142,8 +142,7 @@ premium business account at the end of this form.</li>
 										</li>
 									</ul><!-- end .outer-form-ul -->
 								<g:submitButton class="continue-btn" name="next" value="Continue" />
-								<!-- <input class="continue-btn" type="submit" value="Continue"> -->
-							</form>
+							</g:form>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->
