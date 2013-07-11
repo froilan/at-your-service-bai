@@ -46,7 +46,7 @@ business below so we can share it with people looking for your services.</p>
 							<h2 class="category-heading">Categories &amp; Offerings</h2>
 							<a href="#" class="hide tips-link">hide tips</a>
 							<ul class="tips">
-								<li>The red astrick <span class="red">*</span> denotes required fields.</li>
+								<li>The red asterisk <span class="red">*</span> denotes required fields.</li>
 								<li>The blue <span class="blue-star">star</span> denotes <span class="prem-brand">premium content</span>
  and will only be shown to premium users.  You can promote your business
  by making this premium content public to all users by signing up for a 
@@ -74,13 +74,13 @@ premium business account at the end of this form.</li>
 													<label>Service Category <span class="red">*</span></label>
 													<g:select id="category" name="category.id" 
 														from="${com.ays.Category.list()}" optionKey="id" required="" 
-														value="${profileInstance?.category?.id}" class="many-to-one" 
+														value="${profileInstance?.subCategory?.category?.id}" class="many-to-one" 
 														noSelection="['': 'Select...']"/>
 												</li>
 												<li class="user-input">
 													<label>Sub-Category <span class="red">*</span></label>
 													<g:select id="subCategory" name="subCategory.id" 
-														from="${com.ays.SubCategory.list()}" optionKey="id" 
+														from="${com.ays.SubCategory.list()}" optionKey="id" required=""
 														value="${profileInstance?.subCategory?.id}" class="many-to-one" 
 														noSelection="['': 'Select...']"/>
 												</li>

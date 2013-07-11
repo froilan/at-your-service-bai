@@ -6,11 +6,11 @@ class Profile implements Serializable{
 
 	String firstName
 	String lastName
-	Category category
 	SubCategory subCategory
 	byte[] displayPicture
 	FeeStructure feeStructure
 	BigDecimal askingFee
+	Boolean rateNegotiable
 	CompanyProfile companyProfile
 	String differentiation	// format: title | description
 	License license
@@ -29,7 +29,6 @@ class Profile implements Serializable{
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
 		firstName boost: 2.0
 		lastName boost: 2.0
-		category component: true
 		subCategory component: true
 		companyProfile component: true
 		license component: true
@@ -37,12 +36,16 @@ class Profile implements Serializable{
 		affiliations component: true
 		awards component: true
 		displayPicture index: 'no'
+		feeStructure index: 'no'
+		askingFee index: 'no'
+		rateNegotiable index: 'no'
 	}
 
     static constraints = {
 		subCategory(nullable: true)
 		displayPicture(nullable: true)
 		companyProfile(nullable: true)
+		rateNegotiable(nullable: true)
 		license(nullable: true)
 		differentiation(blank: true, nullable: true)
 		feeStructure(nullable: true)

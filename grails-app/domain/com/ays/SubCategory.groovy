@@ -17,6 +17,7 @@ class SubCategory implements Serializable{
 
     static searchable = {
     	root false
+		category component: true
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
 

@@ -193,7 +193,6 @@ class ProfileController {
 				def tempProfileInstance = new Profile(params)
 				def tempCompanyProfileInstance = new CompanyProfile(params)
 				flow.profileInstance.subCategory = tempProfileInstance.subCategory
-				flow.profileInstance.category = tempProfileInstance.category
 				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
 				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
 				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
@@ -209,7 +208,8 @@ class ProfileController {
 				flow.profileInstance.feeStructure = tempProfileInstance.feeStructure
 				flow.profileInstance.askingFee = tempProfileInstance.askingFee
 				flow.profileInstance.displayPicture = tempProfileInstance.displayPicture
-				flow.companyProfileInstance.inBusinessSince = tempCompanyProfileInstance.inBusinessSince
+				flow.companyProfileInstance.companySize = tempCompanyProfileInstance.companySize
+				flow.companyProfileInstance.companyAge = tempCompanyProfileInstance.companyAge
 				flow.companyProfileInstance.logo = tempCompanyProfileInstance.logo
 			}.to "createLocationsAndDirections"
 		}

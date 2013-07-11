@@ -2,9 +2,12 @@ package com.ays
 
 enum FeeStructure {
 
-	HOURLY("hourly"),
-	DAILY("daily"),
-	OTHER("other")
+	HOURLY("Hourly Rate"),
+	DAILY("Daily Rate"),
+	WEEKLY("Weekly Rate"),
+	MONTHLY("Monthly Rate"),
+	ANNUAL("Annual Rate"),
+	BID("Bid / Proposals only")
 
 	final String value
 
@@ -19,6 +22,12 @@ enum FeeStructure {
 			return "/ hour"
 		} else if (this == DAILY) {
 			return "/ day"
+		} else if (this == WEEKLY) {
+			return "/ week"
+		} else if (this == MONTHLY) {
+			return "/ month"
+		} else if (this == ANNUAL) {
+			return "/ year"
 		} else {
 			return ""
 		}

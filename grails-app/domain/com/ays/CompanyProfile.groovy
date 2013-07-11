@@ -7,7 +7,8 @@ class CompanyProfile implements Serializable{
 	String companyName
 	String description
 	byte[] logo
-	Integer inBusinessSince
+	CompanySize companySize
+	CompanyAge companyAge
 	String address
 	String directionsToAddress
 	Date dateCreated
@@ -20,7 +21,6 @@ class CompanyProfile implements Serializable{
 
     static constraints = {
 		logo(nullable: true)
-		inBusinessSince(blank: true, nullable: true)
 		address(blank: true, nullable: true)
 		directionsToAddress(blank: true, nullable: true)
     }
@@ -29,6 +29,8 @@ class CompanyProfile implements Serializable{
     	root false
     	companyName boost: 2.0
     	logo index: 'no'
+		companySize index: 'no'
+		companyAge index: 'no'
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
 }
