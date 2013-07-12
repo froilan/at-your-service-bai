@@ -45,8 +45,9 @@
 					</div>
 					<sec:ifLoggedIn>
 					<div class="user-info">
-						<p class="bold">Welcome <span class="first-last-name">John Smith</span></p>
-						<p class="header-company">ABC Corporation</p>
+						<!-- <p class="bold">Welcome <span class="first-last-name">John Smith</span></p>
+						<p class="header-company">ABC Corporation</p> -->
+						<g:welcome />
 					</div>
 					</sec:ifLoggedIn>
 				</div>
