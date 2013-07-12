@@ -2,7 +2,7 @@ package com.ays
 
 import java.io.Serializable;
 
-class License implements Serializable{
+class License implements Serializable {
 
 	String licenseNumber
 	String licenseArea
@@ -22,4 +22,8 @@ class License implements Serializable{
     	root false
     	except = [ 'version', 'dateCreated', 'lastUpdated', 'licenseExpirationDate' ]
     }
+	
+	String toString() {
+		"${this.properties}"
+	}
 }

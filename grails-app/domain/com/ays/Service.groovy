@@ -2,7 +2,7 @@ package com.ays
 
 import java.io.Serializable;
 
-class Service implements Serializable{
+class Service implements Serializable {
 
 	ServiceOfferingType serviceType
 	String serviceName
@@ -19,5 +19,9 @@ class Service implements Serializable{
 		root false
 		serviceType index: 'no'
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
+	}
+	
+	String toString() {
+		"${this.properties}"
 	}
 }

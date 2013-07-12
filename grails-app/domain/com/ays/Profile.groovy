@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class Profile implements Serializable{
+class Profile implements Serializable {
 
 	String firstName
 	String lastName
@@ -49,6 +49,10 @@ class Profile implements Serializable{
 		license(nullable: true)
 		feeStructure(nullable: true)
     }
+	
+	String toString() {
+		"${this.properties}"
+	}
 
     BigDecimal getAverageRating() {
 		BigDecimal total = BigDecimal.ZERO;

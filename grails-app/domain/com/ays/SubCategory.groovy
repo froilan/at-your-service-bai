@@ -3,7 +3,7 @@ package com.ays
 import java.io.Serializable;
 import java.util.Date;
 
-class SubCategory implements Serializable{
+class SubCategory implements Serializable {
 
 	String subCategoryName
 	Date dateCreated

@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class ContactInfo implements Serializable{
+class ContactInfo implements Serializable {
 
 	ContactInfoType contactType
 	String contactValue
@@ -13,4 +13,8 @@ class ContactInfo implements Serializable{
     static constraints = {
     	contactAlias(nullable: true, blank: true)
     }
+	
+	String toString() {
+		"${this.properties}"
+	}
 }

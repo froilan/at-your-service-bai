@@ -2,7 +2,7 @@ package com.ays
 
 import java.util.Date;
 
-class SiteUser {
+class SiteUser implements Serializable {
 
 	transient springSecurityService
 
@@ -48,5 +48,9 @@ class SiteUser {
 
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
+	}
+	
+	boolean hasProfile() {
+		return (profile != null)
 	}
 }

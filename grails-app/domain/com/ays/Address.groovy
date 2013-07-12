@@ -1,6 +1,8 @@
 package com.ays
 
-class Address {
+import java.io.Serializable;
+
+class Address implements Serializable {
 	
 	String streetBuildingAddress
 	String barangay
@@ -15,6 +17,10 @@ class Address {
 	
 	static searchable = {
 		root false
+	}
+	
+	String toString() {
+		"${this.properties}"
 	}
 
 }

@@ -56,7 +56,7 @@
 
 				</li>
 				</g:if>
-
+<%--
 				<g:if test="${profileInstance?.differentiation}">
 				<li class="fieldcontain">
 					<span id="differentiation-label" class="property-label"><g:message code="profile.differentiation.label" default="Differentiation" /></span>
@@ -65,7 +65,7 @@
 
 				</li>
 				</g:if>
-
+ --%>
 				<g:if test="${profileInstance?.feeStructure}">
 				<li class="fieldcontain">
 					<span id="feeStructure-label" class="property-label"><g:message code="profile.feeStructure.label" default="Fee Structure" /></span>
@@ -105,7 +105,7 @@
 
 				</li>
 				</g:if>
-
+<%--
 				<g:if test="${profileInstance?.category}">
 				<li class="fieldcontain">
 					<span id="category-label" class="property-label"><g:message code="profile.category.label" default="Category" /></span>
@@ -114,7 +114,7 @@
 
 				</li>
 				</g:if>
-
+ --%>
 				<g:if test="${profileInstance?.contacts}">
 				<li class="fieldcontain">
 					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Contact Information" /></span>

@@ -8,8 +8,6 @@ class ProfileController {
 
 	def springSecurityService
 
-	def profileService
-
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -116,144 +114,364 @@ class ProfileController {
 	//TODO: refactor into a method and call unto every step of flow
 	//		in case of direct access to middle of flow
 	//TODO: image are not yet retained
-	def profileDivisionFlow = {
-		println params
-		createCategoryAndOffering {
+//	def profileDivisionFlow = {
+//		createCategoryAndOffering {
+//			on("next") {
+//				if (!flow.phoneNumberInstance) {
+//					def phoneNumberInstance = new ContactInfo()
+//					flow.phoneNumberInstance = phoneNumberInstance
+//					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
+//				}
+//				if (!flow.websiteInstance) {
+//					def websiteInstance = new ContactInfo()
+//					flow.websiteInstance = websiteInstance
+//					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
+//				}
+//				if (!flow.emailInstance) {
+//					def emailInstance = new ContactInfo()
+//					flow.emailInstance = emailInstance
+//					flow.emailInstance.contactType = ContactInfoType.EMAIL
+//				}
+//				if (!flow.facebookInstance) {
+//					def facebookInstance = new ContactInfo()
+//					flow.facebookInstance = facebookInstance
+//					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
+//				}
+//				if (!flow.twitterInstance) {
+//					def twitterInstance = new ContactInfo()
+//					flow.twitterInstance = twitterInstance
+//					flow.twitterInstance.contactType = ContactInfoType.TWITTER
+//				}
+//				if (!flow.linkedInInstance) {
+//					def linkedInInstance = new ContactInfo()
+//					flow.linkedInInstance = linkedInInstance
+//					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
+//				}
+//				if (!flow.awardInstance) {
+//					def awardInstance = new Award()
+//					flow.awardInstance = awardInstance
+//				}
+//				if (!flow.affiliationInstance) {
+//					def affiliationInstance = new Affiliation()
+//					flow.affiliationInstance = affiliationInstance
+//				}
+//				if (!flow.licenseInstance) {
+//					def licenseInstance = new License()
+//					flow.licenseInstance = licenseInstance
+//				}
+//				if (!flow.primaryServiceInstance) {
+//					def primaryServiceInstance = new Service()
+//					flow.primaryServiceInstance = primaryServiceInstance
+//					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
+//				}
+//				if (!flow.secondaryServiceInstance) {
+//					def secondaryServiceInstance = new Service()
+//					flow.secondaryServiceInstance = secondaryServiceInstance
+//					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
+//				}
+//				if (!flow.companyProfileInstance) {
+//					def companyProfileInstance = new CompanyProfile()
+//					flow.companyProfileInstance = companyProfileInstance
+//				}
+//				if (!flow.differentiationInstance) {
+//					def differentiationInstance = new Differentiation()
+//					flow.differentiationInstance = differentiationInstance
+//				}
+//				if (!flow.profileInstance) {
+//					def profileInstance = new Profile()
+//					flow.profileInstance = profileInstance
+//					flow.profileInstance.companyProfile = flow.companyProfileInstance
+//					flow.profileInstance.addToServices(flow.primaryServiceInstance)
+//					flow.profileInstance.addToServices(flow.secondaryServiceInstance)
+//					flow.profileInstance.addToAwards(flow.awardInstance)
+//					flow.profileInstance.addToContacts(flow.phoneNumberInstance)
+//					flow.profileInstance.addToContacts(flow.websiteInstance)
+//					flow.profileInstance.addToContacts(flow.emailInstance)
+//					flow.profileInstance.addToContacts(flow.facebookInstance)
+//					flow.profileInstance.addToContacts(flow.twitterInstance)
+//					flow.profileInstance.addToContacts(flow.linkedInInstance)
+//				}
+//				def tempProfileInstance = new Profile(params)
+//				def tempCompanyProfileInstance = new CompanyProfile(params)
+//				flow.profileInstance.subCategory = tempProfileInstance.subCategory
+//				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
+//				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
+//				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
+//				flow.primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
+//				flow.secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
+//				flow.secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
+//			}.to "createCompanyInfoAndRates"
+//		}
+//		createCompanyInfoAndRates {
+//			on("next") {
+//				def tempProfileInstance = new Profile(params)
+//				def tempCompanyProfileInstance = new CompanyProfile(params)
+//				flow.profileInstance.feeStructure = tempProfileInstance.feeStructure
+//				flow.profileInstance.askingFee = tempProfileInstance.askingFee
+//				flow.profileInstance.displayPicture = tempProfileInstance.displayPicture
+//				flow.companyProfileInstance.companySize = tempCompanyProfileInstance.companySize
+//				flow.companyProfileInstance.companyAge = tempCompanyProfileInstance.companyAge
+//				flow.companyProfileInstance.logo = tempCompanyProfileInstance.logo
+//			}.to "createLocationsAndDirections"
+//		}
+//		createLocationsAndDirections {
+//			on("next") {
+//				def tempCompanyProfileInstance = new CompanyProfile(params)
+//				flow.companyProfileInstance.address = tempCompanyProfileInstance.address
+//				flow.companyProfileInstance.directionsToAddress = tempCompanyProfileInstance.directionsToAddress
+//				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
+//			}.to "createProfesionalAndLicensing"
+//		}
+//		createProfesionalAndLicensing {
+//			on("next") {
+//				flow.differentiationInstance.differentiationKeywords = params['differentiation.differentiationKeywords']
+//				flow.differentiationInstance.differentiationDescription = params['differentiation.differentiationDescription']
+//				def tempLicenseInstance = new License(params) 
+//				flow.licenseInstance = tempLicenseInstance
+//				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']
+//				flow.affiliationInstance.affiliationRole = params['affiliation.affiliationRole']
+//				flow.awardInstance.awardName = params['award.awardName']
+//				flow.awardInstance.awardYear = params.int('award.awardYear')
+//				flow.awardInstance.awardDescription = params['award.awardDescription']
+//			}.to "createContactDetails"
+//		}
+//		createContactDetails {
+//			on("next") {
+//				flow.phoneNumberInstance.contactValue = params['contactInfo.phoneNumber']
+//				flow.phoneNumberInstance.contactAlias = params['contactInfo.phoneNumber.contactAlias']
+//				flow.emailInstance.contactValue = params['contactInfo.email']
+//				flow.emailInstance.name = params['contactInfo.phoneNumber.contactAlias']
+//				flow.websiteInstance.contactValue = params['contactInfo.website']
+//				flow.facebookInstance.contactValue = params['contactInfo.facebook']
+//				flow.twitterInstance.contactValue = params['contactInfo.twitter']
+//				flow.linkedInInstance.contactValue = params['contactInfo.linkedIn']
+//			}.to "createCategoryAndOffering"
+//		}
+//	}
+	
+	def contentManagerFlow = {
+		initialize {
+			action {
+				def currentUser = springSecurityService.currentUser
+				if (currentUser?.hasProfile()) {
+					// TODO add everything else
+					def profile = currentUser.profile
+					[ profileInstance: profile,
+						companyProfileInstance: profile.companyProfile ]
+				} else {
+					println ">> no profile yet!"
+					def profile = new Profile()
+					profile.firstName = currentUser.firstName
+					profile.lastName = currentUser.lastName
+					[ profileInstance: profile ]
+				}
+			}
+			on("success").to "categoryAndOffering"
+		}
+		categoryAndOffering {
 			on("next") {
-				if (!flow.phoneNumberInstance) {
-					def phoneNumberInstance = new ContactInfo()
-					flow.phoneNumberInstance = phoneNumberInstance
-					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
+				println ">> FLOW: ${flow}"
+				def profile = flow.profileInstance
+				if (!profile) {
+					profile = new Profile()
 				}
-				if (!flow.websiteInstance) {
-					def websiteInstance = new ContactInfo()
-					flow.websiteInstance = websiteInstance
-					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
+				def companyProfile = flow.companyProfileInstance
+				if (!companyProfile) {
+					companyProfile = new CompanyProfile()
 				}
-				if (!flow.emailInstance) {
-					def emailInstance = new ContactInfo()
-					flow.emailInstance = emailInstance
-					flow.emailInstance.contactType = ContactInfoType.EMAIL
+				def primaryService = flow.primaryServiceInstance
+				if (!primaryService) {
+					primaryService = new Service()
+					primaryService.serviceType = ServiceOfferingType.PRIMARY
 				}
-				if (!flow.facebookInstance) {
-					def facebookInstance = new ContactInfo()
-					flow.facebookInstance = facebookInstance
-					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
-				}
-				if (!flow.twitterInstance) {
-					def twitterInstance = new ContactInfo()
-					flow.twitterInstance = twitterInstance
-					flow.twitterInstance.contactType = ContactInfoType.TWITTER
-				}
-				if (!flow.linkedInInstance) {
-					def linkedInInstance = new ContactInfo()
-					flow.linkedInInstance = linkedInInstance
-					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
-				}
-				if (!flow.awardInstance) {
-					def awardInstance = new Award()
-					flow.awardInstance = awardInstance
-				}
-				if (!flow.affiliationInstance) {
-					def affiliationInstance = new Affiliation()
-					flow.affiliationInstance = affiliationInstance
-				}
-				if (!flow.licenseInstance) {
-					def licenseInstance = new License()
-					flow.licenseInstance = licenseInstance
-				}
-				if (!flow.primaryServiceInstance) {
-					def primaryServiceInstance = new Service()
-					flow.primaryServiceInstance = primaryServiceInstance
-					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
-				}
-				if (!flow.secondaryServiceInstance) {
-					def secondaryServiceInstance = new Service()
-					flow.secondaryServiceInstance = secondaryServiceInstance
-					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
-				}
-				if (!flow.companyProfileInstance) {
-					def companyProfileInstance = new CompanyProfile()
-					flow.companyProfileInstance = companyProfileInstance
-				}
-				if (!flow.differentiationInstance) {
-					def differentiationInstance = new Differentiation()
-					flow.differentiationInstance = differentiationInstance
-				}
-				if (!flow.profileInstance) {
-					def profileInstance = new Profile()
-					flow.profileInstance = profileInstance
-					flow.profileInstance.companyProfile = flow.companyProfileInstance
-					flow.profileInstance.addToServices(flow.primaryServiceInstance)
-					flow.profileInstance.addToServices(flow.secondaryServiceInstance)
-					flow.profileInstance.addToAwards(flow.awardInstance)
-					flow.profileInstance.addToContacts(flow.phoneNumberInstance)
-					flow.profileInstance.addToContacts(flow.websiteInstance)
-					flow.profileInstance.addToContacts(flow.emailInstance)
-					flow.profileInstance.addToContacts(flow.facebookInstance)
-					flow.profileInstance.addToContacts(flow.twitterInstance)
-					flow.profileInstance.addToContacts(flow.linkedInInstance)
+				def secondaryService = flow.secondaryServiceInstance
+				if (!secondaryService) {
+					secondaryService = new Service()
+					secondaryService.serviceType = ServiceOfferingType.SECONDARY
 				}
 				def tempProfileInstance = new Profile(params)
-				def tempCompanyProfileInstance = new CompanyProfile(params)
-				flow.profileInstance.subCategory = tempProfileInstance.subCategory
-				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
-				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
-				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
-				flow.primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
-				flow.secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
-				flow.secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
-			}.to "createCompanyInfoAndRates"
+				profile.subCategory = tempProfileInstance.subCategory
+				companyProfile.companyName = params['name']
+				companyProfile.description = params['description']
+				primaryService.serviceName = params['primaryService.serviceName']
+				primaryService.serviceDescription = params['primaryService.serviceDescription']
+				secondaryService.serviceName = params['secondaryService.serviceName']
+				secondaryService.serviceDescription = params['secondaryService.serviceDescription']
+				[ profileInstance: profile,
+					companyProfileInstance: companyProfile,
+					primaryServiceInstance: primaryService,
+					secondaryServiceInstance: secondaryService ]
+			}.to "companyInfoAndRates"
 		}
-		createCompanyInfoAndRates {
+		companyInfoAndRates {
 			on("next") {
+				println ">> FLOW: ${flow}"
+				def profile = flow.profileInstance
+				def companyProfile = flow.companyProfileInstance
+				
 				def tempProfileInstance = new Profile(params)
 				def tempCompanyProfileInstance = new CompanyProfile(params)
-				flow.profileInstance.feeStructure = tempProfileInstance.feeStructure
-				flow.profileInstance.askingFee = tempProfileInstance.askingFee
-				flow.profileInstance.displayPicture = tempProfileInstance.displayPicture
-				flow.companyProfileInstance.companySize = tempCompanyProfileInstance.companySize
-				flow.companyProfileInstance.companyAge = tempCompanyProfileInstance.companyAge
-				flow.companyProfileInstance.logo = tempCompanyProfileInstance.logo
-			}.to "createLocationsAndDirections"
+				
+				profile.feeStructure = tempProfileInstance.feeStructure
+				profile.askingFee = tempProfileInstance.askingFee
+				profile.rateNegotiable = (params['rateNegotiable'] == 'Y')
+//				profile.displayPicture = tempProfileInstance.displayPicture
+				companyProfile.companySize = tempCompanyProfileInstance.companySize
+				companyProfile.companyAge = tempCompanyProfileInstance.companyAge
+//				companyProfile.logo = tempCompanyProfileInstance.logo
+				[ profileInstance: profile,
+					companyProfileInstance: companyProfile]
+			}.to "locationAndDirections"
 		}
-		createLocationsAndDirections {
+		locationAndDirections {
 			on("next") {
-				def tempCompanyProfileInstance = new CompanyProfile(params)
-				flow.companyProfileInstance.address = tempCompanyProfileInstance.address
-				flow.companyProfileInstance.directionsToAddress = tempCompanyProfileInstance.directionsToAddress
+				println ">> FLOW: ${flow}"
+				def companyProfile = flow.companyProfileInstance
+				def address = flow.addressInstance
+				if (!address) {
+					address = new Address()
+				}
+				def tempAddressInstance = new Address(params)
+				address.properties = tempAddressInstance.properties
+				companyProfile.directionsToAddress = params.directionsToAddress
 				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
-			}.to "createProfesionalAndLicensing"
+				[ companyProfileInstance: companyProfile,
+					addressInstance: address ]
+			}.to "profesionalAndLicensing"
 		}
-		createProfesionalAndLicensing {
+		profesionalAndLicensing {
 			on("next") {
-				flow.differentiationInstance.differentiationKeywords = params['differentiation.differentiationKeywords']
-				flow.differentiationInstance.differentiationDescription = params['differentiation.differentiationDescription']
-				def tempLicenseInstance = new License(params) 
-				flow.licenseInstance = tempLicenseInstance
-				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']
-				flow.affiliationInstance.affiliationRole = params['affiliation.affiliationRole']
-				flow.awardInstance.awardName = params['award.awardName']
-				flow.awardInstance.awardYear = params.int('award.awardYear')
-				flow.awardInstance.awardDescription = params['award.awardDescription']
-			}.to "createContactDetails"
+				println ">> FLOW: ${flow}"
+				def differentiation = flow.differentiationInstance
+				if (!differentiation) {
+					differentiation = new Differentiation()
+				}
+				def license = flow.licenseInstance
+				if (!license) {
+					license = new License()
+				}
+				def affiliation = flow.affiliationInstance
+				if (!affiliation) {
+					affiliation = new Affiliation()
+				}
+				def award = flow.awardInstance
+				if (!award) {
+					award = new Award()
+				}
+				
+				def tempDifferentiationInstance = new Differentiation(params)
+				def tempLicenseInstance = new License(params)
+				def tempAffiliationInstance = new Affiliation(params)
+				def tempAwardInstance = new Award(params)
+				
+				differentiation.differentiationKeywords = tempDifferentiationInstance.differentiationKeywords
+				differentiation.differentiationDescription = tempDifferentiationInstance.differentiationDescription
+				license.properties = tempLicenseInstance.properties
+				affiliation.affiliationName = tempAffiliationInstance.affiliationName
+				affiliation.affiliationRole = tempAffiliationInstance.affiliationRole
+				award.awardName = tempAwardInstance.awardName
+				award.awardYear = tempAwardInstance.awardYear
+				award.awardDescription = tempAwardInstance.awardDescription
+				[ differentiationInstance: differentiation,
+					licenseInstance: license,
+					affiliationInstance: affiliation,
+					awardInstance: award ]
+			}.to "contactDetails"
 		}
-		createContactDetails {
+		contactDetails {
 			on("next") {
-				flow.phoneNumberInstance.contactValue = params['contactInfo.phoneNumber']
-				flow.phoneNumberInstance.contactAlias = params['contactInfo.phoneNumber.contactAlias']
-				flow.emailInstance.contactValue = params['contactInfo.email']
-				flow.emailInstance.name = params['contactInfo.phoneNumber.contactAlias']
-				flow.websiteInstance.contactValue = params['contactInfo.website']
-				flow.facebookInstance.contactValue = params['contactInfo.facebook']
-				flow.twitterInstance.contactValue = params['contactInfo.twitter']
-				flow.linkedInInstance.contactValue = params['contactInfo.linkedIn']
-			}.to "createCategoryAndOffering"
+				println ">> FLOW: ${flow}"
+				def phoneNumber = flow.phoneNumberInstance
+				if (!phoneNumber) {
+					phoneNumber = new ContactInfo()
+					phoneNumber.contactType = ContactInfoType.PHONE_NUMBER
+				}
+				def email = flow.emailInstance
+				if (!email) {
+					email = new ContactInfo()
+					email.contactType = ContactInfoType.EMAIL
+				}
+				def website = flow.websiteInstance
+				if (!website) {
+					website = new ContactInfo()
+					website.contactType = ContactInfoType.WEBSITE
+				}
+				def facebook = flow.facebookInstance
+				if (!facebook) {
+					facebook = new ContactInfo()
+					facebook.contactType = ContactInfoType.FACEBOOK
+				}
+				def twitter = flow.twitterInstance
+				if (!twitter) {
+					twitter = new ContactInfo()
+					twitter.contactType = ContactInfoType.TWITTER
+				}
+				def linkedIn = flow.linkedInInstance
+				if (!linkedIn) {
+					linkedIn = new ContactInfo()
+					linkedIn.contactType = ContactInfoType.LINKEDIN
+				}
+				
+				phoneNumber.contactValue = params['contactInfo.phoneNumber']
+				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
+				email.contactValue = params['contactInfo.email']
+				email.contactAlias = params['contactInfo.email.contactAlias']
+				website.contactValue = params['contactInfo.website']
+				facebook.contactValue = params['contactInfo.facebook']
+				twitter.contactValue = params['contactInfo.twitter']
+				linkedIn.contactValue = params['contactInfo.linkedIn']
+				[ phoneNumberInstance: phoneNumber,
+					emailInstance: email,
+					websiteInstance: website,
+					facebookInstance: facebook,
+					twitterInstance: twitter,
+					linkedInInstance: linkedIn ]
+			}.to "saveProfile"
+		}
+		saveProfile {
+			action {
+				println ">> FLOW: ${flow}"
+				println ">> saving profile.."
+				def profile = flow.profileInstance
+				profile.companyProfile = flow.companyProfileInstance
+				profile.companyProfile.address = flow.addressInstance
+				profile.license = flow.licenseInstance
+				println "PROFILE: ${profile}"
+				println "COMPANY-PROFILE: ${profile.companyProfile}"
+				println "LICENSE: ${profile.license}"
+				profile.addToServices(flow.primaryServiceInstance)
+				profile.addToServices(flow.secondaryServiceInstance)
+				profile.addToDifferentiations(flow.differentiationInstance)
+				profile.addToAffiliations(flow.affiliationInstance)
+				profile.addToAwards(flow.awardInstance)
+				profile.addToContacts(flow.phoneNumberInstance)
+				profile.addToContacts(flow.websiteInstance)
+				profile.addToContacts(flow.emailInstance)
+				profile.addToContacts(flow.facebookInstance)
+				profile.addToContacts(flow.twitterInstance)
+				profile.addToContacts(flow.linkedInInstance)
+				profile.save(flush: true, failOnError: true)
+				
+				def currentUser = springSecurityService.currentUser
+				currentUser.profile = profile
+				currentUser.save(flush: true, failOnError: true)
+			}
+			on("success").to "profileSaved"
+			on("error").to "errorHandler"
+			on(Exception).to "errorHandler"
+		}
+		errorHandler {
+			on("restart").to "initialize"
+		}
+		profileSaved {
+			redirect(action: "show")
 		}
 	}
 	
     def show(Long id) {
-        def profileInstance = Profile.get(id)
+        //def profileInstance = Profile.get(id)
+		def currentUser = springSecurityService.currentUser
+		def profileInstance = currentUser.profile
         if (!profileInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
             redirect(action: "list")

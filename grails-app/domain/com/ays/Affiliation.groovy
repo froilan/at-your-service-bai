@@ -1,6 +1,6 @@
 package com.ays
 
-class Affiliation implements Serializable{
+class Affiliation implements Serializable {
 
 	String affiliationName
 	String affiliationRole
@@ -16,4 +16,8 @@ class Affiliation implements Serializable{
     	root false
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
+	
+	String toString() {
+		"${this.properties}"
+	}
 }

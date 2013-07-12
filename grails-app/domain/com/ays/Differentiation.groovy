@@ -19,4 +19,7 @@ class Differentiation implements Serializable {
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
 
+	String toString() {
+		"${this.properties}"
+	}
 }

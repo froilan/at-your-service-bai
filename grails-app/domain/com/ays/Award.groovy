@@ -2,7 +2,7 @@ package com.ays
 
 import java.io.Serializable;
 
-class Award implements Serializable{
+class Award implements Serializable {
 
 	String awardName
 	Integer awardYear
@@ -20,4 +20,8 @@ class Award implements Serializable{
     	root false
     	except = [ 'version', 'dateCreated', 'lastUpdated' ]
     }
+	
+	String toString() {
+		"${this.properties}"
+	}
 }
