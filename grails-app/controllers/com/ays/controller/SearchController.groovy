@@ -16,7 +16,12 @@ class SearchController {
 		
 		String location = params.location
 		if (location?.trim()) {
-			query += (" address:" + location)
+			StringBuilder locationQuery = new StringBuilder(" (")
+			locationQuery.append("streetBuildingAddress:").append(location).append(" OR ")
+			locationQuery.append("barangay:").append(location).append(" OR ")
+			locationQuery.append("cityTown:").append(location).append(" OR ")
+			locationQuery.append("province:").append(location).append(")")
+			query += locationQuery.toString()
 		}
 
 		try {
