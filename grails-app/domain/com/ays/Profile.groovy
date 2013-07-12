@@ -15,6 +15,12 @@ class Profile implements Serializable {
 	License license
 	Date dateCreated
 	Date lastUpdated
+	List contacts
+	List services
+	List differentiations
+	List affiliations
+	List awards
+	List reviews
 
 	static hasMany = [ contacts: ContactInfo,
 						services: Service,

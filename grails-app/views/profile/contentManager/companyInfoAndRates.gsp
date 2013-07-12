@@ -85,7 +85,7 @@ have a set rate (even if it is subject to change) typically receive more
 												</li>												
 												<li class="user-input checkbox-wrap">
 													<span class="line-wrap"><input name="rateNegotiable" value="Y" 
-														type="checkbox" <g:if test="${profileInstance?.rateNegotiable}"></g:if>><span>Rate negotiable</span></span><br>
+														type="checkbox" <g:if test="${profileInstance?.rateNegotiable}">checked</g:if>><span>Rate negotiable</span></span><br>
 												</li>
 											</ul>
 										</li>

@@ -254,10 +254,31 @@ class ProfileController {
 			action {
 				def currentUser = springSecurityService.currentUser
 				if (currentUser?.hasProfile()) {
-					// TODO add everything else
+					println "retrieving profile info..."
 					def profile = currentUser.profile
+					def primaryService = profile.services.find { it.serviceType == ServiceOfferingType.PRIMARY }
+					def secondaryService = profile.services.find { it.serviceType == ServiceOfferingType.PRIMARY }
+					def phoneNumber = profile.contacts.find { it.contactType == ContactInfoType.PHONE_NUMBER }
+					def email = profile.contacts.find { it.contactType == ContactInfoType.EMAIL }
+					def website = profile.contacts.find { it.contactType == ContactInfoType.WEBSITE }
+					def facebook = profile.contacts.find { it.contactType == ContactInfoType.FACEBOOK }
+					def twitter = profile.contacts.find { it.contactType == ContactInfoType.TWITTER }
+					def linkedIn = profile.contacts.find { it.contactType == ContactInfoType.LINKEDIN }
 					[ profileInstance: profile,
-						companyProfileInstance: profile.companyProfile ]
+						companyProfileInstance: profile.companyProfile,
+						addressInstance: profile.companyProfile.address,
+						primaryServiceInstance: primaryService,
+						secondaryServiceInstance: secondaryService,
+						differentiationInstance: profile.differentiations[0],
+						licenseInstance: profile.license,
+						affiliationInstance: profile.affiliations[0],
+						awardInstance: profile.awards[0],
+						phoneNumberInstance: phoneNumber,
+						emailInstance: email,
+						websiteInstance: website,
+						facebookInstance: facebook,
+						twitterInstance: twitter,
+						linkedInInstance: linkedIn ]
 				} else {
 					println ">> no profile yet!"
 					def profile = new Profile()
@@ -270,7 +291,6 @@ class ProfileController {
 		}
 		categoryAndOffering {
 			on("next") {
-				println ">> FLOW: ${flow}"
 				def profile = flow.profileInstance
 				if (!profile) {
 					profile = new Profile()
@@ -305,7 +325,6 @@ class ProfileController {
 		}
 		companyInfoAndRates {
 			on("next") {
-				println ">> FLOW: ${flow}"
 				def profile = flow.profileInstance
 				def companyProfile = flow.companyProfileInstance
 				
@@ -325,7 +344,6 @@ class ProfileController {
 		}
 		locationAndDirections {
 			on("next") {
-				println ">> FLOW: ${flow}"
 				def companyProfile = flow.companyProfileInstance
 				def address = flow.addressInstance
 				if (!address) {
@@ -341,7 +359,6 @@ class ProfileController {
 		}
 		profesionalAndLicensing {
 			on("next") {
-				println ">> FLOW: ${flow}"
 				def differentiation = flow.differentiationInstance
 				if (!differentiation) {
 					differentiation = new Differentiation()
@@ -380,7 +397,6 @@ class ProfileController {
 		}
 		contactDetails {
 			on("next") {
-				println ">> FLOW: ${flow}"
 				def phoneNumber = flow.phoneNumberInstance
 				if (!phoneNumber) {
 					phoneNumber = new ContactInfo()
@@ -430,15 +446,11 @@ class ProfileController {
 		}
 		saveProfile {
 			action {
-				println ">> FLOW: ${flow}"
 				println ">> saving profile.."
 				def profile = flow.profileInstance
 				profile.companyProfile = flow.companyProfileInstance
 				profile.companyProfile.address = flow.addressInstance
 				profile.license = flow.licenseInstance
-				println "PROFILE: ${profile}"
-				println "COMPANY-PROFILE: ${profile.companyProfile}"
-				println "LICENSE: ${profile.license}"
 				profile.addToServices(flow.primaryServiceInstance)
 				profile.addToServices(flow.secondaryServiceInstance)
 				profile.addToDifferentiations(flow.differentiationInstance)

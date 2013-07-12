@@ -58,8 +58,8 @@
 				<ul class="top-left-menu business-user-menu">
 					<li><g:link controller="home">Home</g:link></li>
 					<sec:ifLoggedIn>
-						<li><a class="active" href="#">Content Manager</a></li>
-						<li><a href="#">Public Profile</a></li>
+						<li><g:link controller="profile" action="contentManager">Content Manager</g:link></li>
+						<li><g:link controller="profile" action="show">Public Profile</g:link></li>
 					</sec:ifLoggedIn>
 					<li><a href="#">Contact Us</a></li>
 				</ul>

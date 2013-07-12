@@ -41,7 +41,7 @@ class SiteUserController {
 		}
 		
 		if (params.createProfile == 'y') {
-			redirect(controller: "profile", action: "profileDivision")
+			redirect(controller: "profile", action: "contentManager")
 		} else {
 	        flash.message = message(code: 'default.created.message', args: [message(code: 'siteUser.label', default: 'SiteUser'), siteUserInstance.id])
 	        redirect(action: "postCreate", id: siteUserInstance.id)

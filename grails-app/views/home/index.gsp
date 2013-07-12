@@ -62,6 +62,7 @@
 		</div><!-- end .wrap -->
 	</div><!--end #header-->
 
+	<%--
 	<div id="nav">
 		<div class="wrap">
 			<ul id="menu-home-menu" class="menu genesis-nav-menu menu-primary superfish sf-js-enabled">
@@ -69,6 +70,19 @@
 			</ul>
 		</div><!-- end .wrap -->
 	</div>
+	--%>
+	<div id="nav">
+		<div class="wrap">
+			<ul class="top-left-menu business-user-menu">
+				<li><g:link controller="home">Home</g:link></li>
+				<sec:ifLoggedIn>
+					<li><g:link controller="profile" action="contentManager">Content Manager</g:link></li>
+					<li><g:link controller="profile" action="show">Public Profile</g:link></li>
+				</sec:ifLoggedIn>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
+		</div>
+	</div><!-- end #nav -->
 
 	<div id="inner">
 		<div id="home-top-bg">
