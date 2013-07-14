@@ -99,6 +99,12 @@ premium business account at the end of this form.</li>
 											<p>Upload several photos of your office building. We 
 recommend uploading one of the exterior and one or two of the interior 
 of your office.</p>
+											<g:if test="${companyProfileInstance.photos}">
+												<g:each in="${companyProfileInstance.photos}" var="photo">
+													<img src="${createLink(controller:'profile', action:'photo', id:photo.id)}" />
+												</g:each>
+												  
+											</g:if>
 											<ul class="input-wrap file-upload">
 												<li class="user-input">
 													<input name="user_upload" value="select logo..." type="file">	

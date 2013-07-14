@@ -367,18 +367,19 @@ class ProfileController {
 				address.properties = tempAddressInstance.properties
 				println params.directionsToAddress
 				companyProfile.directionsToAddress = params.directionsToAddress 
-				/*def photo = request.getFile('user_upload')
+				
 				def placeOfBusinessPhoto = flow.placeOfBusinessPhotoInstance
 				if(!placeOfBusinessPhoto){
-					placeOfBusiness = new PlaceOfBusinessPhoto()
-				}*/
+					placeOfBusinessPhoto = new PlaceOfBusinessPhoto()
+				}
+				def photo = request.getFile('user_upload')
 				if(photo) {
-					companyProfile.addToPhotos(photo) 
-					println companyProfile.photos
+					placeOfBusinessPhoto.photo = photo.getBytes() 
 				}
 				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
 				[ companyProfileInstance: companyProfile,
-					addressInstance: address ]
+					addressInstance: address,
+					 placeOfBusinessInstance: placeOfBusinessPhoto]
 			}.to "profesionalAndLicensing"
 		}
 		profesionalAndLicensing {
@@ -474,6 +475,7 @@ class ProfileController {
 				def profile = flow.profileInstance
 				profile.companyProfile = flow.companyProfileInstance
 				profile.companyProfile.address = flow.addressInstance
+				profile.companyProfile.addToPhotos(flow.placeOfBusinessInstance)
 				profile.license = flow.licenseInstance
 				profile.addToServices(flow.primaryServiceInstance)
 				profile.addToServices(flow.secondaryServiceInstance)
