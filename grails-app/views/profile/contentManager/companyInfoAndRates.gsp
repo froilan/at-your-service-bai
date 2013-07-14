@@ -57,10 +57,16 @@ premium business account at the end of this form.</li>
 important for client credibility online and so clients can identify you 
 and your brand).</p>
 											<ul class="input-wrap file-upload">
+												<g:if test="${companyProfileInstance.logo}">
+												  <img src="${createLink(controller:'profile', action:'logo', id:companyProfileInstance.id)}" />
+												</g:if>
 												<li class="user-input">
 													<input name="logo" value="select logo..." type="file">	
 													<p class="file-instructions">200px min width. Accepts jpg, png or gif only.</p>
 												</li>
+												<g:if test="${profileInstance.displayPicture}">
+												  <img src="${createLink(controller:'profile', action:'displayPicture', id:profileInstance.id)}" />
+												</g:if>
 												<li class="user-input">
 													<input name="displayPicture" value="select personal photo..." type="file">	
 													<p class="file-instructions">200px min width. Accepts jpg, png or gif only.</p>

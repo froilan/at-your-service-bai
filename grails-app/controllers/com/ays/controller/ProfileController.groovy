@@ -8,22 +8,22 @@ class ProfileController {
 
 	def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
-        redirect(action: "list", params: params)
-    }
+	def index() {
+		redirect(action: "list", params: params)
+	}
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [profileInstanceList: Profile.list(params), profileInstanceTotal: Profile.count()]
-    }
+	def list(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[profileInstanceList: Profile.list(params), profileInstanceTotal: Profile.count()]
+	}
 
-    def create() {
-        [:]
-    }
+	def create() {
+		[:]
+	}
 
-    def save() {
+	def save() {
 		def siteUserInstance = springSecurityService.currentUser
 		def profileInstance = new Profile(params)
 		profileInstance.firstName = siteUserInstance.firstName
@@ -46,17 +46,17 @@ class ProfileController {
 		awardInstance.awardDescription = params['award.awardDescription']
 		profileInstance.addToAwards(awardInstance)
 
-        def primaryServiceInstance = new Service()
-        primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
-        primaryServiceInstance.serviceName = params['primaryService.serviceName']
-        primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
-        profileInstance.addToServices(primaryServiceInstance)
+		def primaryServiceInstance = new Service()
+		primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
+		primaryServiceInstance.serviceName = params['primaryService.serviceName']
+		primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
+		profileInstance.addToServices(primaryServiceInstance)
 
-        def secondaryServiceInstance = new Service()
-        secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
-        secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
-        secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
-        profileInstance.addToServices(secondaryServiceInstance)
+		def secondaryServiceInstance = new Service()
+		secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
+		secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
+		secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
+		profileInstance.addToServices(secondaryServiceInstance)
 
 		def phoneNumberInstance = new ContactInfo()
 		phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
@@ -107,148 +107,151 @@ class ProfileController {
 		siteUserInstance.profile = profileInstance
 		siteUserInstance.save(flush: true)
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
-        redirect(action: "show", id: profileInstance.id)
-    }
-	
+		flash.message = message(code: 'default.created.message', args: [
+			message(code: 'profile.label', default: 'Profile'),
+			profileInstance.id
+		])
+		redirect(action: "show", id: profileInstance.id)
+	}
+
 	//TODO: refactor into a method and call unto every step of flow
 	//		in case of direct access to middle of flow
 	//TODO: image are not yet retained
-//	def profileDivisionFlow = {
-//		createCategoryAndOffering {
-//			on("next") {
-//				if (!flow.phoneNumberInstance) {
-//					def phoneNumberInstance = new ContactInfo()
-//					flow.phoneNumberInstance = phoneNumberInstance
-//					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
-//				}
-//				if (!flow.websiteInstance) {
-//					def websiteInstance = new ContactInfo()
-//					flow.websiteInstance = websiteInstance
-//					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
-//				}
-//				if (!flow.emailInstance) {
-//					def emailInstance = new ContactInfo()
-//					flow.emailInstance = emailInstance
-//					flow.emailInstance.contactType = ContactInfoType.EMAIL
-//				}
-//				if (!flow.facebookInstance) {
-//					def facebookInstance = new ContactInfo()
-//					flow.facebookInstance = facebookInstance
-//					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
-//				}
-//				if (!flow.twitterInstance) {
-//					def twitterInstance = new ContactInfo()
-//					flow.twitterInstance = twitterInstance
-//					flow.twitterInstance.contactType = ContactInfoType.TWITTER
-//				}
-//				if (!flow.linkedInInstance) {
-//					def linkedInInstance = new ContactInfo()
-//					flow.linkedInInstance = linkedInInstance
-//					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
-//				}
-//				if (!flow.awardInstance) {
-//					def awardInstance = new Award()
-//					flow.awardInstance = awardInstance
-//				}
-//				if (!flow.affiliationInstance) {
-//					def affiliationInstance = new Affiliation()
-//					flow.affiliationInstance = affiliationInstance
-//				}
-//				if (!flow.licenseInstance) {
-//					def licenseInstance = new License()
-//					flow.licenseInstance = licenseInstance
-//				}
-//				if (!flow.primaryServiceInstance) {
-//					def primaryServiceInstance = new Service()
-//					flow.primaryServiceInstance = primaryServiceInstance
-//					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
-//				}
-//				if (!flow.secondaryServiceInstance) {
-//					def secondaryServiceInstance = new Service()
-//					flow.secondaryServiceInstance = secondaryServiceInstance
-//					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
-//				}
-//				if (!flow.companyProfileInstance) {
-//					def companyProfileInstance = new CompanyProfile()
-//					flow.companyProfileInstance = companyProfileInstance
-//				}
-//				if (!flow.differentiationInstance) {
-//					def differentiationInstance = new Differentiation()
-//					flow.differentiationInstance = differentiationInstance
-//				}
-//				if (!flow.profileInstance) {
-//					def profileInstance = new Profile()
-//					flow.profileInstance = profileInstance
-//					flow.profileInstance.companyProfile = flow.companyProfileInstance
-//					flow.profileInstance.addToServices(flow.primaryServiceInstance)
-//					flow.profileInstance.addToServices(flow.secondaryServiceInstance)
-//					flow.profileInstance.addToAwards(flow.awardInstance)
-//					flow.profileInstance.addToContacts(flow.phoneNumberInstance)
-//					flow.profileInstance.addToContacts(flow.websiteInstance)
-//					flow.profileInstance.addToContacts(flow.emailInstance)
-//					flow.profileInstance.addToContacts(flow.facebookInstance)
-//					flow.profileInstance.addToContacts(flow.twitterInstance)
-//					flow.profileInstance.addToContacts(flow.linkedInInstance)
-//				}
-//				def tempProfileInstance = new Profile(params)
-//				def tempCompanyProfileInstance = new CompanyProfile(params)
-//				flow.profileInstance.subCategory = tempProfileInstance.subCategory
-//				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
-//				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
-//				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
-//				flow.primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
-//				flow.secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
-//				flow.secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
-//			}.to "createCompanyInfoAndRates"
-//		}
-//		createCompanyInfoAndRates {
-//			on("next") {
-//				def tempProfileInstance = new Profile(params)
-//				def tempCompanyProfileInstance = new CompanyProfile(params)
-//				flow.profileInstance.feeStructure = tempProfileInstance.feeStructure
-//				flow.profileInstance.askingFee = tempProfileInstance.askingFee
-//				flow.profileInstance.displayPicture = tempProfileInstance.displayPicture
-//				flow.companyProfileInstance.companySize = tempCompanyProfileInstance.companySize
-//				flow.companyProfileInstance.companyAge = tempCompanyProfileInstance.companyAge
-//				flow.companyProfileInstance.logo = tempCompanyProfileInstance.logo
-//			}.to "createLocationsAndDirections"
-//		}
-//		createLocationsAndDirections {
-//			on("next") {
-//				def tempCompanyProfileInstance = new CompanyProfile(params)
-//				flow.companyProfileInstance.address = tempCompanyProfileInstance.address
-//				flow.companyProfileInstance.directionsToAddress = tempCompanyProfileInstance.directionsToAddress
-//				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
-//			}.to "createProfesionalAndLicensing"
-//		}
-//		createProfesionalAndLicensing {
-//			on("next") {
-//				flow.differentiationInstance.differentiationKeywords = params['differentiation.differentiationKeywords']
-//				flow.differentiationInstance.differentiationDescription = params['differentiation.differentiationDescription']
-//				def tempLicenseInstance = new License(params) 
-//				flow.licenseInstance = tempLicenseInstance
-//				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']
-//				flow.affiliationInstance.affiliationRole = params['affiliation.affiliationRole']
-//				flow.awardInstance.awardName = params['award.awardName']
-//				flow.awardInstance.awardYear = params.int('award.awardYear')
-//				flow.awardInstance.awardDescription = params['award.awardDescription']
-//			}.to "createContactDetails"
-//		}
-//		createContactDetails {
-//			on("next") {
-//				flow.phoneNumberInstance.contactValue = params['contactInfo.phoneNumber']
-//				flow.phoneNumberInstance.contactAlias = params['contactInfo.phoneNumber.contactAlias']
-//				flow.emailInstance.contactValue = params['contactInfo.email']
-//				flow.emailInstance.name = params['contactInfo.phoneNumber.contactAlias']
-//				flow.websiteInstance.contactValue = params['contactInfo.website']
-//				flow.facebookInstance.contactValue = params['contactInfo.facebook']
-//				flow.twitterInstance.contactValue = params['contactInfo.twitter']
-//				flow.linkedInInstance.contactValue = params['contactInfo.linkedIn']
-//			}.to "createCategoryAndOffering"
-//		}
-//	}
-	
+	//	def profileDivisionFlow = {
+	//		createCategoryAndOffering {
+	//			on("next") {
+	//				if (!flow.phoneNumberInstance) {
+	//					def phoneNumberInstance = new ContactInfo()
+	//					flow.phoneNumberInstance = phoneNumberInstance
+	//					flow.phoneNumberInstance.contactType = ContactInfoType.PHONE_NUMBER
+	//				}
+	//				if (!flow.websiteInstance) {
+	//					def websiteInstance = new ContactInfo()
+	//					flow.websiteInstance = websiteInstance
+	//					flow.websiteInstance.contactType = ContactInfoType.WEBSITE
+	//				}
+	//				if (!flow.emailInstance) {
+	//					def emailInstance = new ContactInfo()
+	//					flow.emailInstance = emailInstance
+	//					flow.emailInstance.contactType = ContactInfoType.EMAIL
+	//				}
+	//				if (!flow.facebookInstance) {
+	//					def facebookInstance = new ContactInfo()
+	//					flow.facebookInstance = facebookInstance
+	//					flow.facebookInstance.contactType = ContactInfoType.FACEBOOK
+	//				}
+	//				if (!flow.twitterInstance) {
+	//					def twitterInstance = new ContactInfo()
+	//					flow.twitterInstance = twitterInstance
+	//					flow.twitterInstance.contactType = ContactInfoType.TWITTER
+	//				}
+	//				if (!flow.linkedInInstance) {
+	//					def linkedInInstance = new ContactInfo()
+	//					flow.linkedInInstance = linkedInInstance
+	//					flow.linkedInInstance.contactType = ContactInfoType.LINKEDIN
+	//				}
+	//				if (!flow.awardInstance) {
+	//					def awardInstance = new Award()
+	//					flow.awardInstance = awardInstance
+	//				}
+	//				if (!flow.affiliationInstance) {
+	//					def affiliationInstance = new Affiliation()
+	//					flow.affiliationInstance = affiliationInstance
+	//				}
+	//				if (!flow.licenseInstance) {
+	//					def licenseInstance = new License()
+	//					flow.licenseInstance = licenseInstance
+	//				}
+	//				if (!flow.primaryServiceInstance) {
+	//					def primaryServiceInstance = new Service()
+	//					flow.primaryServiceInstance = primaryServiceInstance
+	//					flow.primaryServiceInstance.serviceType = ServiceOfferingType.PRIMARY
+	//				}
+	//				if (!flow.secondaryServiceInstance) {
+	//					def secondaryServiceInstance = new Service()
+	//					flow.secondaryServiceInstance = secondaryServiceInstance
+	//					flow.secondaryServiceInstance.serviceType = ServiceOfferingType.SECONDARY
+	//				}
+	//				if (!flow.companyProfileInstance) {
+	//					def companyProfileInstance = new CompanyProfile()
+	//					flow.companyProfileInstance = companyProfileInstance
+	//				}
+	//				if (!flow.differentiationInstance) {
+	//					def differentiationInstance = new Differentiation()
+	//					flow.differentiationInstance = differentiationInstance
+	//				}
+	//				if (!flow.profileInstance) {
+	//					def profileInstance = new Profile()
+	//					flow.profileInstance = profileInstance
+	//					flow.profileInstance.companyProfile = flow.companyProfileInstance
+	//					flow.profileInstance.addToServices(flow.primaryServiceInstance)
+	//					flow.profileInstance.addToServices(flow.secondaryServiceInstance)
+	//					flow.profileInstance.addToAwards(flow.awardInstance)
+	//					flow.profileInstance.addToContacts(flow.phoneNumberInstance)
+	//					flow.profileInstance.addToContacts(flow.websiteInstance)
+	//					flow.profileInstance.addToContacts(flow.emailInstance)
+	//					flow.profileInstance.addToContacts(flow.facebookInstance)
+	//					flow.profileInstance.addToContacts(flow.twitterInstance)
+	//					flow.profileInstance.addToContacts(flow.linkedInInstance)
+	//				}
+	//				def tempProfileInstance = new Profile(params)
+	//				def tempCompanyProfileInstance = new CompanyProfile(params)
+	//				flow.profileInstance.subCategory = tempProfileInstance.subCategory
+	//				flow.companyProfileInstance.description = tempCompanyProfileInstance.description
+	//				flow.companyProfileInstance.companyName = tempCompanyProfileInstance.companyName
+	//				flow.primaryServiceInstance.serviceName = params['primaryService.serviceName']
+	//				flow.primaryServiceInstance.serviceDescription = params['primaryService.serviceDescription']
+	//				flow.secondaryServiceInstance.serviceName = params['secondaryService.serviceName']
+	//				flow.secondaryServiceInstance.serviceDescription = params['secondaryService.serviceDescription']
+	//			}.to "createCompanyInfoAndRates"
+	//		}
+	//		createCompanyInfoAndRates {
+	//			on("next") {
+	//				def tempProfileInstance = new Profile(params)
+	//				def tempCompanyProfileInstance = new CompanyProfile(params)
+	//				flow.profileInstance.feeStructure = tempProfileInstance.feeStructure
+	//				flow.profileInstance.askingFee = tempProfileInstance.askingFee
+	//				flow.profileInstance.displayPicture = tempProfileInstance.displayPicture
+	//				flow.companyProfileInstance.companySize = tempCompanyProfileInstance.companySize
+	//				flow.companyProfileInstance.companyAge = tempCompanyProfileInstance.companyAge
+	//				flow.companyProfileInstance.logo = tempCompanyProfileInstance.logo
+	//			}.to "createLocationsAndDirections"
+	//		}
+	//		createLocationsAndDirections {
+	//			on("next") {
+	//				def tempCompanyProfileInstance = new CompanyProfile(params)
+	//				flow.companyProfileInstance.address = tempCompanyProfileInstance.address
+	//				flow.companyProfileInstance.directionsToAddress = tempCompanyProfileInstance.directionsToAddress
+	//				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
+	//			}.to "createProfesionalAndLicensing"
+	//		}
+	//		createProfesionalAndLicensing {
+	//			on("next") {
+	//				flow.differentiationInstance.differentiationKeywords = params['differentiation.differentiationKeywords']
+	//				flow.differentiationInstance.differentiationDescription = params['differentiation.differentiationDescription']
+	//				def tempLicenseInstance = new License(params)
+	//				flow.licenseInstance = tempLicenseInstance
+	//				flow.affiliationInstance.affiliationName = params['affiliation.affiliationName']
+	//				flow.affiliationInstance.affiliationRole = params['affiliation.affiliationRole']
+	//				flow.awardInstance.awardName = params['award.awardName']
+	//				flow.awardInstance.awardYear = params.int('award.awardYear')
+	//				flow.awardInstance.awardDescription = params['award.awardDescription']
+	//			}.to "createContactDetails"
+	//		}
+	//		createContactDetails {
+	//			on("next") {
+	//				flow.phoneNumberInstance.contactValue = params['contactInfo.phoneNumber']
+	//				flow.phoneNumberInstance.contactAlias = params['contactInfo.phoneNumber.contactAlias']
+	//				flow.emailInstance.contactValue = params['contactInfo.email']
+	//				flow.emailInstance.name = params['contactInfo.phoneNumber.contactAlias']
+	//				flow.websiteInstance.contactValue = params['contactInfo.website']
+	//				flow.facebookInstance.contactValue = params['contactInfo.facebook']
+	//				flow.twitterInstance.contactValue = params['contactInfo.twitter']
+	//				flow.linkedInInstance.contactValue = params['contactInfo.linkedIn']
+	//			}.to "createCategoryAndOffering"
+	//		}
+	//	}
+
 	def contentManagerFlow = {
 		initialize {
 			action {
@@ -327,17 +330,28 @@ class ProfileController {
 			on("next") {
 				def profile = flow.profileInstance
 				def companyProfile = flow.companyProfileInstance
-				
+
 				def tempProfileInstance = new Profile(params)
 				def tempCompanyProfileInstance = new CompanyProfile(params)
-				
+
 				profile.feeStructure = tempProfileInstance.feeStructure
 				profile.askingFee = tempProfileInstance.askingFee
 				profile.rateNegotiable = (params['rateNegotiable'] == 'Y')
-//				profile.displayPicture = tempProfileInstance.displayPicture
+				def logo = request.getFile('logo')
+				if(logo) {
+					companyProfile.logo = logo.getBytes()
+					println companyProfile.logo
+				}
+				def displayPicture = request.getFile('displayPicture')
+				if(displayPicture) {
+					profile.displayPicture = displayPicture.getBytes()
+					println profile.displayPicture
+				}
+				println companyProfile.id 
+				//				profile.displayPicture = tempProfileInstance.displayPicture
 				companyProfile.companySize = tempCompanyProfileInstance.companySize
 				companyProfile.companyAge = tempCompanyProfileInstance.companyAge
-//				companyProfile.logo = tempCompanyProfileInstance.logo
+				//				companyProfile.logo = tempCompanyProfileInstance.logo
 				[ profileInstance: profile,
 					companyProfileInstance: companyProfile]
 			}.to "locationAndDirections"
@@ -351,7 +365,17 @@ class ProfileController {
 				}
 				def tempAddressInstance = new Address(params)
 				address.properties = tempAddressInstance.properties
-				companyProfile.directionsToAddress = params.directionsToAddress
+				println params.directionsToAddress
+				companyProfile.directionsToAddress = params.directionsToAddress 
+				/*def photo = request.getFile('user_upload')
+				def placeOfBusinessPhoto = flow.placeOfBusinessPhotoInstance
+				if(!placeOfBusinessPhoto){
+					placeOfBusiness = new PlaceOfBusinessPhoto()
+				}*/
+				if(photo) {
+					companyProfile.addToPhotos(photo) 
+					println companyProfile.photos
+				}
 				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
 				[ companyProfileInstance: companyProfile,
 					addressInstance: address ]
@@ -375,12 +399,12 @@ class ProfileController {
 				if (!award) {
 					award = new Award()
 				}
-				
+
 				def tempDifferentiationInstance = new Differentiation(params)
 				def tempLicenseInstance = new License(params)
 				def tempAffiliationInstance = new Affiliation(params)
 				def tempAwardInstance = new Award(params)
-				
+
 				differentiation.differentiationKeywords = tempDifferentiationInstance.differentiationKeywords
 				differentiation.differentiationDescription = tempDifferentiationInstance.differentiationDescription
 				license.properties = tempLicenseInstance.properties
@@ -427,7 +451,7 @@ class ProfileController {
 					linkedIn = new ContactInfo()
 					linkedIn.contactType = ContactInfoType.LINKEDIN
 				}
-				
+
 				phoneNumber.contactValue = params['contactInfo.phoneNumber']
 				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
 				email.contactValue = params['contactInfo.email']
@@ -463,7 +487,7 @@ class ProfileController {
 				profile.addToContacts(flow.twitterInstance)
 				profile.addToContacts(flow.linkedInInstance)
 				profile.save(flush: true, failOnError: true)
-				
+
 				def currentUser = springSecurityService.currentUser
 				currentUser.profile = profile
 				currentUser.save(flush: true, failOnError: true)
@@ -475,80 +499,133 @@ class ProfileController {
 		errorHandler {
 			on("restart").to "initialize"
 		}
-		profileSaved {
-			redirect(action: "show")
-		}
+		profileSaved { redirect(action: "show") }
+	}
+
+	def logo = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def companyProfile = CompanyProfile.get(params.id)
+		println companyProfile.logo
+		//response.setContentType('image/jpeg')
+		response.setContentLength(companyProfile.logo.size())
+		OutputStream out = response.getOutputStream();
+		out.write(companyProfile.logo);
+		out.close();
+	}
+
+	def displayPicture = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def profile = Profile.get(params.id)
+		println profile.displayPicture
+		//response.setContentType('image/jpeg')
+		response.setContentLength(profile.displayPicture.size())
+		OutputStream out = response.getOutputStream();
+		out.write(profile.displayPicture);
+		out.close();
 	}
 	
-    def show(Long id) {
-        //def profileInstance = Profile.get(id)
+	def photo = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def placeOfBusinessPhoto = PlaceOfBusinessPhoto.get(params.id)
+		println placeOfBusinessPhoto.photo
+		//response.setContentType('image/jpeg')
+		response.setContentLength(placeOfBusinessPhoto.photo.size())
+		OutputStream out = response.getOutputStream();
+		out.write(placeOfBusinessPhoto.photo);
+		out.close();
+	}
+	
+	def show(Long id) {
+		//def profileInstance = Profile.get(id)
 		def currentUser = springSecurityService.currentUser
 		def profileInstance = currentUser.profile
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        [profileInstance: profileInstance]
-    }
+		[profileInstance: profileInstance]
+	}
 
-    def edit(Long id) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def edit(Long id) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        [profileInstance: profileInstance]
-    }
+		[profileInstance: profileInstance]
+	}
 
-    def update(Long id, Long version) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def update(Long id, Long version) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        if (version != null) {
-            if (profileInstance.version > version) {
-                profileInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'profile.label', default: 'Profile')] as Object[],
-                          "Another user has updated this Profile while you were editing")
-                render(view: "edit", model: [profileInstance: profileInstance])
-                return
-            }
-        }
+		if (version != null) {
+			if (profileInstance.version > version) {
+				profileInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						[
+							message(code: 'profile.label', default: 'Profile')] as Object[],
+						"Another user has updated this Profile while you were editing")
+				render(view: "edit", model: [profileInstance: profileInstance])
+				return
+			}
+		}
 
-        profileInstance.properties = params
+		profileInstance.properties = params
 
-        if (!profileInstance.save(flush: true)) {
-            render(view: "edit", model: [profileInstance: profileInstance])
-            return
-        }
+		if (!profileInstance.save(flush: true)) {
+			render(view: "edit", model: [profileInstance: profileInstance])
+			return
+		}
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
-        redirect(action: "show", id: profileInstance.id)
-    }
+		flash.message = message(code: 'default.updated.message', args: [
+			message(code: 'profile.label', default: 'Profile'),
+			profileInstance.id
+		])
+		redirect(action: "show", id: profileInstance.id)
+	}
 
-    def delete(Long id) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def delete(Long id) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        try {
-            profileInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "show", id: id)
-        }
-    }
+		try {
+			profileInstance.delete(flush: true)
+			flash.message = message(code: 'default.deleted.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+		}
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "show", id: id)
+		}
+	}
 }
