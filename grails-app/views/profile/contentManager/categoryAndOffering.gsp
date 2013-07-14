@@ -101,23 +101,10 @@ premium business account at the end of this form.</li>
 										
 										<li id="primary-service-offerings" class="input-section">
 											<h3>Primary Service Offerings <span class="red">*</span></h3>
-											<p>Add one or more secondary services (max 5) you offer to clients on occation and provide a short description of each:</p>
-											<ul class="input-wrap">
-												<li class="user-input">
-													<g:textField class="full-width" name="primaryService.serviceName" 
-														value="${primaryServiceInstance?.serviceName}" placeholder="Primary Service Title" />
-													<div class="star-wrap">
-														<g:textArea class="premium-field" name="primaryService.serviceDescription" 
-															value="${primaryServiceInstance?.serviceDescription}" placeholder="Describe this service..." />
-														<span class="blue-star-icon"></span>
-													</div>
-													<div class="add-btn-wrap">		
-														<input value="Add Another Service" type="button">
-														<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
-													</div>
-												</li>
-											</ul>
+											<p>Add one or more secondary services (max 5) you offer to clients on occasion and provide a short description of each:</p>
+											<g:render template="primaryServices" model="['primaryServices':profileInstance.primaryServices]" />
 										</li>
+										<g:render template='primaryService' model="['service':null,'i':'_clone','hidden':true]"/>
 										
 										<li id="secondary-service-offerings" class="input-section last">
 											<h3>Secondary Service Offerings <span class="red">*</span></h3>
