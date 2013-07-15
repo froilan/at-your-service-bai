@@ -106,7 +106,9 @@ premium business account at the end of this form.</li>
 										
 										<li id="awards-and-recognition" class="input-section last">
 											<h3>Awards &amp; Recognition</h3>
-											<p>List any awards you have received in your industry within recent years.</p>						
+											<p>List any awards you have received in your industry within recent years.</p>
+											<g:render template="awards" model="['awards':profileInstance.awards]" />
+											<%--				
 											<ul class="input-wrap">	
 												<li class="user-input half-text">
 													<div class="inline-wrap">
@@ -126,6 +128,7 @@ premium business account at the end of this form.</li>
 													</div>
 												</li>
 											</ul>
+											--%>
 										</li>
 										
 									</ul><!-- end .outer-form-ul -->
@@ -133,6 +136,7 @@ premium business account at the end of this form.</li>
 							</g:form>
 							<g:render template='differentiation' model="['differentiation':null,'i':'_clone','hidden':true]"/>
 							<g:render template='affiliation' model="['affiliation':null,'i':'_clone','hidden':true]"/>
+							<g:render template='award' model="['award':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->
