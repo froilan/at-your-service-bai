@@ -8,16 +8,16 @@ class ProfileController {
 
 	def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
-    def index() {
-        redirect(action: "list", params: params)
-    }
+	def index() {
+		redirect(action: "list", params: params)
+	}
 
-    def list(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        [profileInstanceList: Profile.list(params), profileInstanceTotal: Profile.count()]
-    }
+	def list(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[profileInstanceList: Profile.list(params), profileInstanceTotal: Profile.count()]
+	}
 
 //    def create() {
 //        [:]
@@ -196,17 +196,28 @@ class ProfileController {
 			on("next") {
 				def profile = flow.profileInstance
 				def companyProfile = flow.companyProfileInstance
-				
+
 				def tempProfileInstance = new Profile(params)
 				def tempCompanyProfileInstance = new CompanyProfile(params)
-				
+
 				profile.feeStructure = tempProfileInstance.feeStructure
 				profile.askingFee = tempProfileInstance.askingFee
 				profile.rateNegotiable = (params['rateNegotiable'] == 'Y')
-//				profile.displayPicture = tempProfileInstance.displayPicture
+				def logo = request.getFile('logo')
+				if(logo) {
+					companyProfile.logo = logo.getBytes()
+					println companyProfile.logo
+				}
+				def displayPicture = request.getFile('displayPicture')
+				if(displayPicture) {
+					profile.displayPicture = displayPicture.getBytes()
+					println profile.displayPicture
+				}
+				println companyProfile.id 
+				//				profile.displayPicture = tempProfileInstance.displayPicture
 				companyProfile.companySize = tempCompanyProfileInstance.companySize
 				companyProfile.companyAge = tempCompanyProfileInstance.companyAge
-//				companyProfile.logo = tempCompanyProfileInstance.logo
+				//				companyProfile.logo = tempCompanyProfileInstance.logo
 				[ profileInstance: profile,
 					companyProfileInstance: companyProfile]
 			}.to "locationAndDirections"
@@ -220,10 +231,21 @@ class ProfileController {
 				}
 				def tempAddressInstance = new Address(params)
 				address.properties = tempAddressInstance.properties
-				companyProfile.directionsToAddress = params.directionsToAddress
+				println params.directionsToAddress
+				companyProfile.directionsToAddress = params.directionsToAddress 
+				
+				def placeOfBusinessPhoto = flow.placeOfBusinessPhotoInstance
+				if(!placeOfBusinessPhoto){
+					placeOfBusinessPhoto = new PlaceOfBusinessPhoto()
+				}
+				def photo = request.getFile('user_upload')
+				if(photo) {
+					placeOfBusinessPhoto.photo = photo.getBytes() 
+				}
 				//companyProfileInstance.photos = tempCompanyProfileInstance.photos
 				[ companyProfileInstance: companyProfile,
-					addressInstance: address ]
+					addressInstance: address,
+					 placeOfBusinessInstance: placeOfBusinessPhoto]
 			}.to "profesionalAndLicensing"
 		}
 		profesionalAndLicensing {
@@ -244,12 +266,12 @@ class ProfileController {
 				if (!award) {
 					award = new Award()
 				}
-				
+
 				def tempDifferentiationInstance = new Differentiation(params)
 				def tempLicenseInstance = new License(params)
 				def tempAffiliationInstance = new Affiliation(params)
 				def tempAwardInstance = new Award(params)
-				
+
 				differentiation.differentiationKeywords = tempDifferentiationInstance.differentiationKeywords
 				differentiation.differentiationDescription = tempDifferentiationInstance.differentiationDescription
 				license.properties = tempLicenseInstance.properties
@@ -296,7 +318,7 @@ class ProfileController {
 					linkedIn = new ContactInfo()
 					linkedIn.contactType = ContactInfoType.LINKEDIN
 				}
-				
+
 				phoneNumber.contactValue = params['contactInfo.phoneNumber']
 				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
 				email.contactValue = params['contactInfo.email']
@@ -319,6 +341,7 @@ class ProfileController {
 				def profile = flow.profileInstance
 				profile.companyProfile = flow.companyProfileInstance
 				profile.companyProfile.address = flow.addressInstance
+				profile.companyProfile.addToPhotos(flow.placeOfBusinessInstance)
 				profile.license = flow.licenseInstance
 //				profile.addToServices(flow.primaryServiceInstance)
 				profile.addToSecondaryServices(flow.secondaryServiceInstance)
@@ -332,7 +355,7 @@ class ProfileController {
 				profile.addToContacts(flow.twitterInstance)
 				profile.addToContacts(flow.linkedInInstance)
 				profile.save(flush: true, failOnError: true)
-				
+
 				def currentUser = springSecurityService.currentUser
 				currentUser.profile = profile
 				currentUser.save(flush: true, failOnError: true)
@@ -344,80 +367,133 @@ class ProfileController {
 		errorHandler {
 			on("restart").to "initialize"
 		}
-		profileSaved {
-			redirect(action: "show")
-		}
+		profileSaved { redirect(action: "show") }
+	}
+
+	def logo = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def companyProfile = CompanyProfile.get(params.id)
+		println companyProfile.logo
+		//response.setContentType('image/jpeg')
+		response.setContentLength(companyProfile.logo.size())
+		OutputStream out = response.getOutputStream();
+		out.write(companyProfile.logo);
+		out.close();
+	}
+
+	def displayPicture = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def profile = Profile.get(params.id)
+		println profile.displayPicture
+		//response.setContentType('image/jpeg')
+		response.setContentLength(profile.displayPicture.size())
+		OutputStream out = response.getOutputStream();
+		out.write(profile.displayPicture);
+		out.close();
 	}
 	
-    def show(Long id) {
-        //def profileInstance = Profile.get(id)
+	def photo = {
+		println ">>>>>>>>>>>>>>>>>>>>>>>>"
+		def placeOfBusinessPhoto = PlaceOfBusinessPhoto.get(params.id)
+		println placeOfBusinessPhoto.photo
+		//response.setContentType('image/jpeg')
+		response.setContentLength(placeOfBusinessPhoto.photo.size())
+		OutputStream out = response.getOutputStream();
+		out.write(placeOfBusinessPhoto.photo);
+		out.close();
+	}
+	
+	def show(Long id) {
+		//def profileInstance = Profile.get(id)
 		def currentUser = springSecurityService.currentUser
 		def profileInstance = currentUser.profile
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        [profileInstance: profileInstance]
-    }
+		[profileInstance: profileInstance]
+	}
 
-    def edit(Long id) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def edit(Long id) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        [profileInstance: profileInstance]
-    }
+		[profileInstance: profileInstance]
+	}
 
-    def update(Long id, Long version) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def update(Long id, Long version) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        if (version != null) {
-            if (profileInstance.version > version) {
-                profileInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'profile.label', default: 'Profile')] as Object[],
-                          "Another user has updated this Profile while you were editing")
-                render(view: "edit", model: [profileInstance: profileInstance])
-                return
-            }
-        }
+		if (version != null) {
+			if (profileInstance.version > version) {
+				profileInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+						[
+							message(code: 'profile.label', default: 'Profile')] as Object[],
+						"Another user has updated this Profile while you were editing")
+				render(view: "edit", model: [profileInstance: profileInstance])
+				return
+			}
+		}
 
-        profileInstance.properties = params
+		profileInstance.properties = params
 
-        if (!profileInstance.save(flush: true)) {
-            render(view: "edit", model: [profileInstance: profileInstance])
-            return
-        }
+		if (!profileInstance.save(flush: true)) {
+			render(view: "edit", model: [profileInstance: profileInstance])
+			return
+		}
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'profile.label', default: 'Profile'), profileInstance.id])
-        redirect(action: "show", id: profileInstance.id)
-    }
+		flash.message = message(code: 'default.updated.message', args: [
+			message(code: 'profile.label', default: 'Profile'),
+			profileInstance.id
+		])
+		redirect(action: "show", id: profileInstance.id)
+	}
 
-    def delete(Long id) {
-        def profileInstance = Profile.get(id)
-        if (!profileInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-            return
-        }
+	def delete(Long id) {
+		def profileInstance = Profile.get(id)
+		if (!profileInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+			return
+		}
 
-        try {
-            profileInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "list")
-        }
-        catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'profile.label', default: 'Profile'), id])
-            redirect(action: "show", id: id)
-        }
-    }
+		try {
+			profileInstance.delete(flush: true)
+			flash.message = message(code: 'default.deleted.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "list")
+		}
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [
+				message(code: 'profile.label', default: 'Profile'),
+				id
+			])
+			redirect(action: "show", id: id)
+		}
+	}
 }

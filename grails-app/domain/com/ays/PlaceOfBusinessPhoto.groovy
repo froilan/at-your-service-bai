@@ -1,6 +1,6 @@
 package com.ays
 
-class PlaceOfBusinessPhoto {
+class PlaceOfBusinessPhoto implements Serializable{
 
 	byte[] photo
 	Date dateCreated
