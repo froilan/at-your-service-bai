@@ -54,6 +54,8 @@ premium business account at the end of this form.</li>
 										<li id="phone-numbers" class="input-section">
 											<h3>Phone Numbers <span class="red">*</span></h3>
 											<p>Add one or more contact numbers below.</p>
+											<g:render template="phoneNumbers" model="['phoneNumbers':profileInstance.phoneNumbers]" />
+											<%--
 											<ul class="input-wrap">
 												<li class="user-input">
 													<!-- input class="single-line" value="Name (example: Customer Support)" type="text">
@@ -77,13 +79,16 @@ premium business account at the end of this form.</li>
 														<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
 													</div>												
 												</li>																				
-											</ul> 
+											</ul>
+											--%> 
 										</li>
 										
 										
 										<li id="email-addresses" class="input-section">
 											<h3>Email</h3>
-											<p>Input your primary business email address which people can email you at.</p>						
+											<p>Input your primary business email address which people can email you at.</p>	
+											<g:render template="emailAddresses" model="['emailAddresses':profileInstance.emailAddresses]" />		
+											<%--			
 											<ul class="input-wrap">	
 												<li class="user-input">
 													<!-- input class="inline half" value="Name (example: Sales)" type="text">
@@ -98,11 +103,14 @@ premium business account at the end of this form.</li>
 													</div>
 												</li>
 											</ul>
+											--%>
 										</li>
 										
 										<li id="website" class="input-section">
 											<h3>Website</h3>
-											<p>Input your current website URL if you have an existing website you would like to share to potential clients.</p>						
+											<p>Input your current website URL if you have an existing website you would like to share to potential clients.</p>
+											<g:render template="websites" model="['websites':profileInstance.websites]" />		
+											<%--				
 											<ul class="input-wrap">	
 												<li class="user-input">
 													<!-- input class="full-width" value="http://" type="text"-->
@@ -114,6 +122,7 @@ premium business account at the end of this form.</li>
 													</div>
 												</li>
 											</ul>
+											 --%>
 										</li>
 										
 										<li id="social-networks" class="input-section last">
@@ -148,6 +157,9 @@ premium business account at the end of this form.</li>
 								<!--  input class="create-profile-btn" value="Create My FREE Profile" type="submit"-->
 								<g:submitButton class="create-profile-btn" name="next" value="Create My FREE Profile" />
 							</g:form>
+							<g:render template='phoneNumber' model="['phoneNumber':null,'i':'_clone','hidden':true]"/>
+							<g:render template='emailAddress' model="['emailAddress':null,'i':'_clone','hidden':true]"/>
+							<g:render template='website' model="['website':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->

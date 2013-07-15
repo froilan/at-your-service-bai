@@ -119,25 +119,25 @@ class ProfileController {
 					if (currentUser?.hasProfile()) {
 						println "retrieving profile info..."
 						def profile = currentUser.profile
-						def phoneNumber = profile.contacts.find { it.contactType == ContactInfoType.PHONE_NUMBER }
-						def email = profile.contacts.find { it.contactType == ContactInfoType.EMAIL }
-						def website = profile.contacts.find { it.contactType == ContactInfoType.WEBSITE }
-						def facebook = profile.contacts.find { it.contactType == ContactInfoType.FACEBOOK }
-						def twitter = profile.contacts.find { it.contactType == ContactInfoType.TWITTER }
-						def linkedIn = profile.contacts.find { it.contactType == ContactInfoType.LINKEDIN }
+//						def phoneNumber = profile.contacts.find { it.contactType == ContactInfoType.PHONE_NUMBER }
+//						def email = profile.contacts.find { it.contactType == ContactInfoType.EMAIL }
+//						def website = profile.contacts.find { it.contactType == ContactInfoType.WEBSITE }
+//						def facebook = profile.contacts.find { it.contactType == ContactInfoType.FACEBOOK }
+//						def twitter = profile.contacts.find { it.contactType == ContactInfoType.TWITTER }
+//						def linkedIn = profile.contacts.find { it.contactType == ContactInfoType.LINKEDIN }
 						[ profileInstance: profile,
 							companyProfileInstance: profile.companyProfile,
 							addressInstance: profile.companyProfile.address,
+							licenseInstance: profile.license ]
 //							differentiationInstance: profile.differentiations[0],
-							licenseInstance: profile.license,
 //							affiliationInstance: profile.affiliations[0],
 //							awardInstance: profile.awards[0],
-							phoneNumberInstance: phoneNumber,
-							emailInstance: email,
-							websiteInstance: website,
-							facebookInstance: facebook,
-							twitterInstance: twitter,
-							linkedInInstance: linkedIn ]
+//							phoneNumberInstance: phoneNumber,
+//							emailInstance: email,
+//							websiteInstance: website,
+//							facebookInstance: facebook,
+//							twitterInstance: twitter,
+//							linkedInInstance: linkedIn ]
 					} else {
 						println ">> no profile yet!"
 						def profile = new Profile()
@@ -274,51 +274,56 @@ class ProfileController {
 		}
 		contactDetails {
 			on("next") {
-				def phoneNumber = flow.phoneNumberInstance
-				if (!phoneNumber) {
-					phoneNumber = new ContactInfo()
-					phoneNumber.contactType = ContactInfoType.PHONE_NUMBER
-				}
-				def email = flow.emailInstance
-				if (!email) {
-					email = new ContactInfo()
-					email.contactType = ContactInfoType.EMAIL
-				}
-				def website = flow.websiteInstance
-				if (!website) {
-					website = new ContactInfo()
-					website.contactType = ContactInfoType.WEBSITE
-				}
-				def facebook = flow.facebookInstance
-				if (!facebook) {
-					facebook = new ContactInfo()
-					facebook.contactType = ContactInfoType.FACEBOOK
-				}
-				def twitter = flow.twitterInstance
-				if (!twitter) {
-					twitter = new ContactInfo()
-					twitter.contactType = ContactInfoType.TWITTER
-				}
-				def linkedIn = flow.linkedInInstance
-				if (!linkedIn) {
-					linkedIn = new ContactInfo()
-					linkedIn.contactType = ContactInfoType.LINKEDIN
-				}
+//				def phoneNumber = flow.phoneNumberInstance
+//				if (!phoneNumber) {
+//					phoneNumber = new ContactInfo()
+//					phoneNumber.contactType = ContactInfoType.PHONE_NUMBER
+//				}
+//				def email = flow.emailInstance
+//				if (!email) {
+//					email = new ContactInfo()
+//					email.contactType = ContactInfoType.EMAIL
+//				}
+//				def website = flow.websiteInstance
+//				if (!website) {
+//					website = new ContactInfo()
+//					website.contactType = ContactInfoType.WEBSITE
+//				}
+//				def facebook = flow.facebookInstance
+//				if (!facebook) {
+//					facebook = new ContactInfo()
+//					facebook.contactType = ContactInfoType.FACEBOOK
+//				}
+//				def twitter = flow.twitterInstance
+//				if (!twitter) {
+//					twitter = new ContactInfo()
+//					twitter.contactType = ContactInfoType.TWITTER
+//				}
+//				def linkedIn = flow.linkedInInstance
+//				if (!linkedIn) {
+//					linkedIn = new ContactInfo()
+//					linkedIn.contactType = ContactInfoType.LINKEDIN
+//				}
+				def profile = flow.profileInstance
+				def tempProfileInstance = new Profile(params)
+				profile.contacts = tempProfileInstance.contacts
 
-				phoneNumber.contactValue = params['contactInfo.phoneNumber']
-				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
-				email.contactValue = params['contactInfo.email']
-				email.contactAlias = params['contactInfo.email.contactAlias']
-				website.contactValue = params['contactInfo.website']
-				facebook.contactValue = params['contactInfo.facebook']
-				twitter.contactValue = params['contactInfo.twitter']
-				linkedIn.contactValue = params['contactInfo.linkedIn']
-				[ phoneNumberInstance: phoneNumber,
-					emailInstance: email,
-					websiteInstance: website,
-					facebookInstance: facebook,
-					twitterInstance: twitter,
-					linkedInInstance: linkedIn ]
+//				phoneNumber.contactValue = params['contactInfo.phoneNumber']
+//				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
+//				email.contactValue = params['contactInfo.email']
+//				email.contactAlias = params['contactInfo.email.contactAlias']
+//				website.contactValue = params['contactInfo.website']
+//				facebook.contactValue = params['contactInfo.facebook']
+//				twitter.contactValue = params['contactInfo.twitter']
+//				linkedIn.contactValue = params['contactInfo.linkedIn']
+//				[ phoneNumberInstance: phoneNumber,
+//					emailInstance: email,
+//					websiteInstance: website,
+//					facebookInstance: facebook,
+//					twitterInstance: twitter,
+//					linkedInInstance: linkedIn ]
+				println "profile.contacts >> ${profile.contacts}"
+				[ profileInstance: profile ]
 			}.to "saveProfile"
 		}
 		saveProfile {
@@ -332,12 +337,12 @@ class ProfileController {
 //				profile.addToDifferentiations(flow.differentiationInstance)
 //				profile.addToAffiliations(flow.affiliationInstance)
 //				profile.addToAwards(flow.awardInstance)
-				profile.addToContacts(flow.phoneNumberInstance)
-				profile.addToContacts(flow.websiteInstance)
-				profile.addToContacts(flow.emailInstance)
-				profile.addToContacts(flow.facebookInstance)
-				profile.addToContacts(flow.twitterInstance)
-				profile.addToContacts(flow.linkedInInstance)
+//				profile.addToContacts(flow.phoneNumberInstance)
+//				profile.addToContacts(flow.websiteInstance)
+//				profile.addToContacts(flow.emailInstance)
+//				profile.addToContacts(flow.facebookInstance)
+//				profile.addToContacts(flow.twitterInstance)
+//				profile.addToContacts(flow.linkedInInstance)
 				profile.save(flush: true, failOnError: true)
 
 				def currentUser = springSecurityService.currentUser

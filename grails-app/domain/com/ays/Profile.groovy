@@ -17,8 +17,7 @@ class Profile implements Serializable {
 	License license
 	Date dateCreated
 	Date lastUpdated
-	List contacts
-	//List services
+	List contacts = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(ContactInfo.class))
 	List primaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(PrimaryService.class))
 	List secondaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(SecondaryService.class))
 	List differentiations = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Differentiation.class))
@@ -36,6 +35,7 @@ class Profile implements Serializable {
 						reviews: Review ]
 	
 	static mapping = {
+		contacts cascade:"all-delete-orphan"
 		primaryServices cascade:"all-delete-orphan"
 		secondaryServices cascade:"all-delete-orphan"
 		differentiations cascade:"all-delete-orphan"
@@ -43,7 +43,9 @@ class Profile implements Serializable {
 		awards cascade:"all-delete-orphan"
 	}
 
-	static transients = [ 'averageRating', 'businessName' ]
+	static transients = [ 'averageRating', 'businessName', 'phoneNumbers', 'emailAddresses',
+							'websites', 'facebookContactInfo', 'twitterContactInfo', 'linkedInContactInfo',
+							'otherContacts' ]
 
 	static searchable = {
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
@@ -94,6 +96,48 @@ class Profile implements Serializable {
 			return companyProfile.companyName
 		}
 		return "${lastName}, ${firstName}"
+	}
+	
+	List getPhoneNumbers() {
+		contacts?.findAll {
+			it.contactType == ContactInfoType.PHONE_NUMBER
+		}
+	}
+	
+	List getEmailAddresses() {
+		contacts?.findAll {
+			it.contactType == ContactInfoType.EMAIL
+		}
+	}
+	
+	List getWebsites() {
+		contacts?.findAll {
+			it.contactType == ContactInfoType.WEBSITE
+		}
+	}
+	
+	List getOtherContacts() {
+		contacts?.findAll {
+			it.contactType == ContactInfoType.OTHER
+		}
+	}
+	
+	ContactInfo getFacebookContactInfo() {
+		contacts?.find {
+			it.contactType == ContactInfoType.FACEBOOK
+		}
+	}
+	
+	ContactInfo getTwitterContactInfo() {
+		contacts?.find {
+			it.contactType == ContactInfoType.TWITTER
+		}
+	}
+	
+	ContactInfo getLinkedInContactInfo() {
+		contacts?.find {
+			it.contactType == ContactInfoType.LINKEDIN
+		}
 	}
 	
 }
