@@ -101,36 +101,20 @@ premium business account at the end of this form.</li>
 										
 										<li id="primary-service-offerings" class="input-section">
 											<h3>Primary Service Offerings <span class="red">*</span></h3>
-											<p>Add one or more secondary services (max 5) you offer to clients on occasion and provide a short description of each:</p>
+											<p>Add one or more primary services (max 5) you offer to clients on occasion and provide a short description of each:</p>
 											<g:render template="primaryServices" model="['primaryServices':profileInstance.primaryServices]" />
 										</li>
 										
 										<li id="secondary-service-offerings" class="input-section last">
 											<h3>Secondary Service Offerings <span class="red">*</span></h3>
-											<p>Add one or more primary services (max 5) you offer to clients regularly and provide a short description of each:</p>
-											<ul class="input-wrap">
-												<li class="user-input">
-													<div class="star-wrap">
-														<g:textField class="full-width" name="secondaryService.serviceName" 
-															value="${secondaryServiceInstance?.serviceName}" placeholder="Secondary Service Title" />
-														<span class="blue-star-icon"></span>
-													</div>
-													<div class="star-wrap">
-														<g:textArea class="premium-field" name="secondaryService.serviceDescription" 
-															value="${secondaryServiceInstance?.serviceDescription}" placeholder="Describe this service..." />
-														<span class="blue-star-icon"></span>
-													</div>
-													<div class="add-btn-wrap">
-														<input value="Add Another Service" type="button">
-														<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
-													</div>
-												</li>
-											</ul>
+											<p>Add one or more secondary services (max 5) you offer to clients regularly and provide a short description of each:</p>
+											<g:render template="secondaryServices" model="['secondaryServices':profileInstance.secondaryServices]" />
 										</li>
 									</ul><!-- end .outer-form-ul -->
 								<g:submitButton class="continue-btn" name="next" value="Continue" />
 							</g:form>
 							<g:render template='primaryService' model="['service':null,'i':'_clone','hidden':true]"/>
+							<g:render template='secondaryService' model="['service':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->

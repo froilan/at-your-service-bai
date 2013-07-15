@@ -119,8 +119,6 @@ class ProfileController {
 					if (currentUser?.hasProfile()) {
 						println "retrieving profile info..."
 						def profile = currentUser.profile
-	//					def primaryService = profile.services.find { it.serviceType == ServiceOfferingType.PRIMARY }
-	//					def secondaryService = profile.services.find { it.serviceType == ServiceOfferingType.PRIMARY }
 						def phoneNumber = profile.contacts.find { it.contactType == ContactInfoType.PHONE_NUMBER }
 						def email = profile.contacts.find { it.contactType == ContactInfoType.EMAIL }
 						def website = profile.contacts.find { it.contactType == ContactInfoType.WEBSITE }
@@ -130,7 +128,6 @@ class ProfileController {
 						[ profileInstance: profile,
 							companyProfileInstance: profile.companyProfile,
 							addressInstance: profile.companyProfile.address,
-							secondaryServiceInstance: profile.secondaryServices[0],
 							differentiationInstance: profile.differentiations[0],
 							licenseInstance: profile.license,
 							affiliationInstance: profile.affiliations[0],
@@ -162,34 +159,17 @@ class ProfileController {
 				if (!companyProfile) {
 					companyProfile = new CompanyProfile()
 				}
-//				def primaryService = flow.primaryServiceInstance
-//				if (!primaryService) {
-//					primaryService = new Service()
-//					primaryService.serviceType = ServiceOfferingType.PRIMARY
-//				}
-				def secondaryService = flow.secondaryServiceInstance
-				if (!secondaryService) {
-					secondaryService = new SecondaryService()
-//					secondaryService.serviceType = ServiceOfferingType.SECONDARY
-				}
 				def tempProfileInstance = new Profile(params)
 				profile.subCategory = tempProfileInstance.subCategory
 				profile.primaryServices = tempProfileInstance.primaryServices
+				profile.secondaryServices = tempProfileInstance.secondaryServices
 				companyProfile.companyName = params['name']
 				companyProfile.description = params['description']
-//				primaryService.serviceName = params['primaryService.serviceName']
-//				primaryService.serviceDescription = params['primaryService.serviceDescription']
-				secondaryService.serviceName = params['secondaryService.serviceName']
-				secondaryService.serviceDescription = params['secondaryService.serviceDescription']
-				println "params>> ${params}"
-				def primaryServiceMap = params["primaryServices[0]"]
-				def primaryService = new PrimaryService(primaryServiceMap)
-				println "params.primary>> ${primaryService}"
-				println "categoryPage>> ${profile.primaryServices}"
+				println "params >> ${params}"
+				println "primaryServices >> ${profile.primaryServices}"
+				println "secondaryServices >> ${profile.secondaryServices}"
 				[ profileInstance: profile,
-					companyProfileInstance: companyProfile,
-//					primaryServiceInstance: primaryService,
-					secondaryServiceInstance: secondaryService ]
+					companyProfileInstance: companyProfile ]
 			}.to "companyInfoAndRates"
 		}
 		companyInfoAndRates {
@@ -343,8 +323,6 @@ class ProfileController {
 				profile.companyProfile.address = flow.addressInstance
 				profile.companyProfile.addToPhotos(flow.placeOfBusinessInstance)
 				profile.license = flow.licenseInstance
-//				profile.addToServices(flow.primaryServiceInstance)
-				profile.addToSecondaryServices(flow.secondaryServiceInstance)
 				profile.addToDifferentiations(flow.differentiationInstance)
 				profile.addToAffiliations(flow.affiliationInstance)
 				profile.addToAwards(flow.awardInstance)
