@@ -1,11 +1,11 @@
 <script type="text/javascript">
-	var primaryServiceChildCount = ${primaryServices.size()} + 0;
+	var primaryServiceChildCount = ${primaryServices?.size()} + 0;
 
     function addPrimaryService() {
         console.log("Entering addPrimaryService... ")
 		var clone = $("#primaryService_clone").clone()
 		var divId = 'primaryService'+primaryServiceChildCount;
-		var htmlId = 'primaryServiceList['+primaryServiceChildCount+'].';
+		var htmlId = 'primaryServices['+primaryServiceChildCount+'].';
 		var serviceNameInput = clone.find("input[id$=serviceName]");
 
 		clone.find("input[type=button]")
@@ -22,7 +22,8 @@
 		        .attr('value', 'true');
 		serviceNameInput.attr('id',htmlId + 'serviceName')
 		        .attr('name',htmlId + 'serviceName');
-		clone.find("select[id$=serviceDescription]")
+		//clone.find("input[id$=serviceDescription]")
+		clone.find("textarea")
 		        .attr('id',htmlId + 'serviceDescription')
 		        .attr('name',htmlId + 'serviceDescription');
 		

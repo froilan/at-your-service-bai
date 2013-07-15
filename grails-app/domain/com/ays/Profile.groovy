@@ -1,6 +1,8 @@
 package com.ays
 
 import java.util.Date;
+import org.apache.commons.collections.list.LazyList;
+import org.apache.commons.collections.FactoryUtils;
 
 class Profile implements Serializable {
 
@@ -16,7 +18,9 @@ class Profile implements Serializable {
 	Date dateCreated
 	Date lastUpdated
 	List contacts
-	List services
+	//List services
+	List primaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(PrimaryService.class))
+	List secondaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(SecondaryService.class))
 	List differentiations
 	List affiliations
 	List awards
@@ -24,10 +28,16 @@ class Profile implements Serializable {
 
 	static hasMany = [ contacts: ContactInfo,
 						services: Service,
+						primaryServices: PrimaryService,
+						secondaryServices: SecondaryService,
 						differentiations: Differentiation,
 						affiliations: Affiliation,
 						awards: Award,
 						reviews: Review ]
+	
+	static mapping = {
+		primaryServices cascade:"all-delete-orphan"
+	}
 
 	static transients = [ 'averageRating', 'businessName' ]
 
@@ -38,7 +48,8 @@ class Profile implements Serializable {
 		subCategory component: true
 		companyProfile component: true
 		license component: true
-		services component: true
+		primaryServices component: true
+		secondaryServices component: true
 		affiliations component: true
 		awards component: true
 		displayPicture index: 'no'
@@ -80,4 +91,5 @@ class Profile implements Serializable {
 		}
 		return "${lastName}, ${firstName}"
 	}
+	
 }

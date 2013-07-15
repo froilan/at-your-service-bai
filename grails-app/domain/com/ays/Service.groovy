@@ -2,13 +2,19 @@ package com.ays
 
 import java.io.Serializable;
 
-class Service implements Serializable {
+abstract class Service implements Serializable {
 
-	ServiceOfferingType serviceType
 	String serviceName
 	String serviceDescription
 	Date dateCreated
 	Date lastUpdated
+	boolean deleted
+	
+	static transients = [ 'deleted' ]
+	
+	static mapping = {
+		discriminator column: "service_type"
+	}
 
 	static belongsTo = [ Profile ]
 
@@ -17,7 +23,6 @@ class Service implements Serializable {
 
 	static searchable = {
 		root false
-		serviceType index: 'no'
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
 	}
 	

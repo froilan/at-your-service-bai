@@ -104,7 +104,6 @@ premium business account at the end of this form.</li>
 											<p>Add one or more secondary services (max 5) you offer to clients on occasion and provide a short description of each:</p>
 											<g:render template="primaryServices" model="['primaryServices':profileInstance.primaryServices]" />
 										</li>
-										<g:render template='primaryService' model="['service':null,'i':'_clone','hidden':true]"/>
 										
 										<li id="secondary-service-offerings" class="input-section last">
 											<h3>Secondary Service Offerings <span class="red">*</span></h3>
@@ -131,6 +130,7 @@ premium business account at the end of this form.</li>
 									</ul><!-- end .outer-form-ul -->
 								<g:submitButton class="continue-btn" name="next" value="Continue" />
 							</g:form>
+							<g:render template='primaryService' model="['service':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->
