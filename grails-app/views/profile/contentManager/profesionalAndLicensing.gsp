@@ -54,28 +54,7 @@ premium business account at the end of this form.</li>
 										<li id="differentiation" class="input-section">
 											<h3>Differentiation <span class="red">*</span></h3>
 											<p>Add one or more reasons how you stand out from your competitors and provide a short description of each:</p>
-											<ul class="input-wrap">
-												<li class="user-input">
-													<div class="star-wrap">
-														<!-- input class="full-width" value="How is your service unique? Example: Superior Communication " type="text"-->
-														<g:textField class="full-width" name="differentiationKeywords" 
-															value="${differentiationInstance?.differentiationKeywords}" 
-															placeholder="How is your service unique? Example: Superior Communication" />
-														<span class="blue-star-icon"></span>
-													</div>
-													<div class="star-wrap">
-														<!-- textarea class="premium-field">Tell us a little more why you feel this way...</textarea-->
-														<g:textArea class="premium-field" name="differentiationDescription" 
-															value="${differentiationInstance?.differentiationDescription}" 
-															placeholder="Tell us a little more why you feel this way..." />
-														<span class="blue-star-icon"></span>
-													</div>
-													<div class="add-btn-wrap">
-														<input value="Add Another Service" type="button">
-														<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> created</span>
-													</div>
-												</li>
-											</ul>
+											<g:render template="differentiations" model="['differentiations':profileInstance.differentiations]" />
 										</li>
 										
 										<li id="license-details" class="input-section">
@@ -149,6 +128,7 @@ premium business account at the end of this form.</li>
 									</ul><!-- end .outer-form-ul -->
 								<g:submitButton class="continue-btn" name="next" value="Continue" />
 							</g:form>
+							<g:render template='differentiation' model="['differentiation':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->
