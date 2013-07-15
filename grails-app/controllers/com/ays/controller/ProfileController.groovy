@@ -130,7 +130,7 @@ class ProfileController {
 							addressInstance: profile.companyProfile.address,
 //							differentiationInstance: profile.differentiations[0],
 							licenseInstance: profile.license,
-							affiliationInstance: profile.affiliations[0],
+//							affiliationInstance: profile.affiliations[0],
 							awardInstance: profile.awards[0],
 							phoneNumberInstance: phoneNumber,
 							emailInstance: email,
@@ -239,10 +239,10 @@ class ProfileController {
 				if (!license) {
 					license = new License()
 				}
-				def affiliation = flow.affiliationInstance
-				if (!affiliation) {
-					affiliation = new Affiliation()
-				}
+//				def affiliation = flow.affiliationInstance
+//				if (!affiliation) {
+//					affiliation = new Affiliation()
+//				}
 				def award = flow.awardInstance
 				if (!award) {
 					award = new Award()
@@ -251,22 +251,23 @@ class ProfileController {
 //				def tempDifferentiationInstance = new Differentiation(params)
 				def tempProfileInstance = new Profile(params)
 				def tempLicenseInstance = new License(params)
-				def tempAffiliationInstance = new Affiliation(params)
+//				def tempAffiliationInstance = new Affiliation(params)
 				def tempAwardInstance = new Award(params)
 
 //				differentiation.differentiationKeywords = tempDifferentiationInstance.differentiationKeywords
 //				differentiation.differentiationDescription = tempDifferentiationInstance.differentiationDescription
 				profile.differentiations = tempProfileInstance.differentiations
+				profile.affiliations = tempProfileInstance.affiliations
 				license.properties = tempLicenseInstance.properties
-				affiliation.affiliationName = tempAffiliationInstance.affiliationName
-				affiliation.affiliationRole = tempAffiliationInstance.affiliationRole
+//				affiliation.affiliationName = tempAffiliationInstance.affiliationName
+//				affiliation.affiliationRole = tempAffiliationInstance.affiliationRole
 				award.awardName = tempAwardInstance.awardName
 				award.awardYear = tempAwardInstance.awardYear
 				award.awardDescription = tempAwardInstance.awardDescription
 				println "profile.differentiations >> ${profile.differentiations}"
+				println "profile.affilitiations >> ${profile.affiliations}"
 				[ profileInstance: profile,
 					licenseInstance: license,
-					affiliationInstance: affiliation,
 					awardInstance: award ]
 			}.to "contactDetails"
 		}
@@ -328,7 +329,7 @@ class ProfileController {
 				profile.companyProfile.addToPhotos(flow.placeOfBusinessInstance)
 				profile.license = flow.licenseInstance
 //				profile.addToDifferentiations(flow.differentiationInstance)
-				profile.addToAffiliations(flow.affiliationInstance)
+//				profile.addToAffiliations(flow.affiliationInstance)
 				profile.addToAwards(flow.awardInstance)
 				profile.addToContacts(flow.phoneNumberInstance)
 				profile.addToContacts(flow.websiteInstance)

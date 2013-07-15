@@ -84,7 +84,9 @@ premium business account at the end of this form.</li>
 										
 										<li id="trade-org-and-memberships" class="input-section">
 											<h3>Trade Organization &amp; Memberships</h3>
-											<p>List any trade organizations or other relevant groups you or your company are an active member of.</p>						
+											<p>List any trade organizations or other relevant groups you or your company are an active member of.</p>
+											<g:render template="affiliations" model="['affiliations':profileInstance.affiliations]" />
+											<%--						
 											<ul class="input-wrap">	
 												<li class="user-input half-text">
 													<!-- input class="inline half" value="Organization name" type="text">
@@ -99,6 +101,7 @@ premium business account at the end of this form.</li>
 													</div>
 												</li>
 											</ul>
+											 --%>
 										</li>
 										
 										<li id="awards-and-recognition" class="input-section last">
@@ -129,6 +132,7 @@ premium business account at the end of this form.</li>
 								<g:submitButton class="continue-btn" name="next" value="Continue" />
 							</g:form>
 							<g:render template='differentiation' model="['differentiation':null,'i':'_clone','hidden':true]"/>
+							<g:render template='affiliation' model="['affiliation':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->
