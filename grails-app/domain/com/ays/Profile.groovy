@@ -21,9 +21,9 @@ class Profile implements Serializable {
 	//List services
 	List primaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(PrimaryService.class))
 	List secondaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(SecondaryService.class))
-	List differentiations
-	List affiliations
-	List awards
+	List differentiations = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Differentiation.class))
+	List affiliations = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Affiliation.class))
+	List awards = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Award.class))
 	List reviews
 
 	static hasMany = [ contacts: ContactInfo,
@@ -37,6 +37,10 @@ class Profile implements Serializable {
 	
 	static mapping = {
 		primaryServices cascade:"all-delete-orphan"
+		secondaryServices cascade:"all-delete-orphan"
+		differentiations cascade:"all-delete-orphan"
+		affiliations cascade:"all-delete-orphan"
+		awards cascade:"all-delete-orphan"
 	}
 
 	static transients = [ 'averageRating', 'businessName' ]
