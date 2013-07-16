@@ -17,35 +17,44 @@ class Profile implements Serializable {
 	License license
 	Date dateCreated
 	Date lastUpdated
-	List contacts = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(ContactInfo.class))
 	List primaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(PrimaryService.class))
 	List secondaryServices = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(SecondaryService.class))
 	List differentiations = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Differentiation.class))
 	List affiliations = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Affiliation.class))
 	List awards = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Award.class))
 	List reviews
+	List phoneNumbers = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(PhoneNumber.class))
+	List emailAddresses = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(EmailAddress.class))
+	List websites = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(Website.class))
+	FacebookContactInfo facebookContactInfo
+	TwitterContactInfo twitterContactInfo
+	LinkedInContactInfo linkedInContactInfo
+	List otherContacts = LazyList.decorate(new ArrayList(), FactoryUtils.instantiateFactory(OtherContactInfo.class))
 
-	static hasMany = [ contacts: ContactInfo,
-						services: Service,
-						primaryServices: PrimaryService,
+	static hasMany = [ primaryServices: PrimaryService,
 						secondaryServices: SecondaryService,
 						differentiations: Differentiation,
 						affiliations: Affiliation,
 						awards: Award,
-						reviews: Review ]
+						reviews: Review,
+						phoneNumbers: PhoneNumber,
+						emailAddresses: EmailAddress,
+						websites: Website,
+						otherContacts: OtherContactInfo ]
 	
 	static mapping = {
-		contacts cascade:"all-delete-orphan"
 		primaryServices cascade:"all-delete-orphan"
 		secondaryServices cascade:"all-delete-orphan"
 		differentiations cascade:"all-delete-orphan"
 		affiliations cascade:"all-delete-orphan"
 		awards cascade:"all-delete-orphan"
+		phoneNumbers cascade:"all-delete-orphan"
+		emailAddresses cascade:"all-delete-orphan"
+		websites cascade:"all-delete-orphan"
+		otherContacts cascade:"all-delete-orphan"
 	}
 
-	static transients = [ 'averageRating', 'businessName', 'phoneNumbers', 'emailAddresses',
-							'websites', 'facebookContactInfo', 'twitterContactInfo', 'linkedInContactInfo',
-							'otherContacts' ]
+	static transients = [ 'averageRating', 'businessName' ]
 
 	static searchable = {
 		except = [ 'version', 'dateCreated', 'lastUpdated' ]
@@ -71,6 +80,9 @@ class Profile implements Serializable {
 		rateNegotiable(nullable: true)
 		license(nullable: true)
 		feeStructure(nullable: true)
+		facebookContactInfo(nullable: true)
+		twitterContactInfo(nullable: true)
+		linkedInContactInfo(nullable: true)
     }
 	
 	String toString() {
@@ -96,48 +108,6 @@ class Profile implements Serializable {
 			return companyProfile.companyName
 		}
 		return "${lastName}, ${firstName}"
-	}
-	
-	List getPhoneNumbers() {
-		contacts?.findAll {
-			it.contactType == ContactInfoType.PHONE_NUMBER
-		}
-	}
-	
-	List getEmailAddresses() {
-		contacts?.findAll {
-			it.contactType == ContactInfoType.EMAIL
-		}
-	}
-	
-	List getWebsites() {
-		contacts?.findAll {
-			it.contactType == ContactInfoType.WEBSITE
-		}
-	}
-	
-	List getOtherContacts() {
-		contacts?.findAll {
-			it.contactType == ContactInfoType.OTHER
-		}
-	}
-	
-	ContactInfo getFacebookContactInfo() {
-		contacts?.find {
-			it.contactType == ContactInfoType.FACEBOOK
-		}
-	}
-	
-	ContactInfo getTwitterContactInfo() {
-		contacts?.find {
-			it.contactType == ContactInfoType.TWITTER
-		}
-	}
-	
-	ContactInfo getLinkedInContactInfo() {
-		contacts?.find {
-			it.contactType == ContactInfoType.LINKEDIN
-		}
 	}
 	
 }

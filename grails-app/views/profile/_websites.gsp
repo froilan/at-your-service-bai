@@ -1,8 +1,10 @@
 <g:javascript>
+	var websiteChildCount = ${websites?.size()} + 0;
+	
     function addWebsite() {
 		var clone = $("#website_clone").clone()
-		var divId = 'website'+contactChildCount;
-		var htmlId = 'contacts['+contactChildCount+'].';
+		var divId = 'website'+websiteChildCount;
+		var htmlId = 'websites['+websiteChildCount+'].';
 		var valueInput = clone.find("input[id$=contactValue]");
 
 		clone.find("input[type=button]")
@@ -17,24 +19,21 @@
 		        .attr('id',htmlId + 'new')
 		        .attr('name',htmlId + 'new')
 		        .attr('value', 'true');
-		clone.find("input[id$=contactType]")
-		        .attr('id',htmlId + 'contactType')
-		        .attr('name',htmlId + 'contactType');
 		valueInput.attr('id',htmlId + 'contactValue')
 		        .attr('name',htmlId + 'contactValue');
 		
-		clone.attr('id', 'website'+contactChildCount);
+		clone.attr('id', 'website'+websiteChildCount);
 		$("#websiteChildList").append(clone);
 		clone.show();
 		valueInput.focus();
-		contactChildCount++;
+		websiteChildCount++;
     }
 </g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">
 		<div id="websiteChildList">
-		    <g:each var="website" in="${website}" status="i">
+		    <g:each var="website" in="${websites}" status="i">
 		        <g:render template='website' model="['website':website,'i':i,'hidden':false]"/>
 		    </g:each>
 		</div>

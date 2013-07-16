@@ -127,23 +127,28 @@ premium business account at the end of this form.</li>
 										
 										<li id="social-networks" class="input-section last">
 											<h3>Social Networks</h3>
-											<p>Input the links to each of your business social networks you would like to share.</p>						
+											<p>Input the links to each of your business social networks you would like to share.</p>
+											<g:render template="otherContacts" model="['profile':profileInstance]" />
+											<%--						
 											<ul class="input-wrap">	
 												<li class="user-input">
 													<div class="inline-wrap facebook-wrap">
 														<span class="icon"></span>
-														<g:textField class="custom-width" name="contactInfo.facebook" 
-															value="${facebookInstance?.contactValue}" placeholder="http://" />
+														<g:hiddenField name='facebookContactInfo.id' value='${profile.facebookContactInfo?.id}'/>
+														<g:textField class="custom-width" name="facebookContactInfo.contactValue" 
+															value="${profile?.facebookContactInfo?.contactValue}" placeholder="http://" />
 													</div>
 													<div class="inline-wrap twitter-wrap">
 														<span class="icon"></span>
-														<g:textField class="custom-width" name="contactInfo.twitter" 
-															value="${twitterInstance?.contactValue}" placeholder="http://" />
+														<g:hiddenField name='twitterContactInfo.id' value='${profile.twitterContactInfo?.id}'/>
+														<g:textField class="custom-width" name="twitterContactInfo.contactValue" 
+															value="${profile?.twitterContactInfo?.contactValue}" placeholder="http://" />
 													</div>	
 													<div class="inline-wrap linkedin-wrap">
 														<span class="icon"></span>
-														<g:textField class="custom-width" name="contactInfo.linkedIn" 
-															value="${linkedInInstance?.contactValue}" placeholder="http://" />
+														<g:hiddenField name='linkedInContactInfo.id' value='${profile.linkedInContactInfo?.id}'/>
+														<g:textField class="custom-width" name="linkedInContactInfo.contactValue" 
+															value="${profile?.linkedInContactInfo?.contactValue}" placeholder="http://" />
 													</div>																						
 													<div class="add-btn-wrap">
 														<input value="Add Another Network" type="button">
@@ -151,6 +156,7 @@ premium business account at the end of this form.</li>
 													</div>
 												</li>
 											</ul>
+											--%>
 										</li>
 																																																		
 									</ul><!-- end .outer-form-ul -->
@@ -160,6 +166,7 @@ premium business account at the end of this form.</li>
 							<g:render template='phoneNumber' model="['phoneNumber':null,'i':'_clone','hidden':true]"/>
 							<g:render template='emailAddress' model="['emailAddress':null,'i':'_clone','hidden':true]"/>
 							<g:render template='website' model="['website':null,'i':'_clone','hidden':true]"/>
+							<g:render template='otherContact' model="['otherContact':null,'i':'_clone','hidden':true]"/>
 						</div>
 					</div><!-- end .wrap -->
 				</div><!-- end #content -->

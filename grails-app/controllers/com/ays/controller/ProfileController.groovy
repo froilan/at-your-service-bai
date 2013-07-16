@@ -304,9 +304,16 @@ class ProfileController {
 //					linkedIn = new ContactInfo()
 //					linkedIn.contactType = ContactInfoType.LINKEDIN
 //				}
+				println "params >> ${params}"
 				def profile = flow.profileInstance
 				def tempProfileInstance = new Profile(params)
-				profile.contacts = tempProfileInstance.contacts
+				profile.phoneNumbers = tempProfileInstance.phoneNumbers
+				profile.emailAddresses = tempProfileInstance.emailAddresses
+				profile.websites = tempProfileInstance.websites
+				profile.otherContacts = tempProfileInstance.otherContacts
+				profile.facebookContactInfo = tempProfileInstance.facebookContactInfo
+				profile.twitterContactInfo = tempProfileInstance.twitterContactInfo
+				profile.linkedInContactInfo = tempProfileInstance.linkedInContactInfo
 
 //				phoneNumber.contactValue = params['contactInfo.phoneNumber']
 //				phoneNumber.contactAlias = params['contactInfo.phoneNumber.contactAlias']
@@ -322,7 +329,13 @@ class ProfileController {
 //					facebookInstance: facebook,
 //					twitterInstance: twitter,
 //					linkedInInstance: linkedIn ]
-				println "profile.contacts >> ${profile.contacts}"
+				println "profile.phoneNumbers >> ${profile.phoneNumbers}"
+				println "profile.emailAddresses >> ${profile.emailAddresses}"
+				println "profile.websites >> ${profile.websites}"
+				println "profile.otherContacts >> ${profile.otherContacts}"
+				println "profile.facebook >> ${profile.facebookContactInfo}"
+				println "profile.twitter >> ${profile.twitterContactInfo}"
+				println "profile.linkedIn >> ${profile.linkedInContactInfo}"
 				[ profileInstance: profile ]
 			}.to "saveProfile"
 		}

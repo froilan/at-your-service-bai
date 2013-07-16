@@ -115,11 +115,44 @@
 				</li>
 				</g:if>
  --%>
-				<g:if test="${profileInstance?.contacts}">
+				<g:if test="${profileInstance?.phoneNumbers}">
+				<li class="fieldcontain">
+					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Phone Numbers" /></span>
+
+						<g:each in="${profileInstance.phoneNumbers}" var="c">
+						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
+
+				</li>
+				</g:if>
+				
+				<g:if test="${profileInstance?.emailAddresses}">
+				<li class="fieldcontain">
+					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Emails" /></span>
+
+						<g:each in="${profileInstance.emailAddresses}" var="c">
+						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
+
+				</li>
+				</g:if>
+				
+				<g:if test="${profileInstance?.websites}">
+				<li class="fieldcontain">
+					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Websites" /></span>
+
+						<g:each in="${profileInstance.websites}" var="c">
+						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
+						</g:each>
+
+				</li>
+				</g:if>
+				
+				<g:if test="${profileInstance?.phoneNumbers}">
 				<li class="fieldcontain">
 					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Contact Information" /></span>
 
-						<g:each in="${profileInstance.contacts}" var="c">
+						<g:each in="${profileInstance.phoneNumbers}" var="c">
 						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
 						</g:each>
 
@@ -173,11 +206,11 @@
 				</li>
 				</g:if>
 
-				<g:if test="${profileInstance?.services}">
+				<g:if test="${profileInstance?.primaryServices}">
 				<li class="fieldcontain">
 					<span id="services-label" class="property-label"><g:message code="profile.services.label" default="Services" /></span>
 
-						<g:each in="${profileInstance.services}" var="s">
+						<g:each in="${profileInstance.primaryServices}" var="s">
 						<span class="property-value" aria-labelledby="services-label"><g:link controller="service" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
 						</g:each>
 

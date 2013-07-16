@@ -2,13 +2,16 @@ package com.ays
 
 import java.util.Date;
 
-class ContactInfo implements Serializable {
+abstract class ContactInfo implements Serializable {
 
-	ContactInfoType contactType
 	String contactValue
-	String contactAlias
+	String contactAlias = ""
 	Date dateCreated
 	Date lastUpdated
+	
+	static mapping = {
+		discriminator column: "contact_type"
+	}
 
     static constraints = {
     	contactAlias(nullable: true, blank: true)

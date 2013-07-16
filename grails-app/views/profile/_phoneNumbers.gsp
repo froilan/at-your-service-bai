@@ -1,10 +1,10 @@
 <g:javascript>
-	var contactChildCount = ${contacts?.size()} + 0;
+	var phoneNumberChildCount = ${phoneNumbers?.size()} + 0;
 
     function addPhoneNumber() {
 		var clone = $("#phoneNumber_clone").clone()
-		var divId = 'phoneNumber'+contactChildCount;
-		var htmlId = 'contacts['+contactChildCount+'].';
+		var divId = 'phoneNumber'+phoneNumberChildCount;
+		var htmlId = 'phoneNumbers['+phoneNumberChildCount+'].';
 		var nameInput = clone.find("input[id$=contactAlias]");
 
 		clone.find("input[type=button]")
@@ -19,20 +19,17 @@
 		        .attr('id',htmlId + 'new')
 		        .attr('name',htmlId + 'new')
 		        .attr('value', 'true');
-		clone.find("input[id$=contactType]")
-		        .attr('id',htmlId + 'contactType')
-		        .attr('name',htmlId + 'contactType');
 		nameInput.attr('id',htmlId + 'contactAlias')
 		        .attr('name',htmlId + 'contactAlias');
 		clone.find("input[id$=contactValue]")
 		        .attr('id',htmlId + 'contactValue')
 		        .attr('name',htmlId + 'contactValue');
 		
-		clone.attr('id', 'phoneNumber'+contactChildCount);
+		clone.attr('id', 'phoneNumber'+phoneNumberChildCount);
 		$("#phoneNumberChildList").append(clone);
 		clone.show();
 		nameInput.focus();
-		contactChildCount++;
+		phoneNumberChildCount++;
     }
 
     function deleteRow(parentDiv) {

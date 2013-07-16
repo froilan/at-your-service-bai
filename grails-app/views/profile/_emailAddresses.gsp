@@ -1,8 +1,10 @@
 <g:javascript>
+	var emailChildCount = ${emails?.size()} + 0;
+	
     function addEmailAddress() {
 		var clone = $("#emailAddress_clone").clone()
-		var divId = 'emailAddress'+contactChildCount;
-		var htmlId = 'contacts['+contactChildCount+'].';
+		var divId = 'emailAddress'+emailChildCount;
+		var htmlId = 'emailAddresses['+emailChildCount+'].';
 		var nameInput = clone.find("input[id$=contactAlias]");
 
 		clone.find("input[type=button]")
@@ -17,20 +19,17 @@
 		        .attr('id',htmlId + 'new')
 		        .attr('name',htmlId + 'new')
 		        .attr('value', 'true');
-		clone.find("input[id$=contactType]")
-		        .attr('id',htmlId + 'contactType')
-		        .attr('name',htmlId + 'contactType');
 		nameInput.attr('id',htmlId + 'contactAlias')
 		        .attr('name',htmlId + 'contactAlias');
 		clone.find("input[id$=contactValue]")
 		        .attr('id',htmlId + 'contactValue')
 		        .attr('name',htmlId + 'contactValue');
 		
-		clone.attr('id', 'emailAddress'+contactChildCount);
+		clone.attr('id', 'emailAddress'+emailChildCount);
 		$("#emailAddressChildList").append(clone);
 		clone.show();
 		nameInput.focus();
-		contactChildCount++;
+		emailChildCount++;
     }
 </g:javascript>
 
