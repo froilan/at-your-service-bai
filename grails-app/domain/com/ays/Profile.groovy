@@ -110,4 +110,76 @@ class Profile implements Serializable {
 		return "${lastName}, ${firstName}"
 	}
 	
+	def clearPrimaryServices() {
+		primaryServices.clear()
+	}
+	
+	def addPrimaryServices(Collection services) {
+		primaryServices.addAll(services)
+	}
+	
+	def clearSecondaryServices() {
+		secondaryServices.clear()
+	}
+	
+	def addSecondaryServices(Collection services) {
+		secondaryServices.addAll(services)
+	}
+	
+	def clearDifferentiations() {
+		differentiations.clear()
+	}
+	
+	def addDifferentiations(Collection services) {
+		differentiations.addAll(services)
+	}
+	
+	def clearAffiliations() {
+		affiliations.clear()
+	}
+	
+	def addAffiliations(Collection services) {
+		affiliations.addAll(services)
+	}
+	
+	def clearAwards() {
+		awards.clear()
+	}
+	
+	def addAwards(Collection services) {
+		awards.addAll(services)
+	}
+	
+	def clearPhoneNumbers() {
+		phoneNumbers.clear()
+	}
+	
+	def addPhoneNumbers(Collection services) {
+		phoneNumbers.addAll(services)
+	}
+	
+	def clearEmailAddresses() {
+		emailAddresses.clear()
+	}
+	
+	def addEmailAddresses(Collection services) {
+		emailAddresses.addAll(services)
+	}
+	
+	def clearWebsites() {
+		websites.clear()
+	}
+	
+	def addWebsites(Collection services) {
+		websites.addAll(services)
+	}
+	
+	def clearOtherContacts() {
+		otherContacts.clear()
+	}
+	
+	def addOtherContacts(Collection services) {
+		otherContacts.addAll(services)
+	}
+	
 }
