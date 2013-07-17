@@ -11,6 +11,9 @@ class Award implements Serializable {
 	String awardDescription
 	Date dateCreated
 	Date lastUpdated
+	boolean deleted
+	
+	static transients = [ 'deleted' ]
 
 	static belongsTo = [ Profile ]
 

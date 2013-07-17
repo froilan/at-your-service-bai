@@ -1,5 +1,5 @@
 <g:javascript>
-	var emailChildCount = ${emails?.size()} + 0;
+	var emailChildCount = ${emailAddresses?.size()} + 0;
 	
     function addEmailAddress() {
 		var clone = $("#emailAddress_clone").clone()
@@ -32,7 +32,7 @@
 		emailChildCount++;
     }
     
-    <g:if test="${!emails}">
+    <g:if test="${!emailAddresses}">
     	addEmailAddress();
     </g:if>
 </g:javascript>

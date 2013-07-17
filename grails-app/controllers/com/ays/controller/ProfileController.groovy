@@ -51,10 +51,10 @@ class ProfileController {
 				companyProfile.description = params['description']
 				
 				println "params >> ${params}"
-				def _toBeRemoved = profile.primaryServices.findAll { it.isEmpty() }
+				def _toBeRemoved = profile.primaryServices.findAll { it.isEmpty() || it.deleted }
 				profile.primaryServices.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.secondaryServices.findAll { it.isEmpty() }
+				_toBeRemoved = profile.secondaryServices.findAll { it.isEmpty()  || it.deleted }
 				profile.secondaryServices.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
 				
@@ -138,13 +138,13 @@ class ProfileController {
 				license.licenseExpirationDate = tempLicenseInstance.licenseExpirationDate
 				license.licenseDescription = tempLicenseInstance.licenseDescription
 				
-				def _toBeRemoved = profile.differentiations.findAll { it.isEmpty() }
+				def _toBeRemoved = profile.differentiations.findAll { it.isEmpty()  || it.deleted }
 				profile.differentiations.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.affiliations.findAll { it.isEmpty() }
+				_toBeRemoved = profile.affiliations.findAll { it.isEmpty()  || it.deleted }
 				profile.affiliations.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.awards.findAll { it.isEmpty() }
+				_toBeRemoved = profile.awards.findAll { it.isEmpty()  || it.deleted }
 				profile.awards.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
 				
@@ -172,16 +172,16 @@ class ProfileController {
 				profile.twitterContactInfo = tempProfileInstance.twitterContactInfo
 				profile.linkedInContactInfo = tempProfileInstance.linkedInContactInfo
 
-				def _toBeRemoved = profile.phoneNumbers.findAll { it.isEmpty() }
+				def _toBeRemoved = profile.phoneNumbers.findAll { it.isEmpty()  || it.deleted }
 				profile.phoneNumbers.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.emailAddresses.findAll { it.isEmpty() }
+				_toBeRemoved = profile.emailAddresses.findAll { it.isEmpty()  || it.deleted }
 				profile.emailAddresses.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.websites.findAll { it.isEmpty() }
+				_toBeRemoved = profile.websites.findAll { it.isEmpty()  || it.deleted }
 				profile.websites.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
-				_toBeRemoved = profile.otherContacts.findAll { it.isEmpty() }
+				_toBeRemoved = profile.otherContacts.findAll { it.isEmpty()  || it.deleted }
 				profile.otherContacts.removeAll(_toBeRemoved)
 				println "toBeRemoved >> ${_toBeRemoved}"
 				

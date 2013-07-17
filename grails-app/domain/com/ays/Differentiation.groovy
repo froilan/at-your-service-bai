@@ -10,6 +10,9 @@ class Differentiation implements Serializable {
 	String differentiationDescription
 	Date dateCreated
 	Date lastUpdated
+	boolean deleted
+	
+	static transients = [ 'deleted' ]
 	
 	static belongsTo = [ Profile ]
 	

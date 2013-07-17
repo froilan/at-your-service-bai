@@ -10,6 +10,9 @@ abstract class ContactInfo implements Serializable {
 	String contactAlias = ""
 	Date dateCreated
 	Date lastUpdated
+	boolean deleted
+	
+	static transients = [ 'deleted' ]
 	
 	static mapping = {
 		discriminator column: "contact_type"

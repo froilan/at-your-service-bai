@@ -1,14 +1,14 @@
-<div id="phoneNumber${i}" class="entry-div" <g:if test="${hidden}">style="display:none;"</g:if>>
-    <g:hiddenField name='phoneNumbers[${i}].id' value='${phoneNumber?.id}'/>
-    <g:hiddenField name='phoneNumbers[${i}].deleted' value='false'/>
-	<g:hiddenField name='phoneNumbers[${i}].new' value="${phoneNumber?.id == null?'true':'false'}"/>
+<div id="otherContact${i}" class="entry-div" <g:if test="${hidden}">style="display:none;"</g:if>>
+    <g:hiddenField name='otherContacts[${i}].id' value='${otherContact?.id}'/>
+    <g:hiddenField name='otherContacts[${i}].deleted' value='false'/>
+	<g:hiddenField name='otherContacts[${i}].new' value="${otherContact?.id == null?'true':'false'}"/>
     
-	<g:textField class="inline half" name="phoneNumbers[${i}].contactAlias" 
-		value="${phoneNumber?.contactAlias}" 
-		placeholder="Name (example: Customer Support)" />
-	<g:textField class="inline half" name="phoneNumbers[${i}].contactValue" 
-		value="${phoneNumber?.contactValue}" 
-		placeholder="+639991234567" />
-    <input type="button" onclick="deleteRow('phoneNumber${i}')" value="Delete" />
+	<g:textField class="inline half" name="otherContacts[${i}].contactAlias" 
+		value="${otherContact?.contactAlias}" 
+		placeholder="Network Site (example: Tumblr)" />
+	<g:textField class="inline half" name="otherContacts[${i}].contactValue" 
+		value="${otherContact?.contactValue}" 
+		placeholder="www.tumblr.com/example" />
+    <input type="button" onclick="deleteRow('otherContact${i}')" value="Delete" />
 	
 </div>

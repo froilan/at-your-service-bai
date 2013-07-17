@@ -8,6 +8,9 @@ class Affiliation implements Serializable {
 	String affiliationRole
 	Date dateCreated
 	Date lastUpdated
+	boolean deleted
+	
+	static transients = [ 'deleted' ]
 
 	static belongsTo = [ Profile ]
 
