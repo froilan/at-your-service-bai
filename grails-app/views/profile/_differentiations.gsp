@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<g:javascript>
 	var differentiationChildCount = ${differentiations?.size()} + 0;
 
     function addDifferentiation() {
@@ -50,7 +50,11 @@
             prnt.hide();
         }
     }
-</script>
+    
+    <g:if test="${!differentiations}">
+    	addDifferentiation();
+    </g:if>
+</g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">

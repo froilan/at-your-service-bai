@@ -49,7 +49,15 @@ class ProfileController {
 				profile.addSecondaryServices(tempProfileInstance.secondaryServices)
 				companyProfile.companyName = params['name']
 				companyProfile.description = params['description']
+				
 				println "params >> ${params}"
+				def _toBeRemoved = profile.primaryServices.findAll { it.isEmpty() }
+				profile.primaryServices.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.secondaryServices.findAll { it.isEmpty() }
+				profile.secondaryServices.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				
 				println "primaryServices >> ${profile.primaryServices}"
 				println "secondaryServices >> ${profile.secondaryServices}"
 				[ profileInstance: profile,
@@ -129,6 +137,17 @@ class ProfileController {
 				license.licenseAuthority = tempLicenseInstance.licenseAuthority
 				license.licenseExpirationDate = tempLicenseInstance.licenseExpirationDate
 				license.licenseDescription = tempLicenseInstance.licenseDescription
+				
+				def _toBeRemoved = profile.differentiations.findAll { it.isEmpty() }
+				profile.differentiations.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.affiliations.findAll { it.isEmpty() }
+				profile.affiliations.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.awards.findAll { it.isEmpty() }
+				profile.awards.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				
 				println "profile.differentiations >> ${profile.differentiations}"
 				println "profile.affilitiations >> ${profile.affiliations}"
 				println "profile.awards >> ${profile.awards}"
@@ -153,6 +172,19 @@ class ProfileController {
 				profile.twitterContactInfo = tempProfileInstance.twitterContactInfo
 				profile.linkedInContactInfo = tempProfileInstance.linkedInContactInfo
 
+				def _toBeRemoved = profile.phoneNumbers.findAll { it.isEmpty() }
+				profile.phoneNumbers.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.emailAddresses.findAll { it.isEmpty() }
+				profile.emailAddresses.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.websites.findAll { it.isEmpty() }
+				profile.websites.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				_toBeRemoved = profile.otherContacts.findAll { it.isEmpty() }
+				profile.otherContacts.removeAll(_toBeRemoved)
+				println "toBeRemoved >> ${_toBeRemoved}"
+				
 				println "profile.phoneNumbers >> ${profile.phoneNumbers}"
 				println "profile.emailAddresses >> ${profile.emailAddresses}"
 				println "profile.websites >> ${profile.websites}"
@@ -170,6 +202,7 @@ class ProfileController {
 				profile.companyProfile = flow.companyProfileInstance
 				profile.companyProfile.address = flow.addressInstance
 				profile.license = flow.licenseInstance
+				println "PROFILE >> ${profile}"
 				profile.save(flush: true, failOnError: true)
 
 				def currentUser = springSecurityService.currentUser

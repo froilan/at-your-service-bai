@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<g:javascript>
 	var affiliationChildCount = ${affiliations?.size()} + 0;
 
     function addAffiliation() {
@@ -31,7 +31,11 @@
 		nameInput.focus();
 		affiliationChildCount++;
     }
-</script>
+
+	<g:if test="${!affiliations}">
+    	addAffiliation();
+    </g:if>
+</g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">

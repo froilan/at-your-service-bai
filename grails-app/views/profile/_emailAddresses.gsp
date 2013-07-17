@@ -31,6 +31,10 @@
 		nameInput.focus();
 		emailChildCount++;
     }
+    
+    <g:if test="${!emails}">
+    	addEmailAddress();
+    </g:if>
 </g:javascript>
 
 <ul class="input-wrap">

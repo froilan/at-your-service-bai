@@ -2,6 +2,8 @@ package com.ays
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 class Award implements Serializable {
 
 	String awardName
@@ -23,5 +25,9 @@ class Award implements Serializable {
 	
 	String toString() {
 		"${this.properties}"
+	}
+	
+	boolean isEmpty() {
+		StringUtils.isBlank(awardName) && StringUtils.isBlank(awardDescription) && awardYear == null
 	}
 }

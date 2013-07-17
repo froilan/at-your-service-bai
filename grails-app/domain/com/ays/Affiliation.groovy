@@ -1,5 +1,7 @@
 package com.ays
 
+import org.apache.commons.lang.StringUtils;
+
 class Affiliation implements Serializable {
 
 	String affiliationName
@@ -19,5 +21,9 @@ class Affiliation implements Serializable {
 	
 	String toString() {
 		"${this.properties}"
+	}
+	
+	boolean isEmpty() {
+		StringUtils.isBlank(affiliationName) && StringUtils.isBlank(affiliationRole)
 	}
 }

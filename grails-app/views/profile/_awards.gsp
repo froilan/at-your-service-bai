@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<g:javascript>
 	var awardChildCount = ${awards?.size()} + 0;
 
     function addAward() {
@@ -34,7 +34,11 @@
 		nameInput.focus();
 		awardChildCount++;
     }
-</script>
+
+    <g:if test="${!awards}">
+    	addAward();
+    </g:if>
+</g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">

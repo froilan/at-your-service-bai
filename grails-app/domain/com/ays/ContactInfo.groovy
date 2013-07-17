@@ -2,6 +2,8 @@ package com.ays
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+
 abstract class ContactInfo implements Serializable {
 
 	String contactValue
@@ -19,5 +21,9 @@ abstract class ContactInfo implements Serializable {
 	
 	String toString() {
 		"${this.properties}"
+	}
+	
+	boolean isEmpty() {
+		StringUtils.isBlank(contactValue) && StringUtils.isBlank(contactAlias)
 	}
 }

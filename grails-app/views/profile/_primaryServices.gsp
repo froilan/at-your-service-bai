@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<g:javascript>
 	var primaryServiceChildCount = ${primaryServices?.size()} + 0;
 
     function addPrimaryService() {
@@ -59,7 +59,11 @@
             prnt.hide();
         }
     }
-</script>
+    
+    <g:if test="${!primaryServices}">
+    	addPrimaryService();
+    </g:if>
+</g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">

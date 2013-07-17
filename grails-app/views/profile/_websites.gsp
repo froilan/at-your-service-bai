@@ -28,6 +28,10 @@
 		valueInput.focus();
 		websiteChildCount++;
     }
+    
+    <g:if test="${!websites}">
+    	addWebsite();
+    </g:if>
 </g:javascript>
 
 <ul class="input-wrap">

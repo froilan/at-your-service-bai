@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<g:javascript>
 	var secondaryServiceChildCount = ${secondaryServices?.size()} + 0;
 
     function addSecondaryService() {
@@ -31,27 +31,11 @@
 		serviceNameInput.focus();
 		secondaryServiceChildCount++;
     }
-	/*
-    function deleteRow(parentDiv) {
-    	//find the parent div
-    	var prnt = $("#"+parentDiv)
-        //find the deleted hidden input
-        var delInput = prnt.find("input[id$=deleted]");
-        var newHidden = prnt.find("input[id$=new]")
-        //check if this is still not persisted
-        var newValue = prnt.find("input[id$=new]").attr('value');
-        //if it is new then i can safely remove from dom
-        if (newValue == 'true') {
-            prnt.remove();
-        } else {
-            //set the deletedFlag to true
-            delInput.attr('value','true');
-            //hide the div
-            prnt.hide();
-        }
-    }
-    */
-</script>
+    
+    <g:if test="${!secondaryServices}">
+		addSecondaryService();
+	</g:if>
+</g:javascript>
 
 <ul class="input-wrap">
 	<li class="user-input">

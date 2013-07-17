@@ -50,6 +50,10 @@
             prnt.hide();
         }
     }
+    
+    <g:if test="${!phoneNumbers}">
+    	addPhoneNumber();
+    </g:if>
 </g:javascript>
 
 <ul class="input-wrap">

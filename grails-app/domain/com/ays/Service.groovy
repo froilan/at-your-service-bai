@@ -2,6 +2,8 @@ package com.ays
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+
 abstract class Service implements Serializable {
 
 	String serviceName
@@ -28,5 +30,9 @@ abstract class Service implements Serializable {
 	
 	String toString() {
 		"${this.properties}"
+	}
+	
+	boolean isEmpty() {
+		StringUtils.isBlank(serviceName) && StringUtils.isBlank(serviceDescription)
 	}
 }
