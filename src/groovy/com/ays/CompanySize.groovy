@@ -1,7 +1,5 @@
 package com.ays
 
-import com.sun.tools.jdi.JDWP.StackFrame.ThisObject;
-
 enum CompanySize {
 	
 	SINGLE("Just myself"),
