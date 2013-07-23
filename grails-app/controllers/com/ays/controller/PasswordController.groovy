@@ -44,14 +44,17 @@ class PasswordController {
 			flash.message = 'user does not exist'
 		}else {
 			flash.message = 'done resetting password'
-			//TODO: put randomizing of password here
 			String charset = (('A'..'Z') + ('0'..'9')).join()
 			Integer length = 9
 			String randomString = RandomStringUtils.random(length, charset.toCharArray())
 			user.password = randomString
-			//user.save()
+			user.save()
 			println randomString
-			//TODO: put logic of sending to email here
+			sendMail {
+				to user
+				subject "Your new password"
+				body 'How are you? Eto password mo: ' + randomString
+			  }
 		}
 		redirect action:'reset'
 	}
