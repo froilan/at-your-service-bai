@@ -164,6 +164,55 @@ a:focus, a:hover, a:active {
 	background: #fbb530;
 }
 
+.pc-blue-link {
+	font-size: 11px;
+	line-height: 11px;
+	color: #4884e7;
+	padding: 0;	
+	font-style: italic;
+}
+
+.pc-blue-link span.star-icon {
+ 	background: url(../images/sprites/front-app-sprite.png) -147px -1px;
+ 	width: 10px;
+ 	height: 10px;
+ 	display: inline-block;
+ 	margin: 0 3px 0 0;
+}
+
+.pc-white-link {
+	font-size: 12px;
+	line-height: 11px;
+	color: #FFF;
+	padding: 0;	
+	font-style: italic;
+}
+
+.pc-white-link span.star-icon {
+ 	background: url(../images/sprites/front-app-sprite.png) -160px -1px;
+ 	width: 10px;
+ 	height: 10px;
+ 	display: inline-block;
+ 	margin: 0 3px 0 0;
+}
+
+.lg-pc-blue-link {
+	font-size: 18px;
+	line-height: 18px;
+	color: #4884e7;
+	padding: 0;	
+	font-style: italic;
+}
+
+.lg-pc-blue-link span.lg-star-icon {
+ 	background: url(../images/sprites/front-app-sprite.png) -172px 1px;
+ 	width: 15px;
+ 	height: 15px;
+ 	display: inline-block;
+ 	margin: 0 3px 0 0;
+}
+
+
 /* @Heading Tags - GENERAL STYLESHEET
 ----------------------------------------------*/
 body h1, body h2, body h3, body h4, body h5, body h6 {
@@ -743,6 +792,7 @@ form input {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	clear: both;
 	background: url(../images/bg/lgt-grey-pattern-bg.png) 0 0 repeat;
 }
 

@@ -1,230 +1,241 @@
-
-<%@ page import="com.ays.Profile" %>
 <!doctype html>
 <html>
-	<head>
-		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'profile.label', default: 'Profile')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
-	</head>
-	<body>
-		<a href="#show-profile" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-profile" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list profile">
+<head>
+	<meta name="layout" content="main">
+</head>
+<body>
+	<div id="inner">
+		<div id="inner-wrap">
+			
+			<div id="inner-title">
+				<div class="title-right">
+					<div class="breadcrumb">
+						<span class="inline-wrap"><a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="category">Financial Services</span></a> &gt; <a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="sub-category">Accountants</span></a> &gt; <span class="member-name">Anna Cruze</span></span>
+					</div>
+					<div class="title-right-meta">
+						<div class="next-prev">
+							<a href="http://184.173.193.62/~ays/app/public-profile.html#">prev</a>
+							<a href="http://184.173.193.62/~ays/app/public-profile.html#">next</a>
+						</div>
+						<div class="match-count"><span class="current-count">2</span> of <span class="total-count">24</span> matches</div>
+					</div>
+				</div>
+			</div> <!-- end of inner-title -->
+			
+			<div id="front-app-content-sidebar-wrap">
+		
+				<div id="public-profile-sidebar">
+					<div class="wrap">
+						<ul class="profile-badges">
+							<li class="premium-badge"><a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="icon"></span>Premium Member</a></li>
+							<li class="verified-badge"><a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="icon"></span>Verified Business</a></li>
+							<li class="top-rated-badge"><a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="icon"></span>Top Rated Service</a></li>
+							<li class="featured-badge"><a href="http://184.173.193.62/~ays/app/public-profile.html#"><span class="icon"></span>Featured Account</a></li>
+						</ul>
+						
+						<div class="member-info">
+							<div class="member-info-wrap">
+								<img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/anna-cruze-profile-pic.jpg">
+								<div class="name-wrap">	
+									<h2 class="sb-member-name">${profileInstance.firstName} ${profileInstance.lastName}</h2>
+									<!-- <span class="member-title">Accountant / CPA</span><br>
+									<span class="company-position">Partner at Total Business Accounting</span> -->
+								</div>
+								
+								<div class="contact-info-wrap">
+									<div class="phone-numbers">
+										<span class="icon"></span>
+										<div class="wrap">
+											<ul class="phone-list">
+												<g:each var="phoneNumber" in="${profileInstance.phoneNumbers}">
+													<li>${phoneNumber.contactValue} <span class="phone-label">${phoneNumber.contactAlias}</span></li>
+												</g:each>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="email prem-content">
+										<span class="icon"></span>
+										<div class="wrap">
+											<ul class="email-list">
+												<g:each var="email" in="${profileInstance.emailAddresses}">
+													<li>${email.contactValue} <span class="phone-label">${email.contactAlias}</span></li>
+												</g:each>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="website prem-content">
+										<span class="icon"></span>
+										<div class="wrap">
+											<ul class="website-list">
+												<g:each var="website" in="${profileInstance.websites}">
+													<li>${website.contactValue}</li>
+												</g:each>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="email prem-content">
+										<span class="icon"></span>
+										<div class="wrap">${profileInstance.facebookContactInfo.contactValue}</div>
+									</div>
+									
+									<div class="email prem-content">
+										<span class="icon"></span>
+										<div class="wrap">${profileInstance.twitterContactInfo.contactValue}</div>
+									</div>
+									
+									<div class="email prem-content">
+										<span class="icon"></span>
+										<div class="wrap">${profileInstance.linkedInContactInfo.contactValue}</div>
+									</div>
+									
+									<div class="phone-numbers">
+										<span class="icon"></span>
+										<div class="wrap">
+											<ul class="other-list">
+												<g:each var="other" in="${profileInstance.otherContacts}">
+													<li>${other.contactValue} <span class="phone-label">${other.contactAlias}</span></li>
+												</g:each>
+											</ul>
+										</div>
+									</div>
+								</div><!-- end .contact-info-wrap -->
+								
+								<div class="meta-data-wrap">
+									<ul class="meta-data-list">
+										<li class="rate"><span class="icon"></span><span class="rate-wrap">P<span class="rate">${profileInstance.askingFee}</span> per <span class="rate-interval">${profileInstance.feeStructure.unit}</span></span></li>
+										<!-- <li class="rating"><span class="grey-stars"></span><span class="yellow-stars"></span><span class="rating-wrap"><span class="rating rate-45">4.5 </span>Stars</span></li> -->
+									</ul>									
+								</div><!-- end .meta-data-wrap" -->
+								
+							</div><!-- end .member-info-wrap" -->
+						</div><!-- end .member-info -->
+						
+					</div><!-- end .wrap -->
+				</div><!-- end #public-profile-sidebar -->
 
-				<g:if test="${profileInstance?.subCategory}">
-				<li class="fieldcontain">
-					<span id="subCategory-label" class="property-label"><g:message code="profile.subCategory.label" default="Sub Category" /></span>
-
-						<span class="property-value" aria-labelledby="subCategory-label"><g:link controller="subCategory" action="show" id="${profileInstance?.subCategory?.id}">${profileInstance?.subCategory?.encodeAsHTML()}</g:link></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.displayPicture}">
-				<li class="fieldcontain">
-					<span id="displayPicture-label" class="property-label"><g:message code="profile.displayPicture.label" default="Display Picture" /></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.companyProfile}">
-				<li class="fieldcontain">
-					<span id="companyProfile-label" class="property-label"><g:message code="profile.companyProfile.label" default="Company Profile" /></span>
-
-						<span class="property-value" aria-labelledby="companyProfile-label"><g:link controller="companyProfile" action="show" id="${profileInstance?.companyProfile?.id}">${profileInstance?.companyProfile?.encodeAsHTML()}</g:link></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.license}">
-				<li class="fieldcontain">
-					<span id="license-label" class="property-label"><g:message code="profile.license.label" default="License" /></span>
-
-						<span class="property-value" aria-labelledby="license-label"><g:link controller="license" action="show" id="${profileInstance?.license?.id}">${profileInstance?.license?.encodeAsHTML()}</g:link></span>
-
-				</li>
-				</g:if>
-<%--
-				<g:if test="${profileInstance?.differentiation}">
-				<li class="fieldcontain">
-					<span id="differentiation-label" class="property-label"><g:message code="profile.differentiation.label" default="Differentiation" /></span>
-
-						<span class="property-value" aria-labelledby="differentiation-label"><g:fieldValue bean="${profileInstance}" field="differentiation"/></span>
-
-				</li>
-				</g:if>
- --%>
-				<g:if test="${profileInstance?.feeStructure}">
-				<li class="fieldcontain">
-					<span id="feeStructure-label" class="property-label"><g:message code="profile.feeStructure.label" default="Fee Structure" /></span>
-
-						<span class="property-value" aria-labelledby="feeStructure-label"><g:fieldValue bean="${profileInstance}" field="feeStructure"/></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.affiliations}">
-				<li class="fieldcontain">
-					<span id="affiliations-label" class="property-label"><g:message code="profile.affiliations.label" default="Affiliations" /></span>
-
-						<g:each in="${profileInstance.affiliations}" var="a">
-						<span class="property-value" aria-labelledby="affiliations-label"><g:link controller="affiliation" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.askingFee}">
-				<li class="fieldcontain">
-					<span id="askingFee-label" class="property-label"><g:message code="profile.askingFee.label" default="Asking Fee" /></span>
-
-						<span class="property-value" aria-labelledby="askingFee-label"><g:fieldValue bean="${profileInstance}" field="askingFee"/></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.awards}">
-				<li class="fieldcontain">
-					<span id="awards-label" class="property-label"><g:message code="profile.awards.label" default="Awards" /></span>
-
-						<g:each in="${profileInstance.awards}" var="a">
-						<span class="property-value" aria-labelledby="awards-label"><g:link controller="award" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-<%--
-				<g:if test="${profileInstance?.category}">
-				<li class="fieldcontain">
-					<span id="category-label" class="property-label"><g:message code="profile.category.label" default="Category" /></span>
-
-						<span class="property-value" aria-labelledby="category-label"><g:link controller="category" action="show" id="${profileInstance?.category?.id}">${profileInstance?.category?.encodeAsHTML()}</g:link></span>
-
-				</li>
-				</g:if>
- --%>
-				<g:if test="${profileInstance?.phoneNumbers}">
-				<li class="fieldcontain">
-					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Phone Numbers" /></span>
-
-						<g:each in="${profileInstance.phoneNumbers}" var="c">
-						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-				
-				<g:if test="${profileInstance?.emailAddresses}">
-				<li class="fieldcontain">
-					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Emails" /></span>
-
-						<g:each in="${profileInstance.emailAddresses}" var="c">
-						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-				
-				<g:if test="${profileInstance?.websites}">
-				<li class="fieldcontain">
-					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Websites" /></span>
-
-						<g:each in="${profileInstance.websites}" var="c">
-						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-				
-				<g:if test="${profileInstance?.phoneNumbers}">
-				<li class="fieldcontain">
-					<span id="contactInformation-label" class="property-label"><g:message code="profile.contacts.label" default="Contact Information" /></span>
-
-						<g:each in="${profileInstance.phoneNumbers}" var="c">
-						<span class="property-value" aria-labelledby="contactInformation-label"><g:link controller="contactInfo" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.dateCreated}">
-				<li class="fieldcontain">
-					<span id="dateCreated-label" class="property-label"><g:message code="profile.dateCreated.label" default="Date Created" /></span>
-
-						<span class="property-value" aria-labelledby="dateCreated-label"><g:formatDate date="${profileInstance?.dateCreated}" /></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.lastUpdated}">
-				<li class="fieldcontain">
-					<span id="lastUpdated-label" class="property-label"><g:message code="profile.lastUpdated.label" default="Last Updated" /></span>
-
-						<span class="property-value" aria-labelledby="lastUpdated-label"><g:formatDate date="${profileInstance?.lastUpdated}" /></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.lastName}">
-				<li class="fieldcontain">
-					<span id="lastName-label" class="property-label"><g:message code="profile.lastName.label" default="Last Name" /></span>
-
-						<span class="property-value" aria-labelledby="lastName-label"><g:fieldValue bean="${profileInstance}" field="lastName"/></span>
-
-				</li>
-				</g:if>
-				
-				<g:if test="${profileInstance?.firstName}">
-				<li class="fieldcontain">
-					<span id="firstName-label" class="property-label"><g:message code="profile.firstName.label" default="First Name" /></span>
-
-						<span class="property-value" aria-labelledby="firstName-label"><g:fieldValue bean="${profileInstance}" field="firstName"/></span>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.reviews}">
-				<li class="fieldcontain">
-					<span id="reviews-label" class="property-label"><g:message code="profile.reviews.label" default="Reviews" /></span>
-
-						<g:each in="${profileInstance.reviews}" var="r">
-						<span class="property-value" aria-labelledby="reviews-label"><g:link controller="review" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-
-				<g:if test="${profileInstance?.primaryServices}">
-				<li class="fieldcontain">
-					<span id="services-label" class="property-label"><g:message code="profile.services.label" default="Services" /></span>
-
-						<g:each in="${profileInstance.primaryServices}" var="s">
-						<span class="property-value" aria-labelledby="services-label"><g:link controller="service" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
-						</g:each>
-
-				</li>
-				</g:if>
-
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
-					<g:hiddenField name="id" value="${profileInstance?.id}" />
-					<g:link class="edit" action="edit" id="${profileInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
-		</div>
-	</body>
+				<div id="content">
+					<div class="wrap">
+						<div class="service-overview">
+							<div class="meta-col">
+								<div class="img-wrap">
+									<img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/total-business-accounting-demo-logo.jpg" class="biz-logo">
+								</div>
+								<%--<div class="biz-meta-box">Operating Since: <span class="op-since">${profileInstance.companyProfile}</span></div>
+								<div class="biz-meta-box">Size: <span class="employee-count">13</span> associates</div>--%>
+							</div>
+							
+							<div class="details-col">
+								<h1>${profileInstance.businessName}</h1>
+								<p>${profileInstance.companyProfile.description}</p>
+							</div>
+						</div><!-- end .service-overivew -->
+						
+						<div class="primary-services">
+							<h2>Primary Services</h2>
+							<ul class="collapsible-bars blue-bars primary-content prem-content">
+								<g:each var="service" in="${profileInstance.primaryServices}" status="idx">
+									<li class="open unlocked">
+										<a class="title-wrap" href="http://184.173.193.62/~ays/app/public-profile.html#">
+											<h4><span class="count">${idx+1}</span> ${service.serviceName} </h4>
+											<!-- <span class="pc-white-link"><span class="star-icon"></span>Premium Content</span> -->
+										</a>
+										<div class="content-wrap">
+											<p>${service.serviceDescription}</p>
+										</div>
+									</li>
+								</g:each>
+							</ul>
+						</div><!-- end .primary-services" -->
+						
+						<div class="secondary-services">
+							<h2>Secondary Services</h2>
+							<ul class="collapsible-bars blue-bars primary-content prem-content">
+								<g:each var="service" in="${profileInstance.secondaryServices}" status="idx">
+									<li class="open unlocked">
+										<a class="title-wrap" href="http://184.173.193.62/~ays/app/public-profile.html#">
+											<h4><span class="count">${idx+1}</span> ${service.serviceName} </h4>
+											<!-- <span class="pc-white-link"><span class="star-icon"></span>Premium Content</span> -->
+										</a>
+										<div class="content-wrap">
+											<p>${service.serviceDescription}</p>
+										</div>
+									</li>
+								</g:each>
+							</ul>
+						</div><!-- end .secondary-services" -->
+						
+						<div class="differentiation">
+							<h2>Differentiation</h2>
+							<ul class="collapsible-bars blue-bars primary-content prem-content">
+								<g:each var="diff" in="${profileInstance.differentiations}" status="idx">
+									<li class="open unlocked">
+										<a class="title-wrap" href="http://184.173.193.62/~ays/app/public-profile.html#">
+											<h4><span class="count">${idx+1}</span> ${diff.differentiationKeywords} </h4>
+											<!-- <span class="pc-white-link"><span class="star-icon"></span>Premium Content</span> -->
+										</a>
+										<div class="content-wrap">
+											<p>${diff.differentiationDescription}</p>
+										</div>
+									</li>
+								</g:each>
+							</ul>
+						</div><!-- end .differentiation" -->
+						
+						<div class="address">
+							<h2>Address</h2>
+							<div class="content-wrap">
+								<p>${profileInstance.companyProfile.address.displayValue}</p>
+							</div>
+						</div><!-- end .primary-services" -->
+						
+						<%--
+						<ul class="secondary-services-list">
+							
+							<li class="differentiation collapsible secondary-content prem-content open locked">
+								<div class="title-wrap">							
+									<a class="toggle" ref="#"><h3>Differentiation <span class="minus">-</span></h3></a>
+									<span class="pc-blue-link"><span class="star-icon"></span>Premium Content</span>
+								</div>
+								<div class="secondary-content-wrap view-pc-message">
+									<h4>To view <span class="lg-pc-blue-link"><span class="lg-star-icon"></span>Premium Content</span> you must:</h4>
+									<div class="blue-btn-wrap">	
+										<div class="blue-button"><a href="http://184.173.193.62/~ays/app/public-profile.html#">Be A Premium Member</a></div>
+										<div class="blue-button"><a href="http://184.173.193.62/~ays/app/public-profile.html#">Pay With A Facebook Post</a></div>
+									</div>
+									<a href="http://184.173.193.62/~ays/app/public-profile.html#">
+										<div class="orange-button">
+											<h5>Invite <span class="service-member-name">Anna</span> to be a premium member</h5>
+											<p>If <span class="service-memeber-name">Anna</span> joins then all users can see her full profile for free and you will get 30 free days as a premium member!</p>
+										</div>
+									</a>
+								</div>								
+							</li><!-- end. differentiation -->
+							
+							<li class="collapsible secondary-content prem-content closed locked">
+								<div class="title-wrap">							
+									<a class="toggle" ref="#"><h3>Another Category Title Here <span class="plus">+</span></h3></a>
+									<span class="pc-blue-link"><span class="star-icon"></span>Premium Content</span>
+								</div>
+							</li>	
+								
+							<li class="collapsible secondary-content prem-content closed locked">
+								<div class="title-wrap">							
+									<a class="toggle" ref="#"><h3>Another Category Title Here <span class="plus">+</span></h3></a>
+									<span class="pc-blue-link"><span class="star-icon"></span>Premium Content</span>
+								</div>
+							</li>	
+						</ul><!-- end .secondary-services-list -->
+						--%>
+						
+					</div><!-- end .wrap -->
+				</div><!-- end #content -->
+		
+			</div><!-- end #content-sidebar-inside-wrap -->
+		
+		</div><!-- end #inner-wrap -->		
+	</div><!-- end #inner -->
+</body>
 </html>

@@ -17,19 +17,19 @@ enum FeeStructure {
 
 	String toString() { value }
 	
-	String getDisplayValue() {
+	String getUnit() {
 		if (this == HOURLY) {
-			return "/ hour"
+			return "hour"
 		} else if (this == DAILY) {
-			return "/ day"
+			return "day"
 		} else if (this == WEEKLY) {
-			return "/ week"
+			return "week"
 		} else if (this == MONTHLY) {
-			return "/ month"
+			return "month"
 		} else if (this == ANNUAL) {
-			return "/ year"
+			return "year"
 		} else {
-			return ""
+			return "bid"
 		}
 	}
 

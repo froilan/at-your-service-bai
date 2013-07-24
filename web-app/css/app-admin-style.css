@@ -1,0 +1,93 @@
+/*  
+
+WARNING!!!! ALWAYS BACKUP THIS FILE BEFORE EDITING!!!!!
+
+
+-----------------------------------------------------
+THIS IS THE 
+
+*** ADMIN APPLICATION STYLESHEET *** 
+
+AND SHOULD BE USED TO STYLE SPECIFIC ADMIN PAGES ONLY.  
+-----------------------------------------------------
+
+
+TABLE OF CONTENTS: AYS APPLICATION STYLESHEETS
+-----------------------------------------------------
+app-general-style.css - ALL GENERAL STYLES FOR USERS & ADMIN OF ALL AYS APPLICATION MODULES GO HERE
+app-admin-style.css - ONLY FOR SPECIFIC STYLES FOR ADMIN & AYS STAFF PAGES 
+app-user-style.css - ONLY FOR SPECIFIC STYLES FOR USER ONLY PAGES 
+
+
+AYS STYLESHEET GUIDELINES 
+-----------------------------------------------------
+- AVOID THE!IMPORTANT DECLARATION AT ALL COSTS, SERIOUSLY, AT ALL COSTS!!
+- USE FLOATS FOR POSITIONING ALL MAJOR SECTIONS
+- CSS STRUCTURE SHOULD FOLLOW HTML STRUCTURE, WHEN CSS DOES NOT FOLLOW ANY LOGICAL HTML ORDER, IT GOES AT THE BOTTOM
+- ADD COMMENTS TO ALL SECTIONS AND SUB-SECTIONS
+- WHEN IS DOUBT, ASK SOMEONE ELSE!
+
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,400italic);
+
+/* CSS Reset 
+----------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ADMIN BODY STYLES 
+----------------------------------------------*/
+
+body {
+	background: url(../images/bg/drk-grey-pattern-bg.png);
+	color: #424242;
+	font-size: 12px;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0 auto 0;
+	padding: 0;
+	line-height: 20px;
+}
+
+	

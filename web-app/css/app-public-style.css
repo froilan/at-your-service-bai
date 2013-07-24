@@ -1,0 +1,919 @@
+/* @override http://184.173.193.62/~ays/app/css/app-user-style.css */
+
+/*  
+
+WARNING!!!! ALWAYS BACKUP THIS FILE BEFORE EDITING!!!!!
+
+
+-----------------------------------------------------
+THIS IS THE 
+
+*** USER APPLICATION PUBLIC STYLESHEET *** 
+
+AND SHOULD BE USED TO STYLE FRONT END APPLICATION PAGES ONLY, SUCH AS RESULTS PAGES AND PROFILE PAGES.  
+-----------------------------------------------------
+
+
+TABLE OF CONTENTS: AYS APPLICATION STYLESHEETS
+-----------------------------------------------------
+app-general-style.css - ALL GENERAL STYLES FOR USERS & ADMIN OF ALL AYS APPLICATION MODULES GO HERE
+app-admin-style.css - ONLY FOR SPECIFIC STYLES FOR ADMIN & AYS STAFF PAGES 
+app-user-style.css - ONLY FOR SPECIFIC STYLES FOR USER ONLY PAGES 
+app-public-style.css - ONLY FOR PUBLIC APP PAGES SUCH AS RESULTS & PROFILE PAGES
+
+
+AYS STYLESHEET GUIDELINES 
+-----------------------------------------------------
+- AVOID THE!IMPORTANT DECLARATION AT ALL COSTS, SERIOUSLY, AT ALL COSTS!!
+- USE FLOATS FOR POSITIONING ALL MAJOR SECTIONS
+- CSS STRUCTURE SHOULD FOLLOW HTML STRUCTURE, WHEN CSS DOES NOT FOLLOW ANY LOGICAL HTML ORDER, IT GOES AT THE BOTTOM
+- ADD COMMENTS TO ALL SECTIONS AND SUB-SECTIONS
+- WHEN IS DOUBT, ASK SOMEONE ELSE!
+
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,400italic);
+
+/* CSS Reset 
+----------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: 'Open Sans', sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-size: 12px;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* @Header FRONT APP STYLES ONLY  
+----------------------------------------------*/	
+.front-app #header .header-right {
+	width: 600px;
+	margin: 32px 0 0 0;
+}
+
+.front-app #header .header-right .blue-btn {
+	float: right;
+	font-size: 13px;
+	font-weight: bold;	
+	margin: 7px 0 0 0;
+}
+
+.front-app #header ul li {
+	float: right;
+	margin: 0 20px 0 0;
+}
+
+.front-app #header ul li a {
+	font-size: 13px;
+	font-weight: bold;
+	position: relative;
+	line-height: 13px;
+}
+
+.front-app #header ul li a.grey {
+	color: #909090;
+}
+
+.front-app #header ul li a.grey:hover {
+	color: #fab533;
+}
+
+.front-app #header ul li a span {
+	width: 75px;
+	height: 41px;
+	display: inline-block;
+	background: url(../images/style/its-free-arrow.png);
+	position: absolute;
+	left: -65px;
+	top: -18px;
+}
+
+.front-app #header #header-right-nav a.login-btn {
+	margin: -10px 0 0 0;
+	color: #FFF;
+	background: #4884e7;
+	border-radius: 3px;
+	padding: 5px 20px;
+	
+}
+
+.front-app #header #header-right-nav a.premium-signup {
+	margin: -10px 0 0 0;
+	color: #FFF;
+	background: url(../images/sprites/horz-sprite.png) 0 -177px;
+	border-radius: 3px;
+	padding: 5px 20px;
+}
+
+.front-app #header #header-right-nav a.premium-signup:hover {
+	background: #f2b137;
+}
+
+.front-app #header #header-right-nav li.menu-btn {
+	margin: 0 10px 0 0;
+}
+
+.front-app #header #header-right-nav li:first-child {
+	margin: 0;
+}
+
+
+/* @Nav FRONT APP STYLES ONLY  
+----------------------------------------------*/	
+
+/* @Inner  FRONT APP STYLES ONLY 
+----------------------------------------------*/
+#inner .title-right-meta .steps {
+	color: #4884e7;
+	font-size: 16px;
+	line-height: 17px;
+	font-weight: bold;
+}
+
+#inner .title-right-meta .time-to-complete {
+	color: #ababab;
+	font-size: 14px;
+	font-weight: lighter;
+}
+	
+	
+/* @Content  FRONT APP STYLES ONLY  
+----------------------------------------------*/	
+
+/* Step 1 Business Initialization Form */
+#content .init-message {
+	background: #fdfde9;
+	margin: 0 0 30px 0;
+	padding: 25px 50px;
+	text-align: center;
+	border-radius: 3px;
+	box-shadow: 0 2px 5px #b1b1b1
+}
+
+.init-message h2 {
+	font-size: 20px;
+	font-weight: bold;
+	color: #5e5e5e;
+	margin: 0 0 15px 0;
+}
+
+.init-message p {
+	line-height: 16px;
+	color: #707070;
+}
+
+#content h2.category-heading {
+	font-size: 22px;
+	display: inline-block;
+}
+
+a.tips-link {
+	font-size: 12px;
+	line-height: 12px;
+	display: inline-block;
+	margin: 0 0 0 5px;
+	-moz-transition-duration: 300ms, 300ms;
+    -moz-transition-property: color, opacity;
+    -moz-transition-timing-function: ease, ease;
+    -webkit-transition-duration: 300ms, 300ms;
+    -webkit-transition-property: color, opacity;
+    -webkit-transition-timing-function: ease, ease;
+    -o-transition-duration: 300ms, 300ms;
+    -o-transition-property: color, opacity;
+    -o-transition-timing-function: ease, ease;
+    transition-duration: 300ms, 300ms;
+    transition-property: color, opacity;
+    transition-timing-function: ease, ease;
+}
+
+#content ul.tips {
+	margin: 10px 0 30px 0;
+}
+
+#content ul.tips li {
+	list-style: disc;
+	list-style-position: inside;
+	margin: 0 0 15px 0;
+	line-height: 17px;
+}
+
+#content .blue-star {
+	display: inline-block;
+	padding: 0;
+}
+
+.prem-brand {
+	color: #4884e7;
+	font-style: italic;
+}
+
+.tip-badge {
+	background: #fbb530;
+	color: #FFF;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 3px 9px;
+	margin: 0 3px 0 0;
+	border-radius: 3px;
+	position: relative;
+	bottom: 1px;
+}
+
+/* Start Form Styles */
+form#business-profile-setup-form-1 {
+	margin: 10px 0 0 0;
+}
+
+ul.outer-form-ul {
+	background: #e8edf8;
+	border-radius: 3px;
+	padding: 25px 40px;
+}
+
+ul.outer-form-ul li.input-section {
+	border-bottom: 1px dashed #aaa;
+	margin: 0 0 25px 0;
+	padding: 0 0 25px;
+	overflow: hidden;
+}
+
+ul.outer-form-ul li.input-section.last {
+	border-bottom: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+#content ul.outer-form-ul h3 .red {
+	font-size: 12px;
+	position: relative;
+	bottom: 7px;
+}
+
+ul.outer-form-ul p {
+	font-size: 15px;
+	line-height: 18px;
+	color: #424242;
+	margin: 0 0 10px 0;
+}
+
+ul.outer-form-ul ul.input-wrap {
+	overflow: hidden;
+}
+
+ul.outer-form-ul ul.input-wrap li.user-input {
+	float: left;
+	overflow: hidden;
+	color: #aaa;
+	padding: 0;
+	margin: 0;
+}
+
+#content ul.outer-form-ul ul.input-wrap li.user-input label {
+	float: left;
+	clear: both;
+	font-size: 13px;
+	display: inline-block;
+	margin: 0 0 4px 0;
+	color: #424242;
+}
+
+ul.outer-form-ul ul.input-wrap li.user-input select {
+	float: left;
+	clear: both;
+	width: 250px;
+}
+
+#content ul.outer-form-ul input.award-name {
+	width: 370px;
+}
+
+#content #social-networks .inline-wrap {
+	float: left;
+	clear: both;
+	margin: 0 0 6px 0;
+}
+#content #social-networks span.icon {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	float: left;
+	margin: 0 6px 0 0;
+}
+
+#content #social-networks input.custom-width {
+	padding: 6px 5px 6px 5px;
+	margin: 0;
+	width: 480px;
+}
+
+#content #social-networks .facebook-wrap span.icon {
+	background: url(../images/sprites/app-sprite.png) -20px -2px no-repeat;
+}
+
+#content #social-networks .twitter-wrap span.icon {
+	background: url(../images/sprites/app-sprite.png) -53px -2px no-repeat;
+}
+
+#content #social-networks .linkedin-wrap span.icon {
+	background: url(../images/sprites/app-sprite.png) -86px -2px no-repeat;
+}
+
+/* @Profile Page Title #public-profile 
+FRONT APP STYLES ONLY 
+----------------------------------------------*/
+.front-app #wrap #inner #inner-wrap {
+	width: 960px;
+	margin: 30px auto 40px;
+	padding: 0;
+	overflow: hidden;
+}
+
+.front-app #inner-title .title-right {
+	overflow: hidden;
+	float: right;
+	width: 665px;
+}
+
+.front-app #inner-title .breadcrumb {
+	float: left;
+	color: #606060;
+	font-size: 13px;
+	line-height: 14px;
+	padding: 4px 0 0 0;
+}
+
+.front-app #inner-title .breadcrumb a {
+	font-size: 13px;
+}
+
+.front-app #inner-title .title-right-meta {
+	float: right;
+	margin: 0 0 3px 0;
+}
+
+.front-app #inner-title .title-right-meta .next-prev {
+	overflow: hidden;
+	float: right;
+	margin: 0 3px 0 0;
+}
+
+.front-app #inner-title .title-right-meta a {
+	float: right;
+	font-size: 13px;
+	line-height: 13px;
+	color: #FFF;
+	font-weight: bold;
+	background: #aaa9a8;
+	padding: 3px 7px 5px;
+	border-radius: 3px;
+	margin: 0 0 0 4px;
+}
+
+.front-app #inner-title .title-right-meta a:hover {
+	background: #4884e7;
+}
+
+.front-app #inner-title .title-right-meta .match-count {
+	float: right;
+	font-size: 12px;
+	line-height: 12px;
+	color: #9e9e9e;
+	padding: 3px 4px 0 0;
+}
+
+/* @Profile Page Sidebar #public-profile 
+FRONT APP STYLES ONLY 
+----------------------------------------------*/
+ #public-profile-sidebar {
+	float: left;
+	width: 270px;
+	margin: 0 0 40px 0;
+}
+
+ #public-profile-sidebar .member-info-wrap {
+	float: left;
+	width: 230px;
+	background: #FFF;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+
+/* Sidebar - Badges */	
+.front-app .profile-badges {
+	margin: 0 0 12px 0;
+	width: 226px;
+}
+
+.front-app .profile-badges li {
+	margin: 0 0 4px 0;
+}
+
+.front-app .profile-badges li.premium-badge a {
+	background: #457dd9;
+	width: 100%;
+	display: inline-block;
+	color: #FFF;
+	padding: 8px 8px 8px 38px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.front-app .profile-badges li.premium-badge .icon {
+	background: url(../images/sprites/front-app-sprite.png) 0 0;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 10px;
+	top:  6px;
+}
+
+.front-app .profile-badges li.verified-badge a {
+	background: #9bc63e;
+	width: 100%;
+	display: inline-block;
+	color: #FFF;
+	padding: 8px 8px 8px 38px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.front-app .profile-badges li.verified-badge .icon {
+	background: url(../images/sprites/front-app-sprite.png) -17px 1px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	left: 10px;
+	top:  6px;
+}
+
+.front-app .profile-badges li.top-rated-badge a {
+	background: #f2b137;
+	width: 100%;
+	display: inline-block;
+	color: #FFF;
+	padding: 8px 8px 8px 38px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.front-app .profile-badges li.top-rated-badge .icon {
+	background: url(../images/sprites/front-app-sprite.png) -37px 1px;
+	display: inline-block;
+	width: 15px;
+	height: 20px;
+	position: absolute;
+	left: 13px;
+	top:  6px;
+}
+
+.front-app .profile-badges li.featured-badge a {
+	background: #9e70d9;
+	width: 100%;
+	display: inline-block;
+	color: #FFF;
+	padding: 8px 8px 8px 38px;
+	border-radius: 3px;
+	position: relative;
+}
+
+.front-app .profile-badges li.featured-badge .icon {
+	background: url(../images/sprites/front-app-sprite.png) -53px 1px;
+	display: inline-block;
+	width: 15px;
+	height: 20px;
+	position: absolute;
+	left: 13px;
+	top:  6px;
+}
+
+/* Profile Photo */
+.front-app .member-info img {
+	margin: 0 0 0 1px;
+	border-radius: 3px;
+	box-shadow: 0 1px 3px #303030;
+}
+
+/* Member Info */
+.member-info-wrap {
+	padding: 20px 20px 10px 20px;
+}
+
+.member-info .name-wrap {
+	padding: 0 0 15px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+#wrap .member-info h2.sb-member-name {
+	color: #4884e7;
+	margin: 5px 0 7px 0;
+}
+
+.member-info .member-title {
+	font-size: 16px;
+	line-height: 16px;
+	color: #707070;
+}
+
+.member-info .company-position {
+	font-size: 12px;
+	line-height: 12px;
+	color: #838383;
+}
+
+.member-info .contact-info-wrap {
+	border-bottom: 1px solid #ddd;	
+	padding: 0 0 15px 0;
+	margin: 15px 0 15px 0;
+}
+
+.member-info .phone-numbers {
+	margin: 10px 0 15px 0;
+}
+
+.member-info .phone-numbers .icon {
+	background: url(../images/sprites/front-app-sprite.png) -73px 1px;
+	width: 23px;
+	height: 16px;
+	display: inline-block;
+	float: left;
+}
+
+.member-info .phone-numbers .wrap, .member-info .website .wrap, .member-info .email .wrap {
+	margin: 0 0 0 35px;
+	color: #606060;
+}
+
+.member-info .phone-numbers .phone-list li {
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.member-info .phone-numbers .phone-list li span.phone-label {
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+.member-info .email {
+	margin: 0 0 20px 0 ;
+	overflow: hidden;
+}
+
+.member-info .temp-title {
+	font-weight: bold;
+	float: left;
+}
+
+.member-info .pc-blue-link {
+	float: right;
+}
+
+.member-info .email .icon {
+	background: url(../images/sprites/front-app-sprite.png) -100px -0px;
+	width: 20px;
+	height: 13px;
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 2px;
+}
+
+.member-info .website {
+	overflow: hidden;
+}
+
+.member-info .website .wrap {
+	padding: 4px 0 0 0;
+}
+
+.member-info .website .icon {
+	background: url(../images/sprites/front-app-sprite.png) -123px -1px;
+	width: 20px;
+	height: 22px;
+	display: inline-block;
+	float: left;
+	margin: 0 0 0 2px;
+}
+
+#public-profile-sidebar .member-info ul.meta-data-list {
+	font-weight: bold;
+	color: #606060;
+}
+
+.member-info ul.meta-data-list li.rate {
+	margin: 0 0 10px 0;
+	font-size: 13px;
+}
+
+.member-info ul.meta-data-list li.rate .rate-wrap {
+	margin: 4px 0 0 8px;
+	display: inline-block;
+}
+
+.member-info ul.meta-data-list li.rate .icon {
+	background: url(../images/sprites/front-app-sprite.png) -189px -1px;
+	width: 22px;
+	height: 22px;
+	display: inline-block;
+	float: left;
+}
+
+.member-info ul.meta-data-list li.rating {
+	margin: 16px 0 0 0;
+	font-size: 13px;
+	position: relative;
+}
+
+.member-info ul.meta-data-list li.rating .rating-wrap {
+	margin: 0 0 0 85px !important;
+	display: inline-block;
+}
+
+.member-info ul.meta-data-list li.rating .grey-stars {
+	background: url(../images/sprites/front-app-sprite.png) 0px -38px;
+	width: 78px;
+	height: 22px;
+	display: inline-block;
+	margin: 0 8px 0 0;
+	position: absolute;
+	z-index: 100;
+}
+
+.member-info ul.meta-data-list li.rating .yellow-stars {
+	background: url(../images/sprites/front-app-sprite.png) 0px -22px;
+	width: 69px;
+	height: 13px;
+	display: inline-block;
+	float: left;
+	margin: 0 8px 0 0;
+	position: absolute;
+	z-index: 101;
+}
+
+/* @Profile Page Content #public-profile 
+FRONT APP STYLES ONLY 
+----------------------------------------------*/
+.front-app #content {
+	background: #FFF !important;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	margin: 0 2px 0 0;
+	width: 600px;
+}
+
+/* Services Overview Section */
+.front-app #content .service-overview {
+	overflow: hidden;
+	border-bottom: 1px dashed #CCC;
+	padding: 0 0 20px 0;
+	margin: 0 0 20px 0;
+}
+
+.front-app #content .meta-col {
+	float: left;
+	width: 170px;
+	margin: 0 20px 0 0;
+}
+
+.front-app #content .details-col {
+	float: left;
+	width: 410px;
+}
+
+.front-app #content .meta-col .img-wrap img {
+	padding: 11px;
+	background: #FFF;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+
+.front-app #content .biz-meta-box {
+	background: url(../images/bg/med-grey-pattern-bg.png) repeat;
+	padding: 8px 10px;
+	margin: 5px 0 0 0;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 12px !important;
+	border-radius: 3px;
+}
+
+.front-app #content .details-col h1 {
+	font-size: 22px;
+	margin: 0 0 5px 0;
+	color: #444444;
+}
+
+.front-app #content .details-col p {
+	font-size: 13px;
+	line-height: 15px;
+	margin: 0 0 12px;
+	color: #606060;
+}
+
+/* Primary Services Section */
+.front-app #content .primary-services h2 {
+	font-size: 20px;
+	color: #444444;
+}
+
+.front-app #content .primary-services ul.blue-bars li {
+	margin: 0 0 5px 0;	
+}
+
+.front-app #content .primary-services ul.blue-bars li .title-wrap {
+	color: #FFF;
+	background: url(../images/bg/blue-pattern-bg.png);
+	border-radius: 3px;
+	padding: 5px 10px;
+	overflow: hidden;
+	display: block;
+}
+
+.front-app #content .primary-services ul.blue-bars li h4 {
+	font-size: 14px;
+	line-height: 18px;
+	display: inline-block;
+	float: left;
+	margin: 0;
+}
+
+.front-app #content .primary-services ul.blue-bars li h4 .plus, .front-app #content .primary-services ul.blue-bars li h4 .minus {
+	font-weight: lighter;
+	font-size: 14px;
+	padding: 0 0 0 3px;
+}
+
+.front-app #content .primary-services ul.blue-bars li .pc-white-link {
+	float: right;
+	margin: 4px 4px 0 0;
+}
+
+.front-app #content .primary-services ul.blue-bars li.open a.title-wrap {
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	
+}
+
+.front-app #content .primary-services ul.blue-bars li.open .content-wrap {
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	padding: 12px 10px 5px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.front-app #content .primary-services ul.blue-bars li.open .content-wrap p {
+	margin: 0 0 10px 0;
+	font-size: 13px;
+	line-height: 15px;
+	color: #606060;
+}
+
+/* Secondary Content */
+.front-app #content ul.secondary-services-list {
+	margin: 0;
+}
+
+.front-app #content li.secondary-content {
+		margin: 0 0 8px 0;
+}
+
+.front-app #content li.secondary-content:last-child {
+	margin: 0;
+}
+
+.front-app #content li.secondary-content .title-wrap {
+	overflow: hidden;
+	margin: 0;
+}
+
+.front-app #wrap #content .secondary-content .title-wrap a {
+	font-size: 16px;
+	line-height: 20px;
+	float: left;
+	margin: 0;
+	color: #444;
+}
+
+.front-app #content li.secondary-content .title-wrap h3 {
+	margin: 0;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.front-app #wrap #content .secondary-content .title-wrap a:hover {
+	cursor: pointer;
+	color: #f2b137;
+}
+
+.front-app #content .secondary-content .title-wrap .pc-blue-link {
+	float: right;
+	margin: 2px 0 0 0;
+}
+
+.front-app #content .secondary-content-wrap {
+	background: url(../images/bg/lgt-grey-pattern-bg.png);
+	padding: 15px 15px 25px 15px;
+	margin: 5px 0 10px 0;
+	border-radius: 3px;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message {
+	text-align: center;
+	color: #505050;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message .blue-btn-wrap {
+	overflow: hidden;
+	margin: 20px 0 0 58px;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message .blue-button {
+	background: #4884e7;
+	float: left;
+	margin: 0 10px 0 0;
+	border-radius: 3px;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message .blue-button:hover {
+	background: #f2b137;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message .blue-button a {
+	color: #FFFFFF;
+	font-weight: bold;
+	padding: 14px 0;
+	width: 220px;
+	display: inline-block;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message a .orange-button {
+	width: 420px;
+	background: url(../images/sprites/horz-sprite.png) 0 -217px;
+	margin: 10px 0 0 58px;
+	border-radius: 3px;
+	padding: 15px;
+	color: #FFF;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message a .orange-button:hover {
+	background: #f2b137;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message a .orange-button h5 {
+	font-size: 20px;
+}
+
+.front-app #content .secondary-content-wrap.view-pc-message a .orange-button p {
+	font-size: 12px;
+	line-height: 14px;
+	padding: 5px 10px 0 5px;
+	margin: 0;
+}
+
+
+
+
+/* @Footer  FRONT APP STYLES ONLY 
+----------------------------------------------*/	
+
+

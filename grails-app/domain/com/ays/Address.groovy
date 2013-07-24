@@ -22,5 +22,9 @@ class Address implements Serializable {
 	String toString() {
 		"${this.properties}"
 	}
+	
+	String getDisplayValue() {
+		"${this.streetBuildingAddress}, ${this.barangay}, ${this.cityTown}, ${this.province} ${this.zipCode}"
+	}
 
 }
