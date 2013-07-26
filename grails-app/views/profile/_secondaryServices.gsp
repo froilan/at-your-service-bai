@@ -1,14 +1,14 @@
 <g:javascript>
 	var secondaryServiceChildCount = ${secondaryServices?.size()} + 0;
 
-    function addSecondaryService() {
+    function addSecondaryService(setFocus) {
 		var clone = $("#secondaryService_clone").clone()
 		var divId = 'secondaryService'+secondaryServiceChildCount;
 		var htmlId = 'secondaryServices['+secondaryServiceChildCount+'].';
 		var serviceNameInput = clone.find("input[id$=serviceName]");
 
 		clone.find("input[type=button]")
-				.attr('onclick','deleteRow("' + divId + '")')
+				.attr('onclick','deleteSecondaryService("' + divId + '")')
 		clone.find("input[id$=id]")
 				.attr('id',htmlId + 'id')
 				.attr('name',htmlId + 'id');
@@ -28,12 +28,46 @@
 		clone.attr('id', 'secondaryService'+secondaryServiceChildCount);
 		$("#secondaryServiceChildList").append(clone);
 		clone.show();
-		serviceNameInput.focus();
+		if (setFocus) {
+			serviceNameInput.focus();
+		}
 		secondaryServiceChildCount++;
+		toggleAddSecondaryServiceButton();
+    }
+    
+    function deleteSecondaryService(parentDiv) {
+    	//find the parent div
+    	var prnt = $("#"+parentDiv)
+        //find the deleted hidden input
+        var delInput = prnt.find("input[id$=deleted]");
+        var newHidden = prnt.find("input[id$=new]")
+        //check if this is still not persisted
+        var newValue = prnt.find("input[id$=new]").attr('value');
+        //if it is new then i can safely remove from dom
+        if (newValue == 'true') {
+            prnt.remove();
+        } else {
+            //set the deletedFlag to true
+            delInput.attr('value','true');
+            //hide the div
+            prnt.hide();
+        }
+        secondaryServiceChildCount--;
+        toggleAddSecondaryServiceButton();
+    }
+    
+    function toggleAddSecondaryServiceButton() {
+    	$("#secondaryServicesCount").text(''+secondaryServiceChildCount)
+    	var button = $("#addSecondaryServiceButton")
+		if (secondaryServiceChildCount >= 5) {
+			button.hide();
+		} else {
+			button.show();
+		}
     }
     
     <g:if test="${!secondaryServices}">
-		addSecondaryService();
+		addSecondaryService(false);
 	</g:if>
 </g:javascript>
 
@@ -45,8 +79,8 @@
 		    </g:each>
 		</div>
 		<div class="add-btn-wrap">		
-			<input type="button" value="Add Another Service" onclick="addSecondaryService();" />
-			<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
+			<input id="addSecondaryServiceButton" type="button" value="Add Another Service" onclick="addSecondaryService(true);" />
+			<span class="count"><span id="secondaryServicesCount" class="current-count">1</span> of <span class="total-count">5</span> added</span>
 		</div>
 	</li>
 </ul>

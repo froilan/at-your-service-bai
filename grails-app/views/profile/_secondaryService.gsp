@@ -5,7 +5,7 @@
     
 	<g:textField class="custom-width" name="secondaryServices[${i}].serviceName" 
 		value="${service?.serviceName}" placeholder="Secondary Service Title" />
-	<input type="button" onclick="deleteRow('secondaryService${i}')" value="Delete" />
+	<input type="button" onclick="deleteSecondaryService('secondaryService${i}')" value="Delete" />
 	<g:textArea class="premium-field" name="secondaryServices[${i}].serviceDescription" 
 		value="${service?.serviceDescription}" placeholder="Describe this service..." />
 	<span class="blue-star-icon"></span>

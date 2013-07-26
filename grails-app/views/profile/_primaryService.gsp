@@ -5,7 +5,7 @@
     
 	<g:textField class="custom-width" name="primaryServices[${i}].serviceName" 
 		value="${service?.serviceName}" placeholder="Primary Service Title" />
-	<input type="button" onclick="deleteRow('primaryService${i}')" value="Delete" />
+	<input type="button" onclick="deletePrimaryService('primaryService${i}')" value="Delete" />
 	<%--span class="del-primaryService">
         <img src="${resource(dir:'images/skin', file:'icon_delete.png')}" 
             style="vertical-align:middle;" />

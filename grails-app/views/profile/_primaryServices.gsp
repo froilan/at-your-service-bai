@@ -1,15 +1,14 @@
 <g:javascript>
 	var primaryServiceChildCount = ${primaryServices?.size()} + 0;
 
-    function addPrimaryService() {
-        console.log("Entering addPrimaryService... ")
+    function addPrimaryService(setFocus) {
 		var clone = $("#primaryService_clone").clone()
 		var divId = 'primaryService'+primaryServiceChildCount;
 		var htmlId = 'primaryServices['+primaryServiceChildCount+'].';
 		var serviceNameInput = clone.find("input[id$=serviceName]");
 
 		clone.find("input[type=button]")
-				.attr('onclick','deleteRow("' + divId + '")')
+				.attr('onclick','deletePrimaryService("' + divId + '")')
 		clone.find("input[id$=id]")
 				.attr('id',htmlId + 'id')
 				.attr('name',htmlId + 'id');
@@ -30,38 +29,46 @@
 		clone.attr('id', 'primaryService'+primaryServiceChildCount);
 		$("#primaryServiceChildList").append(clone);
 		clone.show();
-		serviceNameInput.focus();
+		if (setFocus) {
+			serviceNameInput.focus();
+		}
 		primaryServiceChildCount++;
+		toggleAddPrimaryServiceButton();
     }
 	
-    function deleteRow(parentDiv) {
-    	console.log("Entering deleteRow... "+parentDiv)
+    function deletePrimaryService(parentDiv) {
     	//find the parent div
     	var prnt = $("#"+parentDiv)
-        console.log("parent: "+prnt)
         //find the deleted hidden input
         var delInput = prnt.find("input[id$=deleted]");
-        console.log("delInput: "+delInput)
         var newHidden = prnt.find("input[id$=new]")
-        console.log("newHidden: "+newHidden)
         //check if this is still not persisted
         var newValue = prnt.find("input[id$=new]").attr('value');
-        console.log("newValue: "+newValue)
         //if it is new then i can safely remove from dom
         if (newValue == 'true') {
-            console.log("It's true!")
             prnt.remove();
         } else {
-            console.log("Marking as delete..")
             //set the deletedFlag to true
             delInput.attr('value','true');
             //hide the div
             prnt.hide();
         }
+        primaryServiceChildCount--;
+        toggleAddPrimaryServiceButton();
+    }
+    
+    function toggleAddPrimaryServiceButton() {
+    	$("#primaryServicesCount").text(''+primaryServiceChildCount)
+    	var button = $("#addPrimaryServiceButton")
+		if (primaryServiceChildCount >= 5) {
+			button.hide();
+		} else {
+			button.show();
+		}
     }
     
     <g:if test="${!primaryServices}">
-    	addPrimaryService();
+    	addPrimaryService(false);
     </g:if>
 </g:javascript>
 
@@ -73,8 +80,8 @@
 		    </g:each>
 		</div>
 		<div class="add-btn-wrap">		
-			<input type="button" value="Add Another Service" onclick="addPrimaryService();" />
-			<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
+			<input id="addPrimaryServiceButton" type="button" value="Add Another Service" onclick="addPrimaryService(true);" />
+			<span class="count"><span id="primaryServicesCount" class="current-count">1</span> of <span class="total-count">5</span> added</span>
 		</div>
 	</li>
 </ul>
