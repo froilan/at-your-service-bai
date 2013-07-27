@@ -8,7 +8,7 @@ class CompanyProfile implements Serializable {
 	String description
 	byte[] logo
 	CompanySize companySize
-	CompanyAge companyAge
+	Integer companyAge
 	Address address
 	String directionsToAddress
 	Date dateCreated
@@ -23,6 +23,7 @@ class CompanyProfile implements Serializable {
 
     static constraints = {
 		logo(nullable: true)
+		companyAge(nullable: true)
 		address(blank: true, nullable: true)
 		directionsToAddress(blank: true, nullable: true)
     }

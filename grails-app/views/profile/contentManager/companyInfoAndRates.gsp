@@ -113,9 +113,11 @@ have a set rate (even if it is subject to change) typically receive more
 											<p>How long has your company been in operation?</p>
 											<ul class="input-wrap">
 												<li class="user-input select inline">													
-													<g:select name="companyAge" from="${com.ays.CompanyAge?.values()}" 
+													<%--<g:select name="companyAge" from="${com.ays.CompanyAge?.values()}" 
 														keys="${com.ays.CompanyAge.values()*.name()}" required=""
-														value="${companyProfileInstance?.companyAge?.name()}" noSelection="['': 'Select...']"/> 
+														value="${companyProfileInstance?.companyAge?.name()}" noSelection="['': 'Select...']"/>--%>
+													<input type="number" name="companyAge" maxlength="4" pattern="[0-9]+" 
+														value="${companyProfileInstance?.companyAge}"> 
 												</li>
 											</ul>
 										</li>
