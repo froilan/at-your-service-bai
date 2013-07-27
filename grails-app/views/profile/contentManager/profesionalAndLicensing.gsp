@@ -68,16 +68,17 @@ premium business account at the end of this form.</li>
 													<input class="single-line" value="Trade license expiration" type="text">
 													<input class="single-line" value="Trade industry website" type="text">
 													<textarea class="short-textarea">Trade license description...</textarea-->
-													<g:textField class="single-line" name="licenseNumber" 
-														value="${licenseInstance?.licenseNumber}" placeholder="License Number" />
-													<g:textField class="single-line" name="licenseArea" 
-														value="${licenseInstance?.licenseArea}" placeholder="License Area" />
-													<g:textField class="single-line" name="licenseAuthority" 
-														value="${licenseInstance?.licenseAuthority}" placeholder="License Authority" />
+													Number: <g:textField class="inline half" name="licenseNumber" 
+														value="${licenseInstance?.licenseNumber}" placeholder="License Number" /><br>
+													Area: <g:textField class="inline half" name="licenseArea" 
+														value="${licenseInstance?.licenseArea}" placeholder="License Area" /><br>
+													Authority: <g:textField class="inline half" name="licenseAuthority" 
+														value="${licenseInstance?.licenseAuthority}" placeholder="License Authority" /><br>
 													<%--<g:datePicker class="single-line" name="licenseExpirationDate" precision="day"  
 														value="${licenseInstance?.licenseExpirationDate}" placeholder="License Expiration Date" />--%>
-													<calendar:datePicker name="licenseExpirationDate" value="${licenseInstance?.licenseExpirationDate}" />
-													<g:textField class="single-line" name="licenseDescription" 
+													Expiration Date: <calendar:datePicker class="inline half" name="licenseExpirationDate" 
+														value="${licenseInstance?.licenseExpirationDate}" /><br>
+													Description: <g:textField class="inline half" name="licenseDescription" 
 														value="${licenseInstance?.licenseDescription}" placeholder="License Description" />
 												</li>
 											</ul>
