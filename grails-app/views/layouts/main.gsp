@@ -23,6 +23,7 @@
 		<script src="${resource(dir: 'js', file: 'jquery.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'app-biz-form.js')}"></script>
 		<g:layoutHead/>
+		<calendar:resources lang="en" theme="blue2"/>
 		<r:layoutResources />
 	</head>
 	<body>

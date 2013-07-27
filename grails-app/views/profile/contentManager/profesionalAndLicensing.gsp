@@ -74,8 +74,9 @@ premium business account at the end of this form.</li>
 														value="${licenseInstance?.licenseArea}" placeholder="License Area" />
 													<g:textField class="single-line" name="licenseAuthority" 
 														value="${licenseInstance?.licenseAuthority}" placeholder="License Authority" />
-													<g:datePicker class="single-line" name="licenseExpirationDate" precision="day"  
-														value="${licenseInstance?.licenseExpirationDate}" placeholder="License Expiration Date" />
+													<%--<g:datePicker class="single-line" name="licenseExpirationDate" precision="day"  
+														value="${licenseInstance?.licenseExpirationDate}" placeholder="License Expiration Date" />--%>
+													<calendar:datePicker name="licenseExpirationDate" value="${licenseInstance?.licenseExpirationDate}" />
 													<g:textField class="single-line" name="licenseDescription" 
 														value="${licenseInstance?.licenseDescription}" placeholder="License Description" />
 												</li>
