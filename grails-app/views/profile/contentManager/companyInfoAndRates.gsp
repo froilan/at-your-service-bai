@@ -116,7 +116,7 @@ have a set rate (even if it is subject to change) typically receive more
 													<%--<g:select name="companyAge" from="${com.ays.CompanyAge?.values()}" 
 														keys="${com.ays.CompanyAge.values()*.name()}" required=""
 														value="${companyProfileInstance?.companyAge?.name()}" noSelection="['': 'Select...']"/>--%>
-													<input type="number" name="companyAge" maxlength="4" pattern="[0-9]+" 
+													<input type="number" name="companyAge" maxlength="4" title="year" pattern="[0-9]+" 
 														value="${companyProfileInstance?.companyAge}"> 
 												</li>
 											</ul>
