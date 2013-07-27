@@ -23,7 +23,8 @@
 		<g:message code="siteUser.username.label" default="Username" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="username" required="" value="${siteUserInstance?.username}"/>
+	<%--<g:textField name="username" required="" value="${siteUserInstance?.username}"/>--%>
+	<input name="username" type="text" title="email" required pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: siteUserInstance, field: 'password', 'error')} required">
@@ -48,6 +49,6 @@
 <g:textField name="captcha"/>
 
 <div>
-	<input name="confirm_service_terms" type="checkbox"><span>I have read and accept the <a href="#">terms of service</a>.</span></li>
+	<input name="confirm_service_terms" type="checkbox" required><span>I have read and accept the <a href="#">terms of service</a>.</span></li>
 </div>
 
