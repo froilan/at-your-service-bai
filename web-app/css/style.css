@@ -1030,6 +1030,18 @@ input.not-empty {
 	font-size: 18px;
 	color: #AAA;
 }
+
+.home-top-right form input[type="search"] {
+	background: #FFFFFF;
+	border: 1px solid #CCC;
+	height: 50px;
+	width: 337px;
+	border-radius: 3px;
+	margin: 10px 0 0 3px;
+	padding: 0 10px;
+	font-size: 18px;
+	color: #AAA;
+}
 	
 #home-top .home-top-right form a {
 	clear: both;
