@@ -1,14 +1,14 @@
 <g:javascript>
 	var affiliationChildCount = ${affiliations?.size()} + 0;
 
-    function addAffiliation() {
+    function addAffiliation(setFocus) {
 		var clone = $("#affiliation_clone").clone()
 		var divId = 'affiliation'+affiliationChildCount;
 		var htmlId = 'affiliations['+affiliationChildCount+'].';
 		var nameInput = clone.find("input[id$=affiliationName]");
 
 		clone.find("input[type=button]")
-				.attr('onclick','deleteRow("' + divId + '")')
+				.attr('onclick','deleteAffiliation("' + divId + '")')
 		clone.find("input[id$=id]")
 				.attr('id',htmlId + 'id')
 				.attr('name',htmlId + 'id');
@@ -28,12 +28,46 @@
 		clone.attr('id', 'affiliation'+affiliationChildCount);
 		$("#affiliationChildList").append(clone);
 		clone.show();
-		nameInput.focus();
+		if (setFocus) {
+			nameInput.focus();
+		}
 		affiliationChildCount++;
+		toggleAddAffiliation();
+    }
+    
+    function deleteAffiliation(parentDiv) {
+    	//find the parent div
+    	var prnt = $("#"+parentDiv)
+        //find the deleted hidden input
+        var delInput = prnt.find("input[id$=deleted]");
+        var newHidden = prnt.find("input[id$=new]")
+        //check if this is still not persisted
+        var newValue = prnt.find("input[id$=new]").attr('value');
+        //if it is new then i can safely remove from dom
+        if (newValue == 'true') {
+            prnt.remove();
+        } else {
+            //set the deletedFlag to true
+            delInput.attr('value','true');
+            //hide the div
+            prnt.hide();
+        }
+        affiliationChildCount--;
+        toggleAddAffiliation();
+    }
+    
+    function toggleAddAffiliation() {
+    	$("#affiliationCount").text(''+affiliationChildCount)
+    	var button = $("#addAffiliationButton")
+		if (affiliationChildCount >= 5) {
+			button.hide();
+		} else {
+			button.show();
+		}
     }
 
 	<g:if test="${!affiliations}">
-    	addAffiliation();
+    	addAffiliation(false);
     </g:if>
 </g:javascript>
 
@@ -45,8 +79,8 @@
 		    </g:each>
 		</div>
 		<div class="add-btn-wrap">		
-			<input type="button" value="Add Another Organization" onclick="addAffiliation();" />
-			<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
+			<input id="addAffiliationButton" type="button" value="Add Another Organization" onclick="addAffiliation(true);" />
+			<span class="count"><span id="affiliationCount" class="current-count">1</span> of <span class="total-count">5</span> added</span>
 		</div>
 	</li>
 </ul>

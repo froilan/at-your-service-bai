@@ -8,7 +8,7 @@
 		var nameInput = clone.find("input[id$=contactAlias]");
 
 		clone.find("input[type=button]")
-				.attr('onclick','deleteRow("' + divId + '")')
+				.attr('onclick','deleteOtherContact("' + divId + '")')
 		clone.find("input[id$=id]")
 				.attr('id',htmlId + 'id')
 				.attr('name',htmlId + 'id');
@@ -30,6 +30,38 @@
 		clone.show();
 		nameInput.focus();
 		otherContactChildCount++;
+		toggleAddOtherContact();
+    }
+    
+    function deleteOtherContact(parentDiv) {
+    	//find the parent div
+    	var prnt = $("#"+parentDiv)
+        //find the deleted hidden input
+        var delInput = prnt.find("input[id$=deleted]");
+        var newHidden = prnt.find("input[id$=new]")
+        //check if this is still not persisted
+        var newValue = prnt.find("input[id$=new]").attr('value');
+        //if it is new then i can safely remove from dom
+        if (newValue == 'true') {
+            prnt.remove();
+        } else {
+            //set the deletedFlag to true
+            delInput.attr('value','true');
+            //hide the div
+            prnt.hide();
+        }
+        otherContactChildCount--;
+        toggleAddOtherContact();
+    }
+    
+    function toggleAddOtherContact() {
+    	$("#otherContactsCount").text(''+otherContactChildCount)
+    	var button = $("#addOtherContactButton")
+		if (otherContactChildCount >= 5) {
+			button.hide();
+		} else {
+			button.show();
+		}
     }
 </g:javascript>
 
@@ -59,8 +91,8 @@
 		    </g:each>
 		</div>
 		<div class="add-btn-wrap">		
-			<input type="button" value="Add Another Network" onclick="addOtherContact();" />
-			<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
+			<input id="addOtherContactButton" type="button" value="Add Another Network" onclick="addOtherContact();" />
+			<span class="count"><span id="otherContactsCount" class="current-count">1</span> of <span class="total-count">5</span> added</span>
 		</div>
 	</li>
 </ul>

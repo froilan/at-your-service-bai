@@ -9,6 +9,6 @@
 	<g:textField class="inline half" name="emailAddresses[${i}].contactValue" 
 		value="${emailAddress?.contactValue}" 
 		placeholder="name@company.com" />
-    <input type="button" onclick="deleteRow('emailAddress${i}')" value="Delete" />
+    <input type="button" onclick="deleteEmailAddress('emailAddress${i}')" value="Delete" />
 	
 </div>

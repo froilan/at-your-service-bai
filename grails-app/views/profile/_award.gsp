@@ -11,6 +11,6 @@
 		placeholder="Award Year" />
 	<g:textArea class="short-textarea" name="awards[${i}].awardDescription" 
 		value="${award?.awardDescription}" placeholder="Award Description" />
-    <input type="button" onclick="deleteRow('award${i}')" value="Delete" />
+    <input type="button" onclick="deleteAward('award${i}')" value="Delete" />
 	
 </div>

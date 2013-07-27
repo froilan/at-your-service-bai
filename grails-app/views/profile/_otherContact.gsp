@@ -9,6 +9,6 @@
 	<g:textField class="inline half" name="otherContacts[${i}].contactValue" 
 		value="${otherContact?.contactValue}" 
 		placeholder="www.tumblr.com/example" />
-    <input type="button" onclick="deleteRow('otherContact${i}')" value="Delete" />
+    <input type="button" onclick="deleteOtherContact('otherContact${i}')" value="Delete" />
 	
 </div>

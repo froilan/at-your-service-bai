@@ -7,7 +7,7 @@
 		value="${differentiation?.differentiationKeywords}" 
 		placeholder="How is your service unique? Example: Superior Communication" />
 	<span class="blue-star-icon"></span>
-	<input type="button" onclick="deleteRow('differentiation${i}')" value="Delete" />
+	<input type="button" onclick="deleteDifferentiation('differentiation${i}')" value="Delete" />
 	<g:textArea class="premium-field" name="differentiations[${i}].differentiationDescription" 
 		value="${differentiation?.differentiationDescription}" 
 		placeholder="Tell us a little more why you feel this way..." />

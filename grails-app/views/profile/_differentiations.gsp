@@ -1,14 +1,14 @@
 <g:javascript>
 	var differentiationChildCount = ${differentiations?.size()} + 0;
 
-    function addDifferentiation() {
+    function addDifferentiation(setFocus) {
 		var clone = $("#differentiation_clone").clone()
 		var divId = 'differentiation'+differentiationChildCount;
 		var htmlId = 'differentiations['+differentiationChildCount+'].';
 		var keywordInput = clone.find("input[id$=differentiationKeywords]");
 
 		clone.find("input[type=button]")
-				.attr('onclick','deleteRow("' + divId + '")')
+				.attr('onclick','deleteDifferentiation("' + divId + '")')
 		clone.find("input[id$=id]")
 				.attr('id',htmlId + 'id')
 				.attr('name',htmlId + 'id');
@@ -28,11 +28,14 @@
 		clone.attr('id', 'differentiation'+differentiationChildCount);
 		$("#differentiationChildList").append(clone);
 		clone.show();
-		keywordInput.focus();
+		if (setFocus) {
+			keywordInput.focus();
+		}
 		differentiationChildCount++;
+		toggleAddDifferentiation();
     }
-
-    function deleteRow(parentDiv) {
+    
+    function deleteDifferentiation(parentDiv) {
     	//find the parent div
     	var prnt = $("#"+parentDiv)
         //find the deleted hidden input
@@ -49,10 +52,22 @@
             //hide the div
             prnt.hide();
         }
+        differentiationChildCount--;
+        toggleAddDifferentiation();
+    }
+    
+    function toggleAddDifferentiation() {
+    	$("#differentiationCount").text(''+differentiationChildCount)
+    	var button = $("#addDifferentiationButton")
+		if (differentiationChildCount >= 5) {
+			button.hide();
+		} else {
+			button.show();
+		}
     }
     
     <g:if test="${!differentiations}">
-    	addDifferentiation();
+    	addDifferentiation(false);
     </g:if>
 </g:javascript>
 
@@ -64,8 +79,8 @@
 		    </g:each>
 		</div>
 		<div class="add-btn-wrap">		
-			<input type="button" value="Add Another Differentiation" onclick="addDifferentiation();" />
-			<span class="count"><span class="current-count">1</span> of <span class="total-count">5</span> added</span>
+			<input id="addDifferentiationButton" type="button" value="Add Another Differentiation" onclick="addDifferentiation(true);" />
+			<span class="count"><span id="differentiationCount" class="current-count">1</span> of <span class="total-count">5</span> added</span>
 		</div>
 	</li>
 </ul>

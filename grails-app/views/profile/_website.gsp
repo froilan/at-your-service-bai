@@ -6,6 +6,6 @@
 	<g:textField class="inline half" name="websites[${i}].contactValue" 
 		value="${website?.contactValue}" 
 		placeholder="http://www.mydomain.com" />
-    <input type="button" onclick="deleteRow('website${i}')" value="Delete" />
+    <input type="button" onclick="deleteWebsite('website${i}')" value="Delete" />
 	
 </div>

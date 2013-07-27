@@ -9,6 +9,6 @@
 	<g:textField class="custom-width" name="affiliations[${i}].affiliationRole" 
 		value="${affiliation?.affiliationRole}" 
 		placeholder="Role / Postion" />
-    <input type="button" onclick="deleteRow('affiliation${i}')" value="Delete" />
+    <input type="button" onclick="deleteAffiliation('affiliation${i}')" value="Delete" />
 	
 </div>

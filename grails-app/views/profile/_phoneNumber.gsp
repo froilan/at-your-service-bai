@@ -9,6 +9,6 @@
 	<g:textField class="inline half" name="phoneNumbers[${i}].contactValue" 
 		value="${phoneNumber?.contactValue}" 
 		placeholder="+639991234567" />
-    <input type="button" onclick="deleteRow('phoneNumber${i}')" value="Delete" />
+    <input type="button" onclick="deletePhoneNumber('phoneNumber${i}')" value="Delete" />
 	
 </div>
