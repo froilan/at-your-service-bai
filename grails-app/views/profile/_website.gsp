@@ -6,10 +6,12 @@
 	<%--<g:textField class="inline half" name="websites[${i}].contactValue" 
 		value="${website?.contactValue}" 
 		placeholder="http://www.mydomain.com" />--%>
-	<input name="websites[${i}].contactValue" type="text" 
+	<input type="text" class="inline half"
+		id="websites[${i}].contactValue"
+		name="websites[${i}].contactValue" 
 		value="${website?.contactValue}" 
-		placeholder="www.mydomain.com"
-		title="URL" pattern="/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/" />
+		placeholder="http://www.mydomain.com"
+		title="URL" pattern="^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$" />
     <input type="button" onclick="deleteWebsite('website${i}')" value="Delete" />
 	
 </div>

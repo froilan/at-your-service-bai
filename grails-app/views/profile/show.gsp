@@ -78,17 +78,17 @@
 									
 									<div class="email prem-content">
 										<span class="icon"></span>
-										<div class="wrap">${profileInstance.facebookContactInfo.contactValue}</div>
+										<div class="wrap">${profileInstance.facebookContactInfo?.contactValue}</div>
 									</div>
 									
 									<div class="email prem-content">
 										<span class="icon"></span>
-										<div class="wrap">${profileInstance.twitterContactInfo.contactValue}</div>
+										<div class="wrap">${profileInstance.twitterContactInfo?.contactValue}</div>
 									</div>
 									
 									<div class="email prem-content">
 										<span class="icon"></span>
-										<div class="wrap">${profileInstance.linkedInContactInfo.contactValue}</div>
+										<div class="wrap">${profileInstance.linkedInContactInfo?.contactValue}</div>
 									</div>
 									
 									<div class="phone-numbers">

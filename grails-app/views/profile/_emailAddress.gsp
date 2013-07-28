@@ -9,7 +9,9 @@
 	<%--<g:textField class="inline half" name="emailAddresses[${i}].contactValue" 
 		value="${emailAddress?.contactValue}" 
 		placeholder="name@company.com" />--%>
-	<input name="emailAddresses[${i}].contactValue" type="text" 
+	<input type="text" class="inline half"
+		id="emailAddresses[${i}].contactValue" 
+		name="emailAddresses[${i}].contactValue"  
 		value="${emailAddress?.contactValue}" 
 		placeholder="name@company.com"
 		title="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" />
