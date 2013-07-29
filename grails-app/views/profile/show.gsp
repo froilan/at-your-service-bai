@@ -35,7 +35,8 @@
 						
 						<div class="member-info">
 							<div class="member-info-wrap">
-								<img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/anna-cruze-profile-pic.jpg">
+								<!-- img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/anna-cruze-profile-pic.jpg" -->
+								<img src="${resource(dir: 'images', file: 'anna-cruze-profile-pic.jpg')}">
 								<div class="name-wrap">	
 									<h2 class="sb-member-name">${profileInstance.firstName} ${profileInstance.lastName}</h2>
 									<!-- <span class="member-title">Accountant / CPA</span><br>
@@ -121,10 +122,11 @@
 						<div class="service-overview">
 							<div class="meta-col">
 								<div class="img-wrap">
-									<img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/total-business-accounting-demo-logo.jpg" class="biz-logo">
+									<!-- img src="./AtYourService - Your Reliable Services Network - Profile Setup Step 1_files/total-business-accounting-demo-logo.jpg" class="biz-logo"-->
+									<img src="${resource(dir: 'images', file: 'total-business-accounting-demo-logo.jpg')}" class="biz-logo">
 								</div>
-								<%--<div class="biz-meta-box">Operating Since: <span class="op-since">${profileInstance.companyProfile}</span></div>
-								<div class="biz-meta-box">Size: <span class="employee-count">13</span> associates</div>--%>
+								<div class="biz-meta-box">Operating Since: <span class="op-since">${profileInstance.companyProfile.companyAge}</span></div>
+								<div class="biz-meta-box">Size: <span class="employee-count">${profileInstance.companyProfile.companySize}</span></div>
 							</div>
 							
 							<div class="details-col">
