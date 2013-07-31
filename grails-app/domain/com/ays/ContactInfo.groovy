@@ -3,6 +3,8 @@ package com.ays
 import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.EqualsBuilder
+import org.apache.commons.lang.builder.HashCodeBuilder
 
 abstract class ContactInfo implements Serializable {
 
@@ -29,4 +31,5 @@ abstract class ContactInfo implements Serializable {
 	boolean isEmpty() {
 		StringUtils.isBlank(contactValue) && StringUtils.isBlank(contactAlias)
 	}
+	
 }

@@ -70,20 +70,38 @@
 		<div class="inline-wrap facebook-wrap">
 			<span class="icon"></span>
 			<g:hiddenField name='facebookContactInfo.id' value='${profile.facebookContactInfo?.id}'/>
-			<g:textField class="custom-width" name="facebookContactInfo.contactValue" 
-				value="${profile?.facebookContactInfo?.contactValue}" placeholder="http://" />
+			<%--<g:textField class="custom-width" name="facebookContactInfo.contactValue" 
+				value="${profile?.facebookContactInfo?.contactValue}" placeholder="http://" />--%>
+			<input type="text" class="custom-width"
+				id="facebookContactInfo.contactValue"
+				name="facebookContactInfo.contactValue" 
+				value="${profile?.facebookContactInfo?.contactValue}" 
+				placeholder="http://www.facebook.com"
+				title="URL" pattern="^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$" />
 		</div>
 		<div class="inline-wrap twitter-wrap">
 			<span class="icon"></span>
 			<g:hiddenField name='twitterContactInfo.id' value='${profile.twitterContactInfo?.id}'/>
-			<g:textField class="custom-width" name="twitterContactInfo.contactValue" 
-				value="${profile?.twitterContactInfo?.contactValue}" placeholder="http://" />
+			<%--<g:textField class="custom-width" name="twitterContactInfo.contactValue" 
+				value="${profile?.twitterContactInfo?.contactValue}" placeholder="http://" />--%>
+			<input type="text" class="custom-width"
+				id="twitterContactInfo.contactValue"
+				name="twitterContactInfo.contactValue" 
+				value="${profile?.twitterContactInfo?.contactValue}" 
+				placeholder="http://www.twitter.com"
+				title="URL" pattern="^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$" />
 		</div>	
 		<div class="inline-wrap linkedin-wrap">
 			<span class="icon"></span>
 			<g:hiddenField name='linkedInContactInfo.id' value='${profile.linkedInContactInfo?.id}'/>
-			<g:textField class="custom-width" name="linkedInContactInfo.contactValue" 
-				value="${profile?.linkedInContactInfo?.contactValue}" placeholder="http://" />
+			<%--<g:textField class="custom-width" name="linkedInContactInfo.contactValue" 
+				value="${profile?.linkedInContactInfo?.contactValue}" placeholder="http://" />--%>
+			<input type="text" class="custom-width"
+				id="linkedInContactInfo.contactValue"
+				name="linkedInContactInfo.contactValue" 
+				value="${profile?.linkedInContactInfo?.contactValue}" 
+				placeholder="http://www.linkedin.com"
+				title="URL" pattern="^(http|https|ftp)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*[^\.\,\)\(\s]$" />
 		</div>
 		<div id="otherContactChildList">
 		    <g:each var="otherContact" in="${profile.otherContacts}" status="i">

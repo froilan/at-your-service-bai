@@ -1,5 +1,8 @@
 package com.ays
 
+import org.apache.commons.lang.builder.EqualsBuilder
+import org.apache.commons.lang.builder.HashCodeBuilder
+
 class OtherContactInfo extends ContactInfo {
 	
 	static mapping = {
@@ -7,13 +10,13 @@ class OtherContactInfo extends ContactInfo {
 	}
 	
 	int hashCode() {
-		contactAlias?.hashCode() + contactValue?.hashCode()
+		new HashCodeBuilder(17, 37).append(contactValue).append(contactAlias).toHashCode()
 	}
 	
-	boolean equals(o) {
-		if (this.is(o)) return true
+	boolean equals(Object o) {
+		if (o == null) return false
 		if (!(o instanceof OtherContactInfo)) return false
-		return contactAlias.equals(o.contactAlias) && contactValue.equals(o.contactValue)
+		new EqualsBuilder(17, 37).append(contactValue).append(contactAlias).isEquals()
 	}
 
 }

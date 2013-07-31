@@ -31,4 +31,9 @@ class Differentiation implements Serializable {
 	boolean isEmpty() {
 		StringUtils.isBlank(differentiationKeywords) && StringUtils.isBlank(differentiationDescription)
 	}
+	
+	boolean isIncomplete() {
+		(StringUtils.isBlank(differentiationKeywords) && StringUtils.isNotBlank(differentiationDescription) ||
+			StringUtils.isNotBlank(differentiationKeywords) && StringUtils.isBlank(differentiationDescription))
+	}
 }

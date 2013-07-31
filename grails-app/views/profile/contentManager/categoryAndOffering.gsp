@@ -53,6 +53,9 @@ business below so we can share it with people looking for your services.</p>
 premium business account at the end of this form.</li>
 								<li><span class="tip-badge">Hot Tip</span> The more quality information you enter, the more trusted your profile will be and the more business you will attract.</li>
 							</ul>
+							<ul class="errors">
+								<li>${errorMessage}</li>
+							</ul>
 							<div class="step-1 edit form-wrap">
 								<g:form enctype="multipart/form-data">
 									<ul class="outer-form-ul">

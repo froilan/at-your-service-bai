@@ -6,9 +6,14 @@
 	<g:textField class="inline half" name="phoneNumbers[${i}].contactAlias" 
 		value="${phoneNumber?.contactAlias}" 
 		placeholder="Name (example: Customer Support)" />
-	<g:textField class="inline half" name="phoneNumbers[${i}].contactValue" 
+	<%--g:textField class="inline half" name="phoneNumbers[${i}].contactValue" 
 		value="${phoneNumber?.contactValue}" 
-		placeholder="+639991234567" />
+		placeholder="+639991234567" /--%>
+	<input type="text" class="inline half"
+		id="phoneNumbers[${i}].contactValue"
+		name="phoneNumbers[${i}].contactValue" 
+		value="${phoneNumber?.contactValue}" 
+		title="numeric" pattern="^(([0-9]*)|(([0-9]*).([0-9]*)))$" />
     <input type="button" onclick="deletePhoneNumber('phoneNumber${i}')" value="Delete" />
 	
 </div>

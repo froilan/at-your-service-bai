@@ -35,4 +35,9 @@ abstract class Service implements Serializable {
 	boolean isEmpty() {
 		StringUtils.isBlank(serviceName) && StringUtils.isBlank(serviceDescription)
 	}
+	
+	boolean isIncomplete() {
+		(StringUtils.isBlank(serviceName) && StringUtils.isNotBlank(serviceDescription) ||
+			StringUtils.isNotBlank(serviceName) && StringUtils.isBlank(serviceDescription))
+	}
 }

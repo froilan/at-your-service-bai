@@ -62,7 +62,33 @@ class ProfileController {
 				println "secondaryServices >> ${profile.secondaryServices}"
 				[ profileInstance: profile,
 					companyProfileInstance: companyProfile ]
-			}.to "companyInfoAndRates"
+			}.to "validateCategoryAndOffering"
+		}
+		validateCategoryAndOffering {
+			action {
+				def profile = flow.profileInstance
+				def errorMessage = null
+				boolean hasError = false
+				if (profile.primaryServices.isEmpty()) {
+					errorMessage = "There must be at least one service offered."
+					hasError = true
+				} else {
+				// TODO is this necessary?
+//					for (Service service : profile.primaryServices) {
+//						if (service.isIncomplete()) {
+//							errorMessage = "Please complete information for each service."
+//							hasError = true
+//							break
+//						}
+//					}
+				}
+				flow.errorMessage = errorMessage
+				if (hasError) {
+					validationError()
+				}
+			}
+			on("success").to "companyInfoAndRates"
+			on("validationError").to "categoryAndOffering"
 		}
 		companyInfoAndRates {
 			on("next") {
@@ -153,7 +179,27 @@ class ProfileController {
 				println "profile.awards >> ${profile.awards}"
 				[ profileInstance: profile,
 					licenseInstance: license ]
-			}.to "contactDetails"
+			}.to "validateProfesionalAndLicensing"
+		}
+		validateProfesionalAndLicensing {
+			action {
+				def profile = flow.profileInstance
+				def errorMessage = null
+				boolean hasError = false
+				for (Differentiation diff : profile.differentiations) {
+					if (diff.isIncomplete()) {
+						errorMessage = "Please complete information for each differentiation."
+						hasError = true
+						break
+					}
+				}
+				flow.errorMessage = errorMessage
+				if (hasError) {
+					validationError()
+				}
+			}
+			on("success").to "contactDetails"
+			on("validationError").to "profesionalAndLicensing"
 		}
 		contactDetails {
 			on("next") {
@@ -193,7 +239,24 @@ class ProfileController {
 				println "profile.twitter >> ${profile.twitterContactInfo}"
 				println "profile.linkedIn >> ${profile.linkedInContactInfo}"
 				[ profileInstance: profile ]
-			}.to "saveProfile"
+			}.to "validateContactDetails"
+		}
+		validateContactDetails {
+			action {
+				def profile = flow.profileInstance
+				def errorMessage = null
+				boolean hasError = false
+				if (profile.phoneNumbers.isEmpty()) {
+					errorMessage = "There must be at least one phone number."
+					hasError = true
+				}
+				flow.errorMessage = errorMessage
+				if (hasError) {
+					validationError()
+				}
+			}
+			on("success").to "saveProfile"
+			on("validationError").to "contactDetails"
 		}
 		saveProfile {
 			action {
