@@ -1,5 +1,7 @@
 /* @override http://184.173.193.62/~ays/app/css/app-user-style.css */
 
+/* @override http://184.173.193.62/~ays/app/css/app-user-style.css */
+
 /*  
 
 WARNING!!!! ALWAYS BACKUP THIS FILE BEFORE EDITING!!!!!
@@ -83,7 +85,7 @@ table {
 ----------------------------------------------*/	
 #wrap #header .header-right {
 	width: 600px;
-	margin: 27px 0 0 0;
+	margin: 33px 0 0 0;
 }
 
 #wrap #header .header-right .user-info {

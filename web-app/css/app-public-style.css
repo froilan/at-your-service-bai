@@ -1,7 +1,6 @@
-/* @override http://184.173.193.62/~ays/app/css/app-user-style.css */
+/* @override http://184.173.193.62/~ays/app/css/app-public-style.css */
 
 /*  
-
 WARNING!!!! ALWAYS BACKUP THIS FILE BEFORE EDITING!!!!!
 
 
@@ -356,7 +355,243 @@ ul.outer-form-ul ul.input-wrap li.user-input select {
 	background: url(../images/sprites/app-sprite.png) -86px -2px no-repeat;
 }
 
-/* @Profile Page Title #public-profile 
+/*----------------------------------------------
+@Public Results Section #public-results 
+FRONT APP STYLES ONLY 
+----------------------------------------------*/
+
+/* inner title */
+#inner #inner-title .title-left {
+	float: left;
+}
+
+
+/* sidebar */
+#public-results #primary-sidebar {
+	background: url(../images/bg/lgt-grey-pattern-bg.png);
+	border-radius: 3px;
+	width: 230px;
+	padding: 20px;
+	overflow: hidden;
+} 
+
+#public-results #primary-sidebar li label {
+	font-size: 12px;
+	line-height: 14px;
+	margin: 0 0 3px 0;
+	float: left;
+	clear: both;
+}
+
+#public-results #primary-sidebar ul.lg-custom-select {
+	overflow: hidden;
+	float: left;
+	clear: both;
+	margin: 0 0 20px 0;
+}
+
+#public-results #primary-sidebar ul.lg-custom-select li.on-load {
+	float: left;
+	clear: both;
+	background: url(../images/sprites/horz-sprite.png) 0 -311px repeat-x;
+	width: 230px;
+	height: 39px;
+	border: 1px solid #b5b4b3;
+	border-radius: 3px;
+	position: relative;
+}
+
+#public-results #primary-sidebar ul.lg-custom-select li span.arrow-icon {
+	width: 8px;
+	height: 8px;
+	display: inline-block;
+	background: url(../images/sprites/front-app-sprite.png) -212px -1px;
+	position: absolute;
+	left: 205px;
+	top: 18px;
+	padding: 0;
+}
+
+#public-results #primary-sidebar ul.lg-custom-select li.on-load span:hover {
+	cursor: pointer;
+	color: #606060;
+}
+
+#public-results #primary-sidebar ul.lg-custom-select li span {
+	width: 98%;
+	display: inline-block;
+	padding: 13px 0 13px 10px;
+	color: #808080;
+	text-shadow: 1px 1px 0 #e3e3e3;
+}
+
+#public-results #primary-sidebar a.filter-submit {
+	float: left;
+	clear: both;
+	background: #b9b9b9;
+	color: #FFF;
+	width: 230px;
+	padding: 13px 0;
+	font-size: 19px;
+	text-align: center;
+	border-radius: 3px;
+	font-weight: bold;
+	text-shadow: none;
+}
+
+#public-results #primary-sidebar a.filter-submit:hover {
+	background: #4884e7;
+}
+
+/* Public Results - #content */
+#public-results #content {
+	float: right;
+	width: 660px;
+	padding: 0;
+}
+
+#public-results #content .result-wrap {
+	padding: 15px 15px 15px 12px;
+	overflow: hidden;
+	border-bottom: 1px solid #DDD;
+	color: #606060;
+}
+
+#public-results #content .result-wrap .result-logo {
+	float: left;
+}
+
+#public-results #content .result-wrap .result-logo img {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	margin: 0 20px 0 0;
+}
+
+#public-results #content .result-wrap .results-profile-info-wrap {
+	float: right;
+	width: 510px;
+	position: relative;
+}
+
+#public-results #content .result-wrap a h3 {
+	color: #4884e7;
+	font-size: 18px;
+	margin: 0 0 5px 0;
+	-moz-transition-duration: 300ms, 300ms;
+    -moz-transition-property: color, opacity;
+    -moz-transition-timing-function: ease, ease;
+    -webkit-transition-duration: 300ms, 300ms;
+    -webkit-transition-property: color, opacity;
+    -webkit-transition-timing-function: ease, ease;
+    -o-transition-duration: 300ms, 300ms;
+    -o-transition-property: color, opacity;
+    -o-transition-timing-function: ease, ease;
+    transition-duration: 300ms, 300ms;
+    transition-property: color, opacity;
+    transition-timing-function: ease, ease;
+}
+
+#public-results #content .result-wrap a h3:hover {
+	color: #fab533;
+}
+
+#public-results p.short-descript {
+	font-size: 13px;
+	line-height: 14px;	
+}
+
+#public-results .result-wrap ul {
+	overflow: hidden;
+	margin: 12px 0 0 0;
+	border-top: 1px dashed #ddd;
+	padding: 12px 0 0 0;
+}
+
+#public-results .result-wrap ul li {
+	float: left;
+}
+
+#public-results ul.meta-data-list li.rate {
+	font-weight: bold;
+}
+
+#public-results ul.meta-data-list li.rating {
+	margin: 5px 0 0 67px;
+	font-weight: bold;
+}
+
+#public-results ul.meta-data-list li.view-details-btn {
+	float: right;
+}
+
+#public-results ul.meta-data-list li.view-details-btn a.blue-btn {
+	background: #4884e7;
+	color: #FFF;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 7px 13px;
+	display: inline-block;
+	border-radius: 3px;
+}
+
+#public-results ul.meta-data-list li.view-details-btn a.blue-btn:hover {
+	background: #fab533;
+}
+
+
+
+/* @Public Results Lower Pagination #inner-pagination */
+#public-results #inner-pagination {
+	float: right;
+	clear: both;
+	width: 663px;
+	overflow: hidden;
+	margin: 10px 0 0 0;
+}
+
+#public-results #inner-pagination .pagination-left {
+	float: left;
+}
+
+#public-results #inner-pagination .pagination-right-meta {
+	float: right;
+}
+
+#public-results #inner-pagination .pagination-left li {
+	float: left;
+	line-height: 18px;
+	color: #aaa;
+}
+
+#public-results #inner-pagination .pagination-left li .ellipsis {
+	display: inline-block;
+	margin: 8px 5px 0 4px;
+}
+
+#public-results #inner-pagination .pagination-left li a {
+	background: #aaa9a8;
+	color: #FFF;
+	margin: 0 3px 0 0;
+	padding: 5px 7px;
+	display: inline-block;
+	border-radius: 3px;
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+#public-results #inner-pagination .pagination-left li a:hover {
+	background: #4884e7;
+}
+
+#public-results #inner-pagination li.current-page a {
+	background: #4884e7;
+}
+
+
+
+/*----------------------------------------------
+@Public Profile Page Title #public-profile 
 FRONT APP STYLES ONLY 
 ----------------------------------------------*/
 .front-app #wrap #inner #inner-wrap {
@@ -372,7 +607,7 @@ FRONT APP STYLES ONLY
 	width: 665px;
 }
 
-.front-app #inner-title .breadcrumb {
+.front-app #inner-title .breadcrumb, .results-page-title {
 	float: left;
 	color: #606060;
 	font-size: 13px;
@@ -407,11 +642,17 @@ FRONT APP STYLES ONLY
 	margin: 0 0 0 4px;
 }
 
+.front-app #wrap #inner a.not-clickable, .front-app #wrap #inner a.not-clickable:hover {
+	background: #aaa9a8;
+	cursor: default;
+	color: #dddddc;
+}
+
 .front-app #inner-title .title-right-meta a:hover {
 	background: #4884e7;
 }
 
-.front-app #inner-title .title-right-meta .match-count {
+.front-app #inner-title .title-right-meta .match-count, .front-app #inner-pagination .pagination-right-meta .match-count  {
 	float: right;
 	font-size: 12px;
 	line-height: 12px;
@@ -638,17 +879,20 @@ FRONT APP STYLES ONLY
 	color: #606060;
 }
 
-.member-info ul.meta-data-list li.rate {
-	margin: 0 0 10px 0;
+.front-app ul.meta-data-list li.rate {
 	font-size: 13px;
 }
 
-.member-info ul.meta-data-list li.rate .rate-wrap {
+#public-profile ul.meta-data-list li.rate {
+	margin: 0 0 10px 0;
+}
+
+.front-app ul.meta-data-list li.rate .rate-wrap {
 	margin: 4px 0 0 8px;
 	display: inline-block;
 }
 
-.member-info ul.meta-data-list li.rate .icon {
+.front-app ul.meta-data-list li.rate .icon {
 	background: url(../images/sprites/front-app-sprite.png) -189px -1px;
 	width: 22px;
 	height: 22px;
@@ -656,18 +900,22 @@ FRONT APP STYLES ONLY
 	float: left;
 }
 
-.member-info ul.meta-data-list li.rating {
-	margin: 16px 0 0 0;
+.front-app ul.meta-data-list li.rating {
+	margin: 4px 0 0 0;
 	font-size: 13px;
 	position: relative;
 }
 
-.member-info ul.meta-data-list li.rating .rating-wrap {
+#public-profile ul.meta-data-list li.rating {
+	margin: 16px 0 0 0;
+}
+
+.front-app ul.meta-data-list li.rating .rating-wrap {
 	margin: 0 0 0 85px !important;
 	display: inline-block;
 }
 
-.member-info ul.meta-data-list li.rating .grey-stars {
+.front-app ul.meta-data-list li.rating .grey-stars {
 	background: url(../images/sprites/front-app-sprite.png) 0px -38px;
 	width: 78px;
 	height: 22px;
@@ -677,7 +925,7 @@ FRONT APP STYLES ONLY
 	z-index: 100;
 }
 
-.member-info ul.meta-data-list li.rating .yellow-stars {
+.front-app ul.meta-data-list li.rating .yellow-stars {
 	background: url(../images/sprites/front-app-sprite.png) 0px -22px;
 	width: 69px;
 	height: 13px;
@@ -688,7 +936,7 @@ FRONT APP STYLES ONLY
 	z-index: 101;
 }
 
-/* @Profile Page Content #public-profile 
+/* @Public Profile Page Content #public-profile 
 FRONT APP STYLES ONLY 
 ----------------------------------------------*/
 .front-app #content {
@@ -910,10 +1158,6 @@ FRONT APP STYLES ONLY
 	margin: 0;
 }
 
-
-
-
-/* @Footer  FRONT APP STYLES ONLY 
-----------------------------------------------*/	
+	
 
 

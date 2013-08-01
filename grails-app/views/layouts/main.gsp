@@ -18,8 +18,8 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700italic,400italic,700' rel='stylesheet' type='text/css'>
 		<!-- <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css"> -->
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-general-style.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-user-style.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-public-style.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app-user-style.css')}" type="text/css">
 		<!-- <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css"> -->
 		<script src="${resource(dir: 'js', file: 'jquery.js')}"></script>
 		<script src="${resource(dir: 'js', file: 'app-biz-form.js')}"></script>
