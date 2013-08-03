@@ -118,7 +118,7 @@
 						</g:if>
 						<p class="meta-salary">
 							<g:if test="${profile.askingFee}">
-								<strong>${profile.askingFee}</strong> ${profile.feeStructure.displayValue}
+								<strong>${profile.askingFee}</strong> ${profile.feeStructure.value}
 							</g:if>
 						</p>
 						<p class="meta-rate">
@@ -130,7 +130,16 @@
 					</div>
 				</div>
 			</g:each>
+			<g:set var="totalPages" value="${Math.ceil(searchResult.total / 3)}" />
+    <g:if test="${totalPages == 1}">
+        <span class="currentStep">1</span>
+    </g:if>
+    <g:else>
+<g:paginate controller="search" action="index" params="[q: params.q]" 
+                    total="${searchResult.total}" prev="&lt; previous" next="next &gt;"/>
+    </g:else>
 		</div>
+		
     			</g:if>
     
     		</div><!-- result-list -->

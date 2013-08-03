@@ -23,7 +23,11 @@ class SearchController {
 			locationQuery.append("province:").append(location).append(")")
 			query += locationQuery.toString()
 		}
-
+		def searchResult = Profile.search(query, params)
+		
+		//searchResult.total = searchResult.results.size()
+		//searchResult.max = 3
+		//tried to override searchResult.max pero lagi parin nag reresolve sa 10
 		try {
      	   return [searchResult: Profile.search(query, params)]
     	} catch (SearchEngineQueryParseException ex) {
