@@ -23,11 +23,21 @@
 						<span class="inline-wrap"><a href="#"><span class="category">Financial Services</span></a> &gt; <a href="#"><span class="sub-category">Accountants</span></a> &gt; <span class="member-name">Anna Cruze</span></span>
 					</div>
 					<div class="title-right-meta">
-						<div class="next-prev">
+						<%--<div class="next-prev">
 							<a href="#" class="not-clickable">prev</a>
 							<a href="#">next</a>
 						</div>
-						<div class="match-count"><span class="current-count-start">1</span> - <span class="current-count-end">10</span> of <span class="total-count">24</span> matches</div>
+						--%><g:if test="${haveResults}">
+							<%--<div class="match-count"><span class="current-count-start">1</span> - <span class="current-count-end">${searchResult.results.size()}</span> of <span class="total-count">${searchResult.total}</span> matches</div>
+							--%>
+						    
+					    	<div class="next-prev">
+						        <g:paginate controller="search" action="index" params="[q: params.q]" 
+						                    total="${searchResult.total}" prev="&lt; previous" next="next &gt;"/>
+						        <div class="match-count"><span class="current-count-start">${searchResult.offset+1}</span> - <span class="current-count-end">${searchResult.offset+searchResult.max}</span> of <span class="total-count">${searchResult.total}</span> matches</div>            
+					         </div>           
+						    
+						</g:if>
 					</div>
 				</div>
 			</div> 
@@ -107,6 +117,7 @@
 				</div>
 				<div class="pagination-right-meta">
 					<p class="match-count">Showing <span class="current-count-range">1-10</span> of <span class="total-count">24</span> matches</p>
+					
 				</div>
 			</div><!-- #inner-pagination -->
 			</g:if>
